@@ -13,7 +13,7 @@ https://classic.yarnpkg.com/lang/en/docs/install/#windows-stable
 2) Run ```yarn install``` inside root directory.
 3) Run ```yarn start``` to start the local server.
 
-## For adding new features to teh repo:
+## For adding new features to the repo:
 
 1) ```git checkout -b "feature/the_feature_you_are_working_on"```
 2) Complete whatever you are working on with git add and commit. 
