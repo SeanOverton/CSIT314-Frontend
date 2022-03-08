@@ -1,0 +1,14 @@
+.navbar{
+    padding: 1em;
+}
+
+.navbar-link{
+    padding: 1em;
+    text-decoration: None;
+    font-size: 2em;
+    color: black;
+}
+
+.navbar-link:hover{
+    text-decoration: underline coral;
+}
