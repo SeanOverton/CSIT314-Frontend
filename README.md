@@ -17,4 +17,4 @@ https://classic.yarnpkg.com/lang/en/docs/install/#windows-stable
 
 1) ```git checkout -b "feature/the_feature_you_are_working_on"```
 2) Complete whatever you are working on with git add and commit. 
-3) ``git push --set-upstream origin"your_branch_name"``` and create pull request. Fix any merge conflicts and get help.
+3) ```git push --set-upstream origin"your_branch_name"``` and create pull request. Fix any merge conflicts and get help.
