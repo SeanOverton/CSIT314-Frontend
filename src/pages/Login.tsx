@@ -2,14 +2,16 @@
 import React, { Component } from "react";
 import Nav from "./Nav";
 import Footer from './Footer';
+import auth from "./Auth";
+
 import "./forms.css";
 
-const LogIn = () => {
+const LogIn = (props: any) => {
     return (
         <>
             <Nav/>
             <div className="auth-inner">
-                <form>
+                {/* <form> */}
                     <h3>Login</h3>
 
                     <div className="form-group">
@@ -29,11 +31,21 @@ const LogIn = () => {
                         </div>
                     </div>
 
-                    <button type="submit" className="btn btn-primary btn-block">Submit</button>
+                    {/* <button type="submit" className="btn btn-primary btn-block">Login</button> */}
+                    
+                    <button onClick={() => {
+                        auth.login(() => {
+                            alert("Log in successful!");
+
+                            //navigate to new path
+                            window.location.reload();
+                        })
+                    }} className="btn btn-primary btn-block">Login</button>
+
                     <p className="forgot-password text-right">
                         Forgot <a href="#">password?</a>
                     </p>
-                </form>
+                {/* </form> */}
             </div>
             <Footer/>
         </>
