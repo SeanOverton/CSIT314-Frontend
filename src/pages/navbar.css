@@ -1,9 +1,9 @@
-.navbar{
-    padding: 1em;
+.navbar-space{
+  padding-top: 30px
 }
 
 .navbar-link{
-    padding: 1em;
+    padding: 0.5em;
     text-decoration: None;
     font-size: 1.5em;
     color: black;
@@ -72,7 +72,7 @@
   
   /* General sidebar styles */
   .bm-menu {
-    background: #373a47;
+    background: #fffff9;
     padding: 2.5em 1.5em 0;
     font-size: 1.15em;
   }
@@ -91,6 +91,7 @@
   /* Individual item */
   .bm-item {
     display: inline-block;
+    font-size: 26px;
   }
   
   /* Styling of overlay */
