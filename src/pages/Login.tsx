@@ -38,7 +38,7 @@ const LogIn = (props: any) => {
                     
                     <button onClick={() => {
                         auth.login(() => {
-                            alert("Log in successful!");
+                            // alert("Log in successful!");
 
                             //navigate to new path
                             window.location.reload();
