@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from 'react';
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home";
@@ -8,6 +7,7 @@ import Request from './pages/Request';
 import AllRequests from './pages/AllRequests';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { ProtectedRoute } from './pages/ProtectedRoute';
+import RequestDetails from './pages/RequestDetails';
 
 function App() {
   return (
@@ -29,6 +29,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <AllRequests/>
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/details/:id"
+              element={
+                <ProtectedRoute>
+                  <RequestDetails/>
                 </ProtectedRoute>
               }
             />
