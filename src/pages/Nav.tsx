@@ -7,7 +7,7 @@ import auth from "./Auth";
 const Nav = () => {
   
     return (
-        <>
+        <>  
             <div className="mobile-hide navbar-space">
                 <Link className="navbar-link" to="/">Home</Link>
                 {auth.isAuthenticated() ? (
