@@ -43,6 +43,12 @@ body, html, .App, #root, .auth-wrapper {
   transition: all .3s;
 }
 
+@media only screen and (max-width: 500px) {
+  .auth-inner{
+    width: 90%;
+  }
+}
+
 .auth-wrapper .form-control:focus {
   border-color: #167bff;
   box-shadow: none;
