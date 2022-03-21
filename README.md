@@ -13,8 +13,11 @@ https://classic.yarnpkg.com/lang/en/docs/install/#windows-stable
 2) Run ```yarn install``` inside root directory.
 3) Run ```yarn start``` to start the local server.
 
-## For adding new features to the repo:
+## For adding new features to the repo (Workflow for version control):
 
 1) ```git checkout -b "feature/the_feature_you_are_working_on"```
 2) Complete whatever you are working on with git add and commit. 
 3) ```git push --set-upstream origin"your_branch_name"``` and create pull request. Fix any merge conflicts or get help.
+
+## Further info on version control:
+I have set up according to this methodology so it is most similar to a workplace team environment: https://dev.to/profydev/professional-git-workflow-github-setup-for-react-developers-pfj
