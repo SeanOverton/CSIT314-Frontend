@@ -29,3 +29,8 @@ I have set up according to this methodology so it is most similar to a workplace
 
 ## For adding packages
 1) Please use ```yarn add <package_name>``` and remember with typescript you will also have to install the type declarations with ```yarn add @types/<package_name>```
+
+## Best practices and code style:
+1) Use the modern arrow funcitons ```const function_name = () => {}```
+2) Use Capitalises on component names eg. SignUp
+3) use **camelCase** on all other functions and variable names. 
