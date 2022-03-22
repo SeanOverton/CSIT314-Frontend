@@ -21,3 +21,8 @@ https://classic.yarnpkg.com/lang/en/docs/install/#windows-stable
 
 ## Further info on version control:
 I have set up according to this methodology so it is most similar to a workplace team environment: https://dev.to/profydev/professional-git-workflow-github-setup-for-react-developers-pfj
+
+## Styling:
+-bootstrap has been imported in the App.tsx file, meaning the classes should be accessible from anywhere in the project. This might be a useful resource https://bootstrapshuffle.com/classes
+-Otherwise please use the ```./src/styles/<specific_component_name>.css``` to store any other specific component styles. 
+-If it is a style that should be used across the whole project. eg. fonts and colours, add them to the ./src/App.css
