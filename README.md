@@ -26,3 +26,6 @@ I have set up according to this methodology so it is most similar to a workplace
 1) Bootstrap has been imported in the App.tsx file, meaning the classes should be accessible from anywhere in the project. This might be a useful resource https://bootstrapshuffle.com/classes
 2) Otherwise please use the ```./src/styles/<specific_component_name>.css``` to store any other specific component styles. 
 3) If it is a style that should be used across the whole project. eg. fonts and colours, add them to the ./src/App.css
+
+## For adding packages
+1) Please use ```yarn add <package_name>``` and remember with typescript you will also have to install the type declarations with ```yarn add @types/<package_name>```
