@@ -1,8 +1,8 @@
 import React, { useState, useReducer } from 'react';
 import {Link, Navigate} from "react-router-dom";
-import './navbar.css';
+import '../styles/navbar.css';
 import { slide as Menu } from 'react-burger-menu';
-import auth from "./Auth";
+import auth from "./utils/Auth";
 
 const Nav = () => {
   

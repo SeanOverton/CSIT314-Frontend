@@ -1,11 +1,11 @@
 
 import React, { Component } from "react";
-import Nav from "./Nav";
-import Footer from './Footer';
-import auth from "./Auth";
+import Nav from "../Nav";
+import Footer from '../Footer';
+import auth from "../utils/Auth";
 import { Navigate } from "react-router-dom";
 
-import "./forms.css";
+import "../../styles/forms.css";
 
 const LogIn = (props: any) => {
     return (
