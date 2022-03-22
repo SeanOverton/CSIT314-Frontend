@@ -1,6 +1,6 @@
-import Nav from "./Nav";
-import Footer from './Footer';
-import "./forms.css";
+import Nav from "../Nav";
+import Footer from '../Footer';
+import "../../styles/forms.css";
 
 const Request = () => {
     return (

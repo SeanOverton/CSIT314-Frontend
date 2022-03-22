@@ -1,13 +1,13 @@
 import { Routes, Route } from "react-router-dom";
-import "./App.css";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import SignUp from "./pages/SignUp";
-import Request from './pages/Request';
-import AllRequests from './pages/AllRequests';
+import "./styles/App.css";
+import Home from "./components/pages/Home";
+import Login from "./components/pages/Login";
+import SignUp from "./components/pages/SignUp";
+import Request from './components/pages/Request';
+import AllRequests from './components/pages/AllRequests';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import { ProtectedRoute } from './pages/ProtectedRoute';
-import RequestDetails from './pages/RequestDetails';
+import { ProtectedRoute } from './components/utils/ProtectedRoute';
+import RequestDetails from './components/pages/RequestDetails';
 import car_logo from "./images/moving_car.png"
 
 function App() {
