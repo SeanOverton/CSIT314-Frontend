@@ -1,30 +1,59 @@
 
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import Nav from "../Nav";
 import Footer from '../Footer';
 import auth from "../utils/Auth";
 import { Navigate } from "react-router-dom";
-
 import "../../styles/forms.css";
+import axios from 'axios';
 
 const LogIn = (props: any) => {
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+
+    const login = (evt: any) => {
+        evt.preventDefault();
+
+        let body = {
+            username,
+            password
+        }
+
+        // axios request
+        axios.post('http://127.0.0.1:8000/login/', body)
+        .then(response => {
+            auth.login(() => {
+                alert("Log in successful!");
+    
+                //navigate to new path
+                window.location.reload();
+            }, response.data)
+        })
+        .catch((error) => {
+            // TODO: actually handle this error
+            console.log(error.response.data);
+            console.log(error.request);
+            console.log(error.message);
+        });
+    }
+
     return (
         <>
         {!auth.isAuthenticated() ? (
             <>
             <Nav/>
             <div className="auth-inner">
-                <form>
+                <form onSubmit={login}>
                     <h3>Login</h3>
 
                     <div className="form-group">
-                        <label>Email address</label>
-                        <input type="email" className="form-control" placeholder="Enter email" />
+                        <label>Username</label>
+                        <input type="username" className="form-control" placeholder="Enter username" onChange={e => setUsername(e.target.value)}/>
                     </div>
 
                     <div className="form-group">
                         <label>Password</label>
-                        <input type="password" className="form-control" placeholder="Enter password" />
+                        <input type="password" className="form-control" placeholder="Enter password" onChange={e => setPassword(e.target.value)}/>
                     </div>
 
                     <div className="form-group">
@@ -33,17 +62,8 @@ const LogIn = (props: any) => {
                             <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
                         </div>
                     </div>
-
-                    {/* <button type="submit" className="btn btn-primary btn-block">Login</button> */}
                     
-                    <button onClick={() => {
-                        auth.login(() => {
-                            // alert("Log in successful!");
-
-                            //navigate to new path
-                            window.location.reload();
-                        })
-                    }} className="btn btn-primary btn-block">Login</button>
+                    <button type="submit" value="Submit" className="btn btn-primary btn-block">Login</button>
 
                     <p className="forgot-password text-right">
                         Forgot <a href="#">password?</a>
