@@ -1,5 +1,5 @@
-import Nav from "../Nav";
-import Footer from '../Footer';
+import Nav from "../components/Nav";
+import Footer from "../components/Footer";
 import { Card, Container } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";

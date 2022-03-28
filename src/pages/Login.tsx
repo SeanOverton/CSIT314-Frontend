@@ -1,10 +1,10 @@
 
 import React, { Component, useState } from "react";
-import Nav from "../Nav";
-import Footer from '../Footer';
-import auth from "../utils/Auth";
+import Nav from "../components/Nav";
+import Footer from '../components/Footer';
+import auth from "../components/utils/Auth";
 import { Navigate } from "react-router-dom";
-import "../../styles/forms.css";
+import "../styles/forms.css";
 import axios from 'axios';
 
 const LogIn = (props: any) => {

@@ -1,6 +1,6 @@
-import Nav from "../Nav";
-import Footer from '../Footer';
-import "../../styles/forms.css";
+import Nav from "../components/Nav";
+import Footer from '../components/Footer';
+import "../styles/forms.css";
 import { useState } from "react";
 import axios from "axios";
 

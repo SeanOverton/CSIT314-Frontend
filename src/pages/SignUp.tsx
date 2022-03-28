@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import Nav from "../Nav";
-import Footer from '../Footer';
+import Nav from "../components/Nav";
+import Footer from '../components/Footer';
 import { Link } from "react-router-dom";
-import "../../styles/forms.css";
+import "../styles/forms.css";
 import axios from 'axios';
 
 const SignUp = () => {
