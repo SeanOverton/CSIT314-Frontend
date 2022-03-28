@@ -6,6 +6,7 @@ import axios from "axios";
 
 const Request = () => {
     const [location, setLocation] = useState("");
+    const [description, setDescription] = useState("");
 
     const makeRequest = (evt: any) => {
         evt.preventDefault();
@@ -26,6 +27,7 @@ const Request = () => {
         let body = {
             username: localStorage.getItem("username"),
             location,
+            description,
             status: "PENDING",
             date: currentdate_string
         }
@@ -62,10 +64,10 @@ const Request = () => {
                         <input type="text" className="form-control" placeholder="Location"  onChange={e => setLocation(e.target.value)}/>
                     </div>
 
-                    {/* <div className="form-group">
-                        <label>Something else</label>
-                        <input type="password" className="form-control" placeholder="Other details" />
-                    </div> */}
+                    <div className="form-group">
+                        <label>Provide any detail on your issue:</label>
+                        <input type="text" className="form-control" placeholder="eg. My car is on fire" onChange={e => setDescription(e.target.value)}/>
+                    </div>
                     
                     <div style={{padding: "1em"}}>
                     <button type="submit" className="btn btn-primary btn-block">Submit request</button>

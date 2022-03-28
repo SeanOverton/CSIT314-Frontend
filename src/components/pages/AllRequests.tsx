@@ -52,6 +52,7 @@ const RequestCardContainer = () => {
 
     return (
         <div style={{display: "flex", flexWrap: "wrap", justifyContent: "center"}}>
+            {/* should also filter by time? so people at the top are next */}
             {requests.map((request) => {
                 return <div style={{padding: "0.3em"}}><SingleRequestCard request={request}/></div>;
             }) }
