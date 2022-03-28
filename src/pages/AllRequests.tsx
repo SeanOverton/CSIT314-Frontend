@@ -26,7 +26,7 @@ const SingleRequestCard = (props: any) => {
 }
 
 const RequestCardContainer = () => {
-    const[requests, setRequests] = useState<any[]>([1, 1, 1, 1, 1, 1, 1]);
+    const[requests, setRequests] = useState<any[]>([]);
 
     useEffect(() => {
         let token = localStorage.getItem("token")?.replaceAll('"', '');

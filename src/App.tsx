@@ -5,6 +5,8 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Request from './pages/Request';
 import AllRequests from './pages/AllRequests';
+import MySubscriptions from './pages/ViewMySubscriptions';
+import AddSubscription from './pages/AddSubscription';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { ProtectedRoute } from './components/utils/ProtectedRoute';
 import RequestDetails from './pages/RequestDetails';
@@ -30,6 +32,22 @@ function App() {
               element={
                 <ProtectedRoute>
                   <AllRequests/>
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/subscriptions"
+              element={
+                <ProtectedRoute>
+                  <MySubscriptions/>
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/add_car"
+              element={
+                <ProtectedRoute>
+                  <AddSubscription/>
                 </ProtectedRoute>
               }
             />

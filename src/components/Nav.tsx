@@ -13,7 +13,10 @@ const Nav = () => {
                 {auth.isAuthenticated() ? (
                     <>  
                         {auth.isCustomer() ? (
-                            <Link className="navbar-link bm-item" to="/request">Request our service</Link>
+                            <>
+                            <Link className="navbar-link bm-item" to="/request">Roadside assistance</Link>
+                            <Link className="navbar-link bm-item" to="/subscriptions">My subscriptions</Link>
+                            </>
                         ) : (
                             <></>
                         )
@@ -45,7 +48,10 @@ const Nav = () => {
                 {auth.isAuthenticated() ? (
                     <>  
                         {auth.isCustomer() ? (
-                            <Link className="navbar-link bm-item" to="/request">Request our service</Link>
+                            <>
+                            <Link className="navbar-link bm-item" to="/request">Roadside assistance</Link>
+                            <Link className="navbar-link bm-item" to="/subscriptions">My subscriptions</Link>
+                            </>
                         ) : (
                             <></>
                         )

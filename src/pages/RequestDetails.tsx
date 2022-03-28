@@ -9,6 +9,7 @@ interface CalloutDetails {
     location: string,
     status: string,
     username: string, 
+    description: string,
     mechanic: string, 
     date: string, 
     rating: string, 
@@ -20,6 +21,7 @@ const RequestDetails = () => {
         location: "", 
         status: "", 
         username: "",
+        description: "",
         mechanic:"", 
         date: "", 
         rating: "", 
@@ -35,8 +37,8 @@ const RequestDetails = () => {
         let body = {
             username: details.username,
             location: details.location,
+            description: details.description,
             status: "ACCEPTED",
-            date: details.date,
             mechanic: mechanic,
         }
 
@@ -48,17 +50,20 @@ const RequestDetails = () => {
         }
 
         // axios request
-        axios.post('http://127.0.0.1:8000/update_callout/', body, {headers: headers})
+        axios.post('http://localhost:8000/update_callout/', body, {headers: headers})
         .then(response => {
-            alert("Success! The customer will be notified that you're on your way!");
-            
-            // TODO: this may be handled better by a react method?
-            document.location = "http://localhost:3000";
+            console.log(response.data);
+            if(response.data.status == "OK"){
+                alert("Success! The customer will be notified that you're on your way!");
+                // TODO: this may be handled better by a react method?
+                document.location = "http://localhost:3000";
+            }
+            throw Error("Failed");
         })
         .catch((error) => {
             // TODO: actually handle this error
-            console.log(error.response.data);
-            console.log(error.request);
+            // console.log(error.response.data);
+            // console.log(error.request);
             console.log(error.message);
         });
     }   
