@@ -10,7 +10,8 @@ import AddSubscription from './pages/AddSubscription';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { ProtectedRoute } from './components/utils/ProtectedRoute';
 import RequestDetails from './pages/RequestDetails';
-import car_logo from "./images/moving_car.png"
+import car_logo from "./images/moving_car.png";
+import MechanicDashboard from "./pages/MechanicDashboard";
 
 function App() {
   return (
@@ -48,6 +49,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <AddSubscription/>
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/currentjob"
+              element={
+                <ProtectedRoute>
+                  <MechanicDashboard/>
                 </ProtectedRoute>
               }
             />

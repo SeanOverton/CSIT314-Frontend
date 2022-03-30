@@ -22,7 +22,10 @@ const Nav = () => {
                         )
                         }
                         {auth.isMechanic() ? (
+                            <>
                             <Link className="navbar-link bm-item" to="/requests">View all requests</Link>
+                            <Link className="navbar-link bm-item" to="/currentjob">Current Job</Link>
+                            </>
                         ) : (
                             <></>
                         )
@@ -57,7 +60,10 @@ const Nav = () => {
                         )
                         }
                         {auth.isMechanic() ? (
+                            <>
                             <Link className="navbar-link bm-item" to="/requests">View all requests</Link>
+                            <Link className="navbar-link bm-item" to="/currentjob">Current Job</Link>
+                            </>
                         ) : (
                             <></>
                         )

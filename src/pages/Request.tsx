@@ -48,7 +48,7 @@ const Request = () => {
             console.log(error.request);
             console.log(error.message);
         });
-    }, [location]); 
+    }, []); 
 
     const makeRequest = (evt: any) => {
         evt.preventDefault();
