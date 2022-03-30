@@ -4,7 +4,7 @@ import "../styles/forms.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const CurrentRequest = (props: any) => {
+const CurrentJob = (props: any) => {
     const markAsComplete = (evt: any) => {
         evt.preventDefault();
         
@@ -16,7 +16,7 @@ const CurrentRequest = (props: any) => {
             username: details.username,
             location: details.location,
             description: details.description,
-            status: "COMPLETE",
+            status: "COMPLETED",
             mechanic: mechanic,
         }
 
@@ -49,6 +49,7 @@ const CurrentRequest = (props: any) => {
     return (
         <>
             <h1>Status: {props.request.status}</h1>
+            <h2>Customers description: {props.request.description}</h2>
             <h2>Location: {props.request.location}</h2>
             <h2>Mechanic: {props.request.mechanic}</h2>
             <form onSubmit={markAsComplete}>
@@ -98,7 +99,7 @@ const MechanicDashboard = () => {
         {request.length == 0 ? (
             <h2>No current jobs accepted</h2>
         ) : (
-            <CurrentRequest request={request}/>
+            <CurrentJob request={request}/>
         )}
         <Footer/>
         </>
