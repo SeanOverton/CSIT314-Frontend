@@ -13,6 +13,8 @@ import RequestDetails from './pages/RequestDetails';
 import car_logo from "./images/moving_car.png";
 import MechanicDashboard from "./pages/MechanicDashboard";
 import Checkout from "./pages/Checkout";
+import JobHistory from "./pages/JobHistory";
+import JobHistoryDetails from "./pages/JobHistoryDetails";
 
 function App() {
   return (
@@ -66,6 +68,22 @@ function App() {
               element={
                 <ProtectedRoute>
                   <RequestDetails/>
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/history"
+              element={
+                <ProtectedRoute>
+                  <JobHistory/>
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/historical_details/:id"
+              element={
+                <ProtectedRoute>
+                  <JobHistoryDetails/>
                 </ProtectedRoute>
               }
             />
