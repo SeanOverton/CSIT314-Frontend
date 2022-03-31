@@ -105,6 +105,7 @@ const RequestDetails = () => {
         <h3>Location {details.location}</h3>
         <h3>TODO: map here</h3>
         <h3>Time of request {details.date}</h3>
+        <h3>Customer Comment: {details.description}</h3>
         <form onSubmit={acceptJob}>
         <button type="submit" className="btn-primary btn">Accept this callout</button>
         </form>

@@ -3,6 +3,7 @@ import Footer from '../components/Footer';
 import "../styles/forms.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Checkout from "./Checkout";
 
 const CurrentRequest = (props: any) => {
     const [rating, setRating] = useState<any>();
@@ -87,6 +88,9 @@ const Request = () => {
     const [request, setRequest] = useState([]);
     const [location, setLocation] = useState("");
     const [description, setDescription] = useState("");
+    const [rego, setRego] = useState("");
+    const [hasSubscription, setHasSubscription] = useState(false);
+    const [hasChecked, setHasChecked] = useState(false);
 
     useEffect(() => {
         let username = localStorage.getItem("username")?.replaceAll('"', '');
@@ -119,9 +123,39 @@ const Request = () => {
         });
     }, []); 
 
-    const makeRequest = (evt: any) => {
-        evt.preventDefault();
-        
+    const checkIfCarHasSubscription = async () => {
+        let username = localStorage.getItem("username")?.replaceAll('"', '');
+        let token = localStorage.getItem("token")?.replaceAll('"', '');
+
+        // this should be extracted so it can be used by multiple requests
+        let headers = {
+            "Authorization": `Token ${token}`
+        }
+
+        axios.get(`http://localhost:8000/my_subscriptions/?username=${username}`, {headers: headers})
+        .then(response => {
+            var new_request = response.data.filter(function(sub: any) {
+                return sub.vehicle_registration == rego;
+            });
+
+            setHasChecked(true);
+
+            if(new_request.length > 0){
+                setHasSubscription(true);
+                submitRequest();
+            }else{
+                setHasSubscription(false);
+            }            
+        })
+        .catch((error) => {
+            // TODO: actually handle this error
+            console.log(error.response.data);
+            console.log(error.request);
+            console.log(error.message);
+        });
+    }
+
+    const submitRequest = () => {
         let currentdate = new Date();
         
         let month = `${currentdate.getMonth()}`;
@@ -155,6 +189,8 @@ const Request = () => {
         axios.post('http://127.0.0.1:8000/create_callout/', body, {headers: headers})
         .then(response => {
             alert("Success! A mechanic will respond shortly!");
+            // console.log(response.data);
+            setRequest(response.data);
         })
         .catch((error) => {
             // TODO: actually handle this error
@@ -164,29 +200,48 @@ const Request = () => {
         });
     }
 
+    const makeRequest = (evt: any) => {
+        evt.preventDefault();
+        
+        setHasChecked(false);
+
+        checkIfCarHasSubscription();
+    }
+
     return (
         <>
         <Nav/>
         {request.length == 0 ? (
-            <div className="auth-inner">
-                <form onSubmit={makeRequest}>
-                    <h3>Request roadside assistance</h3>
+            <>
+            {!hasSubscription && hasChecked ? (
+                <Checkout submitRequest = {submitRequest}/>
+            ) : (
+                <div className="auth-inner">
+                    <form onSubmit={makeRequest}>
+                        <h3>Request roadside assistance</h3>
 
-                    <div className="form-group">
-                        <label>Location</label>
-                        <input type="text" className="form-control" placeholder="Location"  onChange={e => setLocation(e.target.value)}/>
-                    </div>
+                        <div className="form-group">
+                            <label>Location</label>
+                            <input type="text" className="form-control" placeholder="Location"  onChange={e => setLocation(e.target.value)}/>
+                        </div>
 
-                    <div className="form-group">
-                        <label>Provide any detail on your issue:</label>
-                        <input type="text" className="form-control" placeholder="eg. My car is on fire" onChange={e => setDescription(e.target.value)}/>
-                    </div>
-                    
-                    <div style={{padding: "1em"}}>
-                    <button type="submit" className="btn btn-primary btn-block">Submit request</button>
-                    </div>
-                </form>
-            </div>
+                        <div className="form-group">
+                            <label>Provide any detail on your issue:</label>
+                            <input type="text" className="form-control" placeholder="eg. My car is on fire" onChange={e => setDescription(e.target.value)}/>
+                        </div>
+
+                        <div className="form-group">
+                            <label>Car registration:</label>
+                            <input type="text" className="form-control" placeholder="XWZ-123" onChange={e => setRego(e.target.value)}/>
+                        </div>
+                        
+                        <div style={{padding: "1em"}}>
+                        <button type="submit" className="btn btn-primary btn-block">Submit request</button>
+                        </div>
+                    </form>
+                </div>
+            )}
+            </>
         ) : (
             <CurrentRequest request={request}/>
         )}

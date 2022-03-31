@@ -12,6 +12,7 @@ import { ProtectedRoute } from './components/utils/ProtectedRoute';
 import RequestDetails from './pages/RequestDetails';
 import car_logo from "./images/moving_car.png";
 import MechanicDashboard from "./pages/MechanicDashboard";
+import Checkout from "./pages/Checkout";
 
 function App() {
   return (
@@ -65,6 +66,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <RequestDetails/>
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/checkout"
+              element={
+                <ProtectedRoute>
+                  <Checkout/>
                 </ProtectedRoute>
               }
             />
