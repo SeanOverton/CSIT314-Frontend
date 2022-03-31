@@ -25,6 +25,7 @@ const Nav = () => {
                             <>
                             <Link className="navbar-link bm-item" to="/requests">View all requests</Link>
                             <Link className="navbar-link bm-item" to="/currentjob">Current Job</Link>
+                            <Link className="navbar-link bm-item" to="/history">History</Link>
                             </>
                         ) : (
                             <></>
@@ -63,6 +64,7 @@ const Nav = () => {
                             <>
                             <Link className="navbar-link bm-item" to="/requests">View all requests</Link>
                             <Link className="navbar-link bm-item" to="/currentjob">Current Job</Link>
+                            <Link className="navbar-link bm-item" to="/history">History</Link>
                             </>
                         ) : (
                             <></>
