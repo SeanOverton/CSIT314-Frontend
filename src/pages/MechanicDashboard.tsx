@@ -3,6 +3,8 @@ import Footer from '../components/Footer';
 import "../styles/forms.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import BACKEND_URL from "../components/utils/Constants";
+import FRONTEND_URL from "../components/utils/Constants";
 
 const CurrentJob = (props: any) => {
     const markAsComplete = (evt: any) => {
@@ -28,13 +30,13 @@ const CurrentJob = (props: any) => {
         }
 
         // axios request
-        axios.post('http://localhost:8000/update_callout/', body, {headers: headers})
+        axios.post(`${BACKEND_URL}/update_callout/`, body, {headers: headers})
         .then(response => {
             console.log(response.data);
             if(response.data.status == "OK"){
                 alert("Success! The customer will be notified that you're on your way!");
                 // TODO: this may be handled better by a react method?
-                document.location = "http://localhost:3000";
+                document.location = FRONTEND_URL;
             }
             throw Error("Failed");
         })
@@ -71,7 +73,7 @@ const MechanicDashboard = () => {
             "Authorization": `Token ${token}`
         }
 
-        axios.get('http://localhost:8000/all_callouts', {headers: headers})
+        axios.get(`${BACKEND_URL}/all_callouts`, {headers: headers})
         .then(response => {
             // console.log(response.data);
 

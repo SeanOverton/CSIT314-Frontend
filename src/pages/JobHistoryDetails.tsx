@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import BACKEND_URL from "../components/utils/Constants";
+import FRONTEND_URL from "../components/utils/Constants";
 
 interface CalloutDetails {
     id: number,
@@ -51,13 +52,13 @@ const RequestDetails = () => {
         }
 
         // axios request
-        axios.post('http://localhost:8000/update_callout/', body, {headers: headers})
+        axios.post(`${BACKEND_URL}/update_callout/`, body, {headers: headers})
         .then(response => {
             console.log(response.data);
             if(response.data.status == "OK"){
                 alert("Success! The customer will be notified that you're on your way!");
                 // TODO: this may be handled better by a react method?
-                document.location = "http://localhost:3000";
+                document.location = FRONTEND_URL;
             }
             throw Error("Failed");
         })

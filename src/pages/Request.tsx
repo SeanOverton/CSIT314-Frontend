@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Checkout from "./Checkout";
 import BACKEND_URL from "../components/utils/Constants";
+import FRONTEND_URL from "../components/utils/Constants";
 
 const CurrentRequest = (props: any) => {
     const [rating, setRating] = useState<any>();
@@ -35,13 +36,13 @@ const CurrentRequest = (props: any) => {
         }
 
         // axios request
-        axios.post('http://localhost:8000/update_callout/', body, {headers: headers})
+        axios.post(`${BACKEND_URL}/update_callout/`, body, {headers: headers})
         .then(response => {
             console.log(response.data);
             if(response.data.status == "OK"){
                 alert("Success! Thank you for using our service!");
                 // TODO: this may be handled better by a react method?
-                document.location = "http://localhost:3000";
+                document.location = FRONTEND_URL;
             }
             throw Error("Failed");
         })
@@ -102,7 +103,7 @@ const Request = () => {
             "Authorization": `Token ${token}`
         }
 
-        axios.get('http://localhost:8000/all_callouts', {headers: headers})
+        axios.get(`${BACKEND_URL}/all_callouts`, {headers: headers})
         .then(response => {
             // console.log(response.data);
 
@@ -133,7 +134,7 @@ const Request = () => {
             "Authorization": `Token ${token}`
         }
 
-        axios.get(`http://localhost:8000/my_subscriptions/?username=${username}`, {headers: headers})
+        axios.get(`${BACKEND_URL}/my_subscriptions/?username=${username}`, {headers: headers})
         .then(response => {
             var new_request = response.data.filter(function(sub: any) {
                 return sub.vehicle_registration == rego;
