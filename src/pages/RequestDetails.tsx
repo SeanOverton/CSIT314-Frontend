@@ -3,6 +3,7 @@ import Footer from "../components/Footer";
 import { useParams } from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
+import BACKEND_URL from "../components/utils/Constants";
 
 interface CalloutDetails {
     id: number,
@@ -79,7 +80,7 @@ const RequestDetails = () => {
         }
 
         //TODO: actually fetch data in here
-        axios.get('http://127.0.0.1:8000/all_callouts/?status=PENDING', {headers: headers})
+        axios.get(`${BACKEND_URL}/all_callouts/?status=PENDING`, {headers: headers})
         .then(response => {
             
             var callout = response.data.filter(function(callout: any) {

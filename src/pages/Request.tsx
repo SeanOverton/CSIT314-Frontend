@@ -4,6 +4,7 @@ import "../styles/forms.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Checkout from "./Checkout";
+import BACKEND_URL from "../components/utils/Constants";
 
 const CurrentRequest = (props: any) => {
     const [rating, setRating] = useState<any>();
@@ -186,7 +187,7 @@ const Request = () => {
         }
 
         // axios request
-        axios.post('http://127.0.0.1:8000/create_callout/', body, {headers: headers})
+        axios.post(`${BACKEND_URL}/create_callout/`, body, {headers: headers})
         .then(response => {
             alert("Success! A mechanic will respond shortly!");
             // console.log(response.data);

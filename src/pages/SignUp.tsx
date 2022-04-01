@@ -4,6 +4,7 @@ import Footer from '../components/Footer';
 import { Link } from "react-router-dom";
 import "../styles/forms.css";
 import axios from 'axios';
+import BACKEND_URL from '../components/utils/Constants';
 
 const SignUp = () => {
     const [username, setUsername] = useState("");
@@ -28,7 +29,7 @@ const SignUp = () => {
         }
 
         // read the endpoint in from a .env file?
-        axios.post('http://127.0.0.1:8000/register/', body)
+        axios.post(`${BACKEND_URL}/register/`, body)
         .then(response => console.log(response.data))
         .catch((error) => {
             console.log(error.response.data);

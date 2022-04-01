@@ -3,6 +3,7 @@ import Footer from '../components/Footer';
 import "../styles/forms.css";
 import { useState } from "react";
 import axios from "axios";
+import BACKEND_URL from "../components/utils/Constants";
 
 const Request = () => {
     const [rego, setRego] = useState("");
@@ -25,7 +26,7 @@ const Request = () => {
         }
 
         // axios request
-        axios.post('http://127.0.0.1:8000/update_subscriptions/', body, {headers: headers})
+        axios.post(`${BACKEND_URL}/update_subscriptions/`, body, {headers: headers})
         .then(response => {
             alert("Success! New car added!");
         })
