@@ -7,6 +7,7 @@ import { Navigate } from "react-router-dom";
 import "../styles/forms.css";
 import axios from 'axios';
 import BACKEND_URL from "../components/utils/Constants";
+import { toast } from "react-toastify";
 
 const LogIn = (props: any) => {
     const [username, setUsername] = useState("");
@@ -23,15 +24,33 @@ const LogIn = (props: any) => {
         // axios request
         axios.post(`${BACKEND_URL}/login/`, body)
         .then(response => {
-            auth.login(() => {
-                alert("Log in successful!");
-    
-                //navigate to new path
+            toast.success("Log in successful!", {
+                position: "top-center",
+                autoClose: 5000,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                });
+            auth.login(() => {    
                 window.location.reload();
             }, response.data)
         })
         .catch((error) => {
-            // TODO: actually handle this error
+            for (const property in error.response.data) {
+                console.log(`${property}: ${error.response.data[property][0]}`);
+                toast.error(
+                    `${error.response.data[property][0]}`,
+                {
+                    position: "top-center",
+                    autoClose: 10000,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true,
+                    progress: undefined,
+                }
+                );
+            }
             console.log(error.response.data);
             console.log(error.request);
             console.log(error.message);

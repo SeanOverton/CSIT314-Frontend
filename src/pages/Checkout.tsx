@@ -1,11 +1,6 @@
-import React from 'react';
-import Nav from "../components/Nav";
-import Footer from '../components/Footer';
-
 const Checkout = (props: any) => {
    return (
         <>
-        {/* <Nav/> */}
         <h1>This vehicle registration has no subscription</h1>
         <div className="auth-inner">
             <form onSubmit={props.submitRequest}>
@@ -36,7 +31,6 @@ const Checkout = (props: any) => {
                 </div>
             </form>
         </div>
-        {/* <Footer/> */}
         </>
     );
 };

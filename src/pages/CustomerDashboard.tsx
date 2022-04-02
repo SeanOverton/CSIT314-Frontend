@@ -4,6 +4,7 @@ import "../styles/forms.css";
 import { useState } from "react";
 import axios from "axios";
 import BACKEND_URL from "../components/utils/Constants";
+import { toast } from "react-toastify";
 
 const Request = () => {
     const [location, setLocation] = useState("");
@@ -43,10 +44,30 @@ const Request = () => {
         // axios request
         axios.post(`${BACKEND_URL}/create_callout/`, body, {headers: headers})
         .then(response => {
-            alert("Success! A mechanic will respond shortly!");
+            toast.success("Success! A mechanic will respond shortly!", {
+                position: "top-center",
+                autoClose: 5000,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                });
         })
         .catch((error) => {
-            // TODO: actually handle this error
+            for (const property in error.response.data) {
+                console.log(`${property}: ${error.response.data[property][0]}`);
+                toast.error(
+                    `${property}: ${error.response.data[property][0]}`,
+                {
+                    position: "top-center",
+                    autoClose: 10000,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true,
+                    progress: undefined,
+                }
+                );
+            }
             console.log(error.response.data);
             console.log(error.request);
             console.log(error.message);
