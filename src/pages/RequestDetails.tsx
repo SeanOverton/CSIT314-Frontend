@@ -5,6 +5,8 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import BACKEND_URL, {FRONTEND_URL} from "../components/utils/Constants";
 import { toast } from "react-toastify";
+import { formatDate, formatTime } from "../components/utils/Helpers";
+import CalloutDetails from "../components/CalloutDetails";
 
 interface CalloutDetails {
     id: number,
@@ -122,12 +124,7 @@ const RequestDetails = () => {
     return (
         <>
         <Nav/>
-        <h1>Request details {id} for user: {details.username}</h1>
-        <h3>Status: {details.status}</h3>
-        <h3>Location {details.location}</h3>
-        <h3>TODO: map here</h3>
-        <h3>Time of request {details.date}</h3>
-        <h3>Customer Comment: {details.description}</h3>
+        <CalloutDetails details={details}/>
         <form onSubmit={acceptJob}>
         <button type="submit" className="btn-primary btn">Accept this callout</button>
         </form>

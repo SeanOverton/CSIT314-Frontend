@@ -5,18 +5,22 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import BACKEND_URL from "../components/utils/Constants";
+import { formatDate, formatTime } from "../components/utils/Helpers";
 
 //passing state through Link in react-router-dom is documented here:
 //https://dev.to/medaminefh/passing-data-with-react-router-using-link-1h39
 
 const SingleRequestCard = (props: any) => {
+    
+    
     return(
         <Card style={{ width: '18rem' }}>
             <Card.Body>
-                <Card.Title>Location: {props.request.location} (Distance?)</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">Time of request</Card.Subtitle>
+                <Card.Title>Location: {props.request.location}</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">{formatDate(props.request.date)}</Card.Subtitle>
+                <Card.Subtitle className="mb-2 text-muted">{formatTime(props.request.date)}</Card.Subtitle>
                 <Card.Text>
-                Details regarding the callout
+                {props.request.description}
                 </Card.Text>
                 <Link to={{
                     pathname: `/details/${props.request.id}`,

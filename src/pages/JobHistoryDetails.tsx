@@ -5,18 +5,7 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import BACKEND_URL, {FRONTEND_URL} from "../components/utils/Constants";
 import { toast } from "react-toastify";
-
-interface CalloutDetails {
-    id: number,
-    location: string,
-    status: string,
-    username: string, 
-    description: string,
-    mechanic: string, 
-    date: string, 
-    rating: string, 
-    review: string
-}
+import CalloutDetails, { CalloutDetailsInterface } from "../components/CalloutDetails";
 
 const RequestDetails = () => {
     const default_details = {id: 0, 
@@ -29,7 +18,7 @@ const RequestDetails = () => {
         rating: "", 
         review: ""}
 
-    const [details, setDetails] = useState<CalloutDetails>(default_details);
+    const [details, setDetails] = useState<CalloutDetailsInterface>(default_details);
 
     const acceptJob = (evt: any) => {
         evt.preventDefault();
@@ -122,14 +111,10 @@ const RequestDetails = () => {
     return (
         <>
         <Nav/>
-        <h1>Request details {id} for user: {details.username}</h1>
-        <h3>Status: {details.status}</h3>
-        <h3>Location {details.location}</h3>
-        <h3>TODO: map here</h3>
-        <h3>Time of request {details.date}</h3>
-        <h3>Customer Comment: {details.description}</h3>
-        <h3>Rating: {details.rating}/10</h3>
-        <h3>Customer Review: {details.review}</h3>
+        <CalloutDetails details={details}/>
+        <form onSubmit={acceptJob}>
+        <button type="submit" className="btn-primary btn">Accept this callout</button>
+        </form>
         <Footer/>
         </>
     );

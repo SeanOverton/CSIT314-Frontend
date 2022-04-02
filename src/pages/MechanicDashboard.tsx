@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import BACKEND_URL, { FRONTEND_URL } from "../components/utils/Constants";
 import { toast } from "react-toastify";
+import CalloutDetails from "../components/CalloutDetails";
 
 const CurrentJob = (props: any) => {
     const markAsComplete = (evt: any) => {
@@ -67,10 +68,7 @@ const CurrentJob = (props: any) => {
 
     return (
         <>
-            <h1>Status: {props.request.status}</h1>
-            <h2>Customers description: {props.request.description}</h2>
-            <h2>Location: {props.request.location}</h2>
-            <h2>Mechanic: {props.request.mechanic}</h2>
+            <CalloutDetails details={props.request}/>
             <form onSubmit={markAsComplete}>
                 <button type="submit" className="btn btn-primary btn-block">Mark as Complete</button>
             </form>
