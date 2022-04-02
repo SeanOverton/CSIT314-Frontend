@@ -15,10 +15,13 @@ import MechanicDashboard from "./pages/MechanicDashboard";
 import Checkout from "./pages/Checkout";
 import JobHistory from "./pages/JobHistory";
 import JobHistoryDetails from "./pages/JobHistoryDetails";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
     <div className="App">
+      <ToastContainer/>
           <Routes>
             <Route path="/" element={<Home/>} />
             <Route path="/login" element={<Login/>}/>

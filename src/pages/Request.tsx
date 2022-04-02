@@ -4,8 +4,8 @@ import "../styles/forms.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Checkout from "./Checkout";
-import BACKEND_URL from "../components/utils/Constants";
-import FRONTEND_URL from "../components/utils/Constants";
+import BACKEND_URL, { FRONTEND_URL } from "../components/utils/Constants";
+import { toast } from "react-toastify";
 
 const CurrentRequest = (props: any) => {
     const [rating, setRating] = useState<any>();
@@ -40,7 +40,14 @@ const CurrentRequest = (props: any) => {
         .then(response => {
             console.log(response.data);
             if(response.data.status == "OK"){
-                alert("Success! Thank you for using our service!");
+                toast.success("Success! Thank you for using our service!", {
+                    position: "top-center",
+                    autoClose: 5000,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true,
+                    progress: undefined,
+                    });
                 // TODO: this may be handled better by a react method?
                 document.location = FRONTEND_URL;
             }
@@ -50,6 +57,20 @@ const CurrentRequest = (props: any) => {
             // TODO: actually handle this error
             // console.log(error.response.data);
             // console.log(error.request);
+            for (const property in error.response.data) {
+                console.log(`${property}: ${error.response.data[property][0]}`);
+                toast.error(
+                    `${property}: ${error.response.data[property][0]}`,
+                {
+                    position: "top-center",
+                    autoClose: 10000,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true,
+                    progress: undefined,
+                }
+                );
+            }
             console.log(error.message);
         });
     }
@@ -190,12 +211,33 @@ const Request = () => {
         // axios request
         axios.post(`${BACKEND_URL}/create_callout/`, body, {headers: headers})
         .then(response => {
-            alert("Success! A mechanic will respond shortly!");
+            toast.success("Success! A mechanic will respond shortly!", {
+                position: "top-center",
+                autoClose: 5000,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                });
             // console.log(response.data);
             setRequest(response.data);
         })
         .catch((error) => {
             // TODO: actually handle this error
+            for (const property in error.response.data) {
+                console.log(`${property}: ${error.response.data[property][0]}`);
+                toast.error(
+                    `${property}: ${error.response.data[property][0]}`,
+                {
+                    position: "top-center",
+                    autoClose: 10000,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true,
+                    progress: undefined,
+                }
+                );
+            }
             console.log(error.response.data);
             console.log(error.request);
             console.log(error.message);

@@ -4,6 +4,8 @@ import "../styles/forms.css";
 import { useState } from "react";
 import axios from "axios";
 import BACKEND_URL from "../components/utils/Constants";
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Request = () => {
     const [rego, setRego] = useState("");
@@ -28,10 +30,30 @@ const Request = () => {
         // axios request
         axios.post(`${BACKEND_URL}/update_subscriptions/`, body, {headers: headers})
         .then(response => {
-            alert("Success! New car added!");
+            toast.success("Success! New car added!", {
+                position: "top-center",
+                autoClose: 5000,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                });
         })
         .catch((error) => {
-            // TODO: actually handle this error
+            for (const property in error.response.data) {
+                console.log(`${property}: ${error.response.data[property][0]}`);
+                toast.error(
+                    `${property}: ${error.response.data[property][0]}`,
+                {
+                    position: "top-center",
+                    autoClose: 10000,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true,
+                    progress: undefined,
+                }
+                );
+            }
             console.log(error.response.data);
             console.log(error.request);
             console.log(error.message);

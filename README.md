@@ -34,3 +34,8 @@ I have set up according to this methodology so it is most similar to a workplace
 1) Use the modern arrow funcitons ```const function_name = () => {}```
 2) Use Capitalises on component names eg. SignUp
 3) use **camelCase** on all other functions and variable names. 
+
+## Deploying to heroku:
+1) Need to be signed in to heroku and have access to our heroku repo:
+2) Add the heroku repo as a remote. 
+3) ```git push heroku master``` And it will build/deploy as their is a build pack already on the heroku repo. 

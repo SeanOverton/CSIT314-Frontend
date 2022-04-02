@@ -3,8 +3,8 @@ import Footer from '../components/Footer';
 import "../styles/forms.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import BACKEND_URL from "../components/utils/Constants";
-import FRONTEND_URL from "../components/utils/Constants";
+import BACKEND_URL, { FRONTEND_URL } from "../components/utils/Constants";
+import { toast } from "react-toastify";
 
 const CurrentJob = (props: any) => {
     const markAsComplete = (evt: any) => {
@@ -34,16 +34,33 @@ const CurrentJob = (props: any) => {
         .then(response => {
             console.log(response.data);
             if(response.data.status == "OK"){
-                alert("Success! The customer will be notified that you're on your way!");
+                toast.success("Success! The customer will be notified that you're on your way!", {
+                    position: "top-center",
+                    autoClose: 5000,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true,
+                    progress: undefined,
+                    });
                 // TODO: this may be handled better by a react method?
                 document.location = FRONTEND_URL;
             }
-            throw Error("Failed");
         })
         .catch((error) => {
-            // TODO: actually handle this error
-            // console.log(error.response.data);
-            // console.log(error.request);
+            for (const property in error.response.data) {
+                console.log(`${property}: ${error.response.data[property][0]}`);
+                toast.error(
+                    `${property}: ${error.response.data[property][0]}`,
+                {
+                    position: "top-center",
+                    autoClose: 10000,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true,
+                    progress: undefined,
+                }
+                );
+            }
             console.log(error.message);
         });
     }
