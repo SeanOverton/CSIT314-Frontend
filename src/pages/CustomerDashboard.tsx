@@ -5,6 +5,7 @@ import { useState } from "react";
 import axios from "axios";
 import BACKEND_URL from "../components/utils/Constants";
 import { toast } from "react-toastify";
+import { makeAuthenticatedPostRequest } from "../components/utils/Helpers";
 
 const Request = () => {
     const [location, setLocation] = useState("");
@@ -26,6 +27,7 @@ const Request = () => {
 
         let currentdate_string = `${year}-${month}-${day}`
 
+        // TODO: remove this date creation? as i think DB is handling this now
         let body = {
             username: localStorage.getItem("username"),
             location,
@@ -33,45 +35,8 @@ const Request = () => {
             status: "PENDING",
             date: currentdate_string
         }
-
-        let token = localStorage.getItem("token")?.replaceAll('"', '');
-
-        // this should be extracted so it can be used by multiple requests
-        let headers = {
-            "Authorization": `Token ${token}`
-        }
-
-        // axios request
-        axios.post(`${BACKEND_URL}/create_callout/`, body, {headers: headers})
-        .then(response => {
-            toast.success("Success! A mechanic will respond shortly!", {
-                position: "top-center",
-                autoClose: 5000,
-                closeOnClick: true,
-                pauseOnHover: false,
-                draggable: true,
-                progress: undefined,
-                });
-        })
-        .catch((error) => {
-            for (const property in error.response.data) {
-                console.log(`${property}: ${error.response.data[property][0]}`);
-                toast.error(
-                    `${property}: ${error.response.data[property][0]}`,
-                {
-                    position: "top-center",
-                    autoClose: 10000,
-                    closeOnClick: true,
-                    pauseOnHover: false,
-                    draggable: true,
-                    progress: undefined,
-                }
-                );
-            }
-            console.log(error.response.data);
-            console.log(error.request);
-            console.log(error.message);
-        });
+        
+        makeAuthenticatedPostRequest("/create_callout/", "Success! A mechanic will respond shortly!", body);
     }
 
     return (

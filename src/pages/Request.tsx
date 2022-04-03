@@ -5,9 +5,9 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Checkout from "./Checkout";
 import BACKEND_URL, { FRONTEND_URL } from "../components/utils/Constants";
-import { toast } from "react-toastify";
+import { makeAuthenticatedPostRequest } from "../components/utils/Helpers";
 
-const CurrentRequest = (props: any) => {
+const CustomersCurrentRequest = (props: any) => {
     const [rating, setRating] = useState<any>();
     const [review, setReview] = useState<any>();
     
@@ -28,51 +28,10 @@ const CurrentRequest = (props: any) => {
             rating: rating,
         }
 
-        let token = localStorage.getItem("token")?.replaceAll('"', '');
-
-        // this should be extracted so it can be used by multiple requests
-        let headers = {
-            "Authorization": `Token ${token}`
-        }
-
-        // axios request
-        axios.post(`${BACKEND_URL}/update_callout/`, body, {headers: headers})
-        .then(response => {
-            console.log(response.data);
-            if(response.data.status == "OK"){
-                toast.success("Success! Thank you for using our service!", {
-                    position: "top-center",
-                    autoClose: 5000,
-                    closeOnClick: true,
-                    pauseOnHover: false,
-                    draggable: true,
-                    progress: undefined,
-                    });
-                // TODO: this may be handled better by a react method?
-                document.location = FRONTEND_URL;
-            }
-            throw Error("Failed");
-        })
-        .catch((error) => {
-            // TODO: actually handle this error
-            // console.log(error.response.data);
-            // console.log(error.request);
-            for (const property in error.response.data) {
-                console.log(`${property}: ${error.response.data[property][0]}`);
-                toast.error(
-                    `${property}: ${error.response.data[property][0]}`,
-                {
-                    position: "top-center",
-                    autoClose: 10000,
-                    closeOnClick: true,
-                    pauseOnHover: false,
-                    draggable: true,
-                    progress: undefined,
-                }
-                );
-            }
-            console.log(error.message);
-        });
+        makeAuthenticatedPostRequest("/update_callout/", 
+        "Success! Thank you for using our service!", 
+        body, 
+        FRONTEND_URL);
     }
 
     return (
@@ -201,47 +160,7 @@ const Request = () => {
             date: currentdate_string
         }
 
-        let token = localStorage.getItem("token")?.replaceAll('"', '');
-
-        // this should be extracted so it can be used by multiple requests
-        let headers = {
-            "Authorization": `Token ${token}`
-        }
-
-        // axios request
-        axios.post(`${BACKEND_URL}/create_callout/`, body, {headers: headers})
-        .then(response => {
-            toast.success("Success! A mechanic will respond shortly!", {
-                position: "top-center",
-                autoClose: 5000,
-                closeOnClick: true,
-                pauseOnHover: false,
-                draggable: true,
-                progress: undefined,
-                });
-            // console.log(response.data);
-            setRequest(response.data);
-        })
-        .catch((error) => {
-            // TODO: actually handle this error
-            for (const property in error.response.data) {
-                console.log(`${property}: ${error.response.data[property][0]}`);
-                toast.error(
-                    `${property}: ${error.response.data[property][0]}`,
-                {
-                    position: "top-center",
-                    autoClose: 10000,
-                    closeOnClick: true,
-                    pauseOnHover: false,
-                    draggable: true,
-                    progress: undefined,
-                }
-                );
-            }
-            console.log(error.response.data);
-            console.log(error.request);
-            console.log(error.message);
-        });
+        makeAuthenticatedPostRequest("/create_callout/", "Success! A mechanic will respond shortly!", body);
     }
 
     const makeRequest = (evt: any) => {
@@ -287,7 +206,7 @@ const Request = () => {
             )}
             </>
         ) : (
-            <CurrentRequest request={request}/>
+            <CustomersCurrentRequest request={request}/>
         )}
         <Footer/>
         </>

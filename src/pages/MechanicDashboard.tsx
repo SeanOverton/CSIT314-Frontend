@@ -6,6 +6,7 @@ import axios from "axios";
 import BACKEND_URL, { FRONTEND_URL } from "../components/utils/Constants";
 import { toast } from "react-toastify";
 import CalloutDetails from "../components/CalloutDetails";
+import { makeAuthenticatedPostRequest } from "../components/utils/Helpers";
 
 const CurrentJob = (props: any) => {
     const markAsComplete = (evt: any) => {
@@ -22,48 +23,11 @@ const CurrentJob = (props: any) => {
             status: "COMPLETED",
             mechanic: mechanic,
         }
-
-        let token = localStorage.getItem("token")?.replaceAll('"', '');
-
-        // this should be extracted so it can be used by multiple requests
-        let headers = {
-            "Authorization": `Token ${token}`
-        }
-
-        // axios request
-        axios.post(`${BACKEND_URL}/update_callout/`, body, {headers: headers})
-        .then(response => {
-            console.log(response.data);
-            if(response.data.status == "OK"){
-                toast.success("Success! The customer will be notified that you're on your way!", {
-                    position: "top-center",
-                    autoClose: 5000,
-                    closeOnClick: true,
-                    pauseOnHover: false,
-                    draggable: true,
-                    progress: undefined,
-                    });
-                // TODO: this may be handled better by a react method?
-                document.location = FRONTEND_URL;
-            }
-        })
-        .catch((error) => {
-            for (const property in error.response.data) {
-                console.log(`${property}: ${error.response.data[property][0]}`);
-                toast.error(
-                    `${property}: ${error.response.data[property][0]}`,
-                {
-                    position: "top-center",
-                    autoClose: 10000,
-                    closeOnClick: true,
-                    pauseOnHover: false,
-                    draggable: true,
-                    progress: undefined,
-                }
-                );
-            }
-            console.log(error.message);
-        });
+        
+        makeAuthenticatedPostRequest("/update_callout/", 
+        "Success! The customer will be prompted for a review!", 
+        body, 
+        FRONTEND_URL);
     }
 
     return (

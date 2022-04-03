@@ -34,7 +34,7 @@ const LogIn = (props: any) => {
                 });
             auth.login(() => {    
                 window.location.reload();
-            }, response.data)
+            }, response.data);
         })
         .catch((error) => {
             for (const property in error.response.data) {

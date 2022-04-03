@@ -6,6 +6,7 @@ import "../styles/forms.css";
 import axios from 'axios';
 import BACKEND_URL from '../components/utils/Constants';
 import { toast } from 'react-toastify';
+import { makePostRequest } from "../components/utils/Helpers";
 
 const SignUp = () => {
     const [username, setUsername] = useState("");
@@ -29,36 +30,7 @@ const SignUp = () => {
             user_type: usertype
         }
 
-        // read the endpoint in from a .env file?
-        axios.post(`${BACKEND_URL}/register/`, body)
-        .then(response => { 
-            console.log(response.data);
-            toast.success("Success! Signed up!", {
-                position: "top-center",
-                autoClose: 5000,
-                closeOnClick: true,
-                pauseOnHover: false,
-                draggable: true,
-                progress: undefined,
-                });
-            })
-        .catch((error) => {
-            console.log(error.response.data);
-            for (const property in error.response.data) {
-                console.log(`${property}: ${error.response.data[property][0]}`);
-                toast.error(
-                    `${property}: ${error.response.data[property][0]}`,
-                {
-                    position: "top-center",
-                    autoClose: 10000,
-                    closeOnClick: true,
-                    pauseOnHover: false,
-                    draggable: true,
-                    progress: undefined,
-                }
-                );
-            }
-        })
+        makePostRequest("/register/", "Success! Signed up!", body);
     }
 
     return (
