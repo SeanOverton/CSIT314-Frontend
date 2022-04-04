@@ -1,11 +1,11 @@
-import Nav from "../components/Nav";
-import Footer from "../components/Footer";
-import { Card, Container } from "react-bootstrap";
+import Nav from "../../components/Nav";
+import Footer from "../../components/Footer";
+import { Card } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import BACKEND_URL from "../components/utils/Constants";
-import { formatDate, formatTime } from "../components/utils/Helpers";
+import BACKEND_URL from "../../components/utils/Constants";
+import { formatDate, formatTime } from "../../components/utils/Helpers";
 
 //passing state through Link in react-router-dom is documented here:
 //https://dev.to/medaminefh/passing-data-with-react-router-using-link-1h39

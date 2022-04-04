@@ -1,11 +1,11 @@
-import Nav from "../components/Nav";
-import Footer from '../components/Footer';
-import "../styles/forms.css";
+import Nav from "../../components/Nav";
+import Footer from '../../components/Footer';
+import "../../styles/forms.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Checkout from "./Checkout";
-import BACKEND_URL, { FRONTEND_URL } from "../components/utils/Constants";
-import { makeAuthenticatedPostRequest } from "../components/utils/Helpers";
+import BACKEND_URL, { FRONTEND_URL } from "../../components/utils/Constants";
+import { makeAuthenticatedPostRequest } from "../../components/utils/Helpers";
 
 const CustomersCurrentRequest = (props: any) => {
     const [rating, setRating] = useState<any>();

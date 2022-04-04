@@ -1,9 +1,9 @@
-import Nav from "../components/Nav";
-import Footer from '../components/Footer';
-import "../styles/forms.css";
+import Nav from "../../components/Nav";
+import Footer from '../../components/Footer';
+import "../../styles/forms.css";
 import { useState } from "react";
 import 'react-toastify/dist/ReactToastify.css';
-import { makeAuthenticatedPostRequest } from "../components/utils/Helpers";
+import { makeAuthenticatedPostRequest } from "../../components/utils/Helpers";
 
 const Request = () => {
     const [rego, setRego] = useState("");

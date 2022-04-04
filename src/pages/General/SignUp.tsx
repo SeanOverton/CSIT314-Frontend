@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
-import Nav from "../components/Nav";
-import Footer from '../components/Footer';
+import Nav from "../../components/Nav";
+import Footer from '../../components/Footer';
 import { Link } from "react-router-dom";
-import "../styles/forms.css";
-import axios from 'axios';
-import BACKEND_URL from '../components/utils/Constants';
-import { toast } from 'react-toastify';
-import { makePostRequest } from "../components/utils/Helpers";
+import "../../styles/forms.css";
+import { makePostRequest } from "../../components/utils/Helpers";
 
 const SignUp = () => {
     const [username, setUsername] = useState("");

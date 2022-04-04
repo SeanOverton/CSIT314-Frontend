@@ -1,11 +1,8 @@
-import Nav from "../components/Nav";
-import Footer from '../components/Footer';
-import "../styles/forms.css";
+import Nav from "../../components/Nav";
+import Footer from '../../components/Footer';
+import "../../styles/forms.css";
 import { useState } from "react";
-import axios from "axios";
-import BACKEND_URL from "../components/utils/Constants";
-import { toast } from "react-toastify";
-import { makeAuthenticatedPostRequest } from "../components/utils/Helpers";
+import { makeAuthenticatedPostRequest } from "../../components/utils/Helpers";
 
 const Request = () => {
     const [location, setLocation] = useState("");

@@ -1,12 +1,12 @@
 
 import React, { Component, useState } from "react";
-import Nav from "../components/Nav";
-import Footer from '../components/Footer';
-import auth from "../components/utils/Auth";
+import Nav from "../../components/Nav";
+import Footer from '../../components/Footer';
+import auth from "../../components/utils/Auth";
 import { Navigate } from "react-router-dom";
-import "../styles/forms.css";
+import "../../styles/forms.css";
 import axios from 'axios';
-import BACKEND_URL from "../components/utils/Constants";
+import BACKEND_URL from "../../components/utils/Constants";
 import { toast } from "react-toastify";
 
 const LogIn = (props: any) => {
