@@ -23,7 +23,7 @@ const BurgerMenu = () => {
                 <Link className="navbar-link bm-item" to="/subscriptions">My subscriptions</Link>
             </li>
             <li>
-                <Link className="navbar-link bm-item" to="/orderhistory">Order history</Link>
+                <Link className="navbar-link bm-item" to="/history">Order history</Link>
             </li>
             </>
             ) : (
