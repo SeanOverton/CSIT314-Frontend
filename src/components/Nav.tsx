@@ -1,92 +1,81 @@
 import React, { useState, useReducer } from 'react';
-import {Link, Navigate} from "react-router-dom";
+import {Link} from "react-router-dom";
 import '../styles/navbar.css';
-import { slide as Menu } from 'react-burger-menu';
 import auth from "./utils/Auth";
+import car_logo from "../images/car_logo.png";
+
+import BurgerMenu from './BurgerMenu';
 
 const Nav = () => {
-  
+    React.useEffect(() => {
+        const menuWrap = document.querySelector(".bm-menu-wrap");
+        if (menuWrap) {
+          menuWrap.setAttribute("aria-hidden", "true");
+        }
+      }, []);
+
     return (
-        <>  
-            <div className="mobile-hide navbar-space">
-                <Link className="navbar-link" to="/">Home</Link>
-                {auth.isAuthenticated() ? (
+        <div className='header'>
+            <div className='navigation'>  
+                <Link className="" to="/"><img className="logo" src={car_logo} style={{height: "100px"}}/></Link>
+                <ul className="nav__links nav_bar   ">
+                    <li>
+                        <Link className="" to="/">Home</Link>
+                    </li>
+                    {auth.isAuthenticated() ? (
                     <>  
-                        {auth.isCustomer() ? (
-                            <>
-                            <Link className="navbar-link bm-item" to="/request">Roadside assistance</Link>
-                            <Link className="navbar-link bm-item" to="/subscriptions">My subscriptions</Link>
-                            </>
-                        ) : (
-                            <></>
-                        )
-                        }
-                        {auth.isMechanic() ? (
-                            <>
-                            <Link className="navbar-link bm-item" to="/requests">View all requests</Link>
-                            <Link className="navbar-link bm-item" to="/currentjob">Current Job</Link>
-                            <Link className="navbar-link bm-item" to="/history">History</Link>
-                            </>
-                        ) : (
-                            <></>
-                        )
-                        }
-                        <button className="btn btn-primary btn-block" onClick={()=> {
-                                auth.logout(() => {
-                                    window.location.reload();
-                            })}
-                        }>Sign Out</button>
-                    </>
-                ) : (
+                    {auth.isCustomer() ? (
                     <>
-                        <Link className="navbar-link" to="/signup">Sign Up</Link>
-                        <Link className="navbar-link" to="/login">Login</Link>
+                    <li>
+                        <Link className="" to="/request">Roadside assistance</Link>
+                        </li>
+                    <li>
+                        <Link className="" to="/subscriptions">My subscriptions</Link>
+                    </li>
                     </>
-                )}
-            </div>
-            <div className="navbar-space">
-                <div className="mobile-show">
-                <Menu>
-                    <ul>
-                        <Link className="navbar-link bm-item" to="/">Home</Link>
-                {auth.isAuthenticated() ? (
-                    <>  
-                        {auth.isCustomer() ? (
-                            <>
-                            <Link className="navbar-link bm-item" to="/request">Roadside assistance</Link>
-                            <Link className="navbar-link bm-item" to="/subscriptions">My subscriptions</Link>
-                            </>
-                        ) : (
-                            <></>
-                        )
-                        }
-                        {auth.isMechanic() ? (
-                            <>
-                            <Link className="navbar-link bm-item" to="/requests">View all requests</Link>
-                            <Link className="navbar-link bm-item" to="/currentjob">Current Job</Link>
-                            <Link className="navbar-link bm-item" to="/history">History</Link>
-                            </>
-                        ) : (
-                            <></>
-                        )
-                        }
-                        <button className="btn btn-primary btn-block bm-item" onClick={()=> {
+                    ) : (
+                    <></>
+                    )}
+                    {auth.isMechanic() ? (
+                        <>
+                        <li>
+                            <Link className="" to="/requests">View all requests</Link>
+                        </li>
+                        <li>
+                            <Link className="" to="/currentjob">Current Job</Link>
+                        </li>
+                        <li>
+                            <Link className="" to="/history">History</Link>
+                        </li>
+                        </>
+                    ) : (
+                        <></>
+                    )
+                    }
+                    <button className="btn btn-primary btn-block" onClick={()=> {
                             auth.logout(() => {
                                 window.location.reload();
-                            })}
-                        }>Sign Out</button>
+                        })}
+                    }>Sign Out</button>
                     </>
-                ) : (
-                    <>
-                        <Link className="navbar-link bm-item" to="/signup">Sign Up</Link>
-                        <Link className="navbar-link bm-item" to="/login">Login</Link>
+                    ) : ( <>
+                        <li>
+                            <Link className="" to="/signup">Sign Up</Link>
+                        </li>
+                        <li>
+                            <Link className="" to="/login">Login</Link>
+                        </li>         
                     </>
-                )}
-                </ul>
-                </Menu>
-                </div>
+                    )}
+                </ul>     
             </div>
-        </>
+            <div className="mobile_header">
+                <BurgerMenu/>
+            </div>
+         
+        </div>
+        
+        
     );
 };
 
