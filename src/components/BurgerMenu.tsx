@@ -22,6 +22,9 @@ const BurgerMenu = () => {
             <li>
                 <Link className="navbar-link bm-item" to="/subscriptions">My subscriptions</Link>
             </li>
+            <li>
+                <Link className="navbar-link bm-item" to="/orderhistory">Order history</Link>
+            </li>
             </>
             ) : (
             <></>
@@ -62,4 +65,5 @@ const BurgerMenu = () => {
     </div>
     );
 }
+
 export default BurgerMenu;

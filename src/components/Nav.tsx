@@ -32,6 +32,9 @@ const Nav = () => {
                     <li>
                         <Link className="" to="/subscriptions">My subscriptions</Link>
                     </li>
+                    <li>
+                        <Link className="" to="/orderhistory">Order history</Link>
+                    </li>
                     </>
                     ) : (
                     <></>

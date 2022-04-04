@@ -7,6 +7,7 @@ import Request from './pages/Customer/Request';
 import AllRequests from './pages/Professional/AllRequests';
 import MySubscriptions from './pages/Customer/ViewMySubscriptions';
 import AddSubscription from './pages/Customer/AddSubscription';
+import OrderHistory from './pages/Customer/CustomerOrderHistory';
 import { ProtectedRoute } from './components/utils/ProtectedRoute';
 import RequestDetails from './pages/Professional/RequestDetails';
 import MechanicDashboard from "./pages/Professional/MechanicCurrentJob";
@@ -48,6 +49,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <MySubscriptions/>
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/orderhistory"
+              element={
+                <ProtectedRoute>
+                  <OrderHistory/>
                 </ProtectedRoute>
               }
             />
