@@ -10,9 +10,7 @@ import { formatDate, formatTime } from "../../components/utils/Helpers";
 //passing state through Link in react-router-dom is documented here:
 //https://dev.to/medaminefh/passing-data-with-react-router-using-link-1h39
 
-const SingleRequestCard = (props: any) => {
-    
-    
+const SingleRequestCard = (props: any) => {    
     return(
         <Card style={{ width: '18rem' }}>
             <Card.Body>

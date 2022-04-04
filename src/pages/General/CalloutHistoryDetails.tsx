@@ -34,7 +34,6 @@ const RequestDetails = () => {
         .then(response => {
             
             var callout = response.data.filter(function(callout: any) {
-                // console.log(callout);
                 return callout.id == id;
             })[0];
 

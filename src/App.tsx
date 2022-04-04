@@ -7,13 +7,12 @@ import Request from './pages/Customer/Request';
 import AllRequests from './pages/Professional/AllRequests';
 import MySubscriptions from './pages/Customer/ViewMySubscriptions';
 import AddSubscription from './pages/Customer/AddSubscription';
-import OrderHistory from './pages/Customer/CustomerOrderHistory';
 import { ProtectedRoute } from './components/utils/ProtectedRoute';
 import RequestDetails from './pages/Professional/RequestDetails';
 import MechanicDashboard from "./pages/Professional/MechanicCurrentJob";
 import Checkout from "./pages/Customer/Checkout";
-import JobHistory from "./pages/Professional/JobHistory";
-import JobHistoryDetails from "./pages/Professional/JobHistoryDetails";
+import CalloutHistory from "./pages/General/CalloutHistory";
+import CalloutHistoryDetails from "./pages/General/CalloutHistoryDetails";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -53,14 +52,6 @@ function App() {
               }
             />
             <Route
-              path="/orderhistory"
-              element={
-                <ProtectedRoute>
-                  <OrderHistory/>
-                </ProtectedRoute>
-              }
-            />
-            <Route
               path="/add_car"
               element={
                 <ProtectedRoute>
@@ -88,7 +79,7 @@ function App() {
               path="/history"
               element={
                 <ProtectedRoute>
-                  <JobHistory/>
+                  <CalloutHistory/>
                 </ProtectedRoute>
               }
             />
@@ -96,7 +87,7 @@ function App() {
               path="/historical_details/:id"
               element={
                 <ProtectedRoute>
-                  <JobHistoryDetails/>
+                  <CalloutHistoryDetails/>
                 </ProtectedRoute>
               }
             />
