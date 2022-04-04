@@ -13,14 +13,12 @@ const CurrentJob = (props: any) => {
         
         let details = props.request;
 
-        let mechanic = localStorage.getItem("username")?.replaceAll('"', '');
-
         let body = {
             username: details.username,
             location: details.location,
             description: details.description,
             status: "COMPLETED",
-            mechanic: mechanic,
+            mechanic: details.mechanic,
         }
         
         makeAuthenticatedPostRequest("/update_callout/", 
