@@ -34,14 +34,21 @@ const CustomersCurrentRequest = (props: any) => {
     }
 
     const cancelCallout = () => {
-        alert('cancelled');
-        // let body = {
-        //     username: props.subscription.username,
-        //     vehicle_registration: props.subscription.vehicle_registration,
-        //     active: false
-        // }
+        // evt.preventDefault();
+        
+        let details = props.request;
 
-        // makeAuthenticatedPostRequest("/update_subscription/", "Success! Vehicle subscription has been removed from your account.", body, `${FRONTEND_URL}/subscriptions`);
+        let body = {
+            username: details.username,
+            location: details.location,
+            description: details.description,
+            status: "CANCELLED",
+        }
+
+        makeAuthenticatedPostRequest("/update_callout/", 
+        "Success! Thank you for using our service!", 
+        body, 
+        FRONTEND_URL);
     }
 
     return (
@@ -105,7 +112,7 @@ const Request = () => {
             // console.log(response.data);
 
             var new_request = response.data.filter(function(request: any) {
-                return request.username == username && request.status != "REVIEWED";
+                return request.username == username && request.status != "REVIEWED" && request.status != "CANCELLED";
             });
 
             console.log(new_request);
