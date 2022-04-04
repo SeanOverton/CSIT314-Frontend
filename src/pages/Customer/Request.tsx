@@ -6,6 +6,7 @@ import axios from "axios";
 import Checkout from "./Checkout";
 import BACKEND_URL, { FRONTEND_URL } from "../../components/utils/Constants";
 import { makeAuthenticatedPostRequest } from "../../components/utils/Helpers";
+import BootstrapModal from "./BootstrapModal";
 
 const CustomersCurrentRequest = (props: any) => {
     const [rating, setRating] = useState<any>();
@@ -32,11 +33,29 @@ const CustomersCurrentRequest = (props: any) => {
         FRONTEND_URL);
     }
 
+    const cancelCallout = () => {
+        alert('cancelled');
+        // let body = {
+        //     username: props.subscription.username,
+        //     vehicle_registration: props.subscription.vehicle_registration,
+        //     active: false
+        // }
+
+        // makeAuthenticatedPostRequest("/update_subscription/", "Success! Vehicle subscription has been removed from your account.", body, `${FRONTEND_URL}/subscriptions`);
+    }
+
     return (
         <>
             <h1>Status: {props.request.status}</h1>
             <h2>Location: {props.request.location}</h2>
-            <h2>Mechanic: {props.request.mechanic}</h2>
+            {props.request.mechanic == "" ? (
+                <></>
+            ) : (
+                <h2>Mechanic: {props.request.mechanic}</h2>
+            )}
+            
+            <BootstrapModal title="Cancel Callout" prompt_question="Are you sure you want to cancel?" function={cancelCallout}/>
+            
             {(props.request.status == "COMPLETED") ? (
                 <div className="auth-inner">
                     <form onSubmit={reviewCallout}>
