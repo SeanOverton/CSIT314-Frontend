@@ -4,6 +4,7 @@ import "../../styles/forms.css";
 import { useState } from "react";
 import 'react-toastify/dist/ReactToastify.css';
 import { makeAuthenticatedPostRequest } from "../../components/utils/Helpers";
+import { FRONTEND_URL } from "../../components/utils/Constants";
 
 const Request = () => {
     const [rego, setRego] = useState("");
@@ -15,10 +16,11 @@ const Request = () => {
 
         let body = {
             username: username,
-            vehicle_registration: rego
+            vehicle_registration: rego,
+            active: true
         }
 
-        makeAuthenticatedPostRequest("/update_subscriptions/", "Success! New car added!", body);
+        makeAuthenticatedPostRequest("/add_subscription/", "Success! New car added!", body, `${FRONTEND_URL}/subscriptions`);
     }
 
     return (
