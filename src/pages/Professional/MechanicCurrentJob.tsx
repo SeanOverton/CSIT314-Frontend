@@ -6,6 +6,7 @@ import axios from "axios";
 import BACKEND_URL, { FRONTEND_URL } from "../../components/utils/Constants";
 import CalloutDetails from "../../components/CalloutDetails";
 import { makeAuthenticatedPostRequest } from "../../components/utils/Helpers";
+import Auth from "../../components/utils/Auth";
 
 const CurrentJob = (props: any) => {
     const markAsComplete = (evt: any) => {
@@ -41,12 +42,9 @@ const MechanicDashboard = () => {
     const [request, setRequest] = useState([]);
 
     useEffect(() => {
-        let username = localStorage.getItem("username")?.replaceAll('"', '');
-        let token = localStorage.getItem("token")?.replaceAll('"', '');
-
         // this should be extracted so it can be used by multiple requests
         let headers = {
-            "Authorization": `Token ${token}`
+            "Authorization": `Token ${Auth.getToken()}`
         }
         
         axios.get(`${BACKEND_URL}/all_callouts`, {headers: headers})
@@ -54,7 +52,7 @@ const MechanicDashboard = () => {
             // console.log(response.data);
 
             var new_request = response.data.filter(function(request: any) {
-                return request.mechanic == username && request.status == "ACCEPTED";
+                return request.mechanic == Auth.getUsername() && request.status == "ACCEPTED";
             });
 
             console.log(new_request);

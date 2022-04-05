@@ -5,17 +5,16 @@ import { useState } from "react";
 import 'react-toastify/dist/ReactToastify.css';
 import { makeAuthenticatedPostRequest } from "../../components/utils/Helpers";
 import { FRONTEND_URL } from "../../components/utils/Constants";
+import Auth from "../../components/utils/Auth";
 
 const Request = () => {
     const [rego, setRego] = useState("");
 
     const makeRequest = (evt: any) => {
         evt.preventDefault();
-        
-        let username = localStorage.getItem("username")?.replaceAll('"', '');
 
         let body = {
-            username: username,
+            username: Auth.getUsername(),
             vehicle_registration: rego,
             active: true
         }

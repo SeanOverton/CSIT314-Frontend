@@ -7,6 +7,7 @@ import Checkout from "./Checkout";
 import BACKEND_URL, { FRONTEND_URL } from "../../components/utils/Constants";
 import { makeAuthenticatedPostRequest } from "../../components/utils/Helpers";
 import BootstrapModal from "./BootstrapModal";
+import Auth from "../../components/utils/Auth";
 
 const CustomersCurrentRequest = (props: any) => {
     const [rating, setRating] = useState<any>();
@@ -99,12 +100,9 @@ const Request = () => {
     const [hasChecked, setHasChecked] = useState(false);
 
     useEffect(() => {
-        let username = localStorage.getItem("username")?.replaceAll('"', '');
-        let token = localStorage.getItem("token")?.replaceAll('"', '');
-
         // this should be extracted so it can be used by multiple requests
         let headers = {
-            "Authorization": `Token ${token}`
+            "Authorization": `Token ${Auth.getToken()}`
         }
 
         axios.get(`${BACKEND_URL}/all_callouts`, {headers: headers})
@@ -112,7 +110,7 @@ const Request = () => {
             // console.log(response.data);
 
             var new_request = response.data.filter(function(request: any) {
-                return request.username == username && request.status != "REVIEWED" && request.status != "CANCELLED";
+                return request.username == Auth.getUsername() && request.status != "REVIEWED" && request.status != "CANCELLED";
             });
 
             console.log(new_request);
@@ -130,15 +128,12 @@ const Request = () => {
     }, []); 
 
     const checkIfCarHasSubscription = async () => {
-        let username = localStorage.getItem("username")?.replaceAll('"', '');
-        let token = localStorage.getItem("token")?.replaceAll('"', '');
-
         // this should be extracted so it can be used by multiple requests
         let headers = {
-            "Authorization": `Token ${token}`
+            "Authorization": `Token ${Auth.getToken()}`
         }
 
-        axios.get(`${BACKEND_URL}/my_subscriptions/?username=${username}`, {headers: headers})
+        axios.get(`${BACKEND_URL}/my_subscriptions/?username=${Auth.getUsername()}`, {headers: headers})
         .then(response => {
             var new_request = response.data.filter(function(sub: any) {
                 return sub.vehicle_registration == rego;
@@ -174,17 +169,19 @@ const Request = () => {
             day = '0' + day;
 
         let currentdate_string = `${year}-${month}-${day}`
-        let username = localStorage.getItem("username")?.replaceAll('"', '');
 
         let body = {
-            username: username,
+            username: Auth.getUsername(),
             location,
             description,
             status: "PENDING",
             date: currentdate_string
         }
 
-        makeAuthenticatedPostRequest("/create_callout/", "Success! A mechanic will respond shortly!", body);
+        makeAuthenticatedPostRequest("/create_callout/", 
+        "Success! A mechanic will respond shortly!", 
+        body, 
+        `${FRONTEND_URL}/request`);
     }
 
     const makeRequest = (evt: any) => {

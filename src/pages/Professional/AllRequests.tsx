@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import BACKEND_URL from "../../components/utils/Constants";
 import { formatDate, formatTime } from "../../components/utils/Helpers";
+import Auth from "../../components/utils/Auth";
 
 //passing state through Link in react-router-dom is documented here:
 //https://dev.to/medaminefh/passing-data-with-react-router-using-link-1h39
@@ -32,11 +33,9 @@ const RequestCardContainer = () => {
     const[requests, setRequests] = useState<any[]>([]);
 
     useEffect(() => {
-        let token = localStorage.getItem("token")?.replaceAll('"', '');
-
         // this should be extracted so it can be used by multiple requests
         let headers = {
-            "Authorization": `Token ${token}`
+            "Authorization": `Token ${Auth.getToken()}`
         }
 
         //TODO: actually fetch data in here
