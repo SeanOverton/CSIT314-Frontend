@@ -1,10 +1,48 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800');
+
+
+/* Variables */
+:root {
+  --bg-primary-color: #FFFFFF;
+  --bg-secondary-color: grey;
+  --nav-bg-color: #18A0FB;
+  --font-color-primary: black;
+  --font-color-secondary:#18A0FB;
+  --font-color-light:rgb(228, 236, 238);
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+  --font-body-size: 15px;
+}
+ 
+* {
+  box-sizing: border-box;
+  margin: 0; 
+  padding:0;
+  font-family: var(--font-family);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+/*Centering everything and anything forever*/ 
+.centered-box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg-primary-color) !important;
+  height: 100vh;
+  font-size: var(--font-body-size);
+  font-weight: 400;
+  font-family: 'Fira Sans', sans-serif;
+}
+
+a{
+  text-decoration: none;
+  color:var(--font-color-primary);
 }
 
 code {

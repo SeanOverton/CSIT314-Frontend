@@ -1,63 +1,66 @@
 .bm-burger-button {
-    position: fixed;
-    width: 36px;
-    height: 30px;
-    left: 36px;
-    top: 36px;  
-  }
-  
-  .bm-burger-bars {
-    background: #000;
-  }
-  
-  .bm-cross-button {
-    height: 24px;
-    width: 24px;
-  }
-  
-  .bm-cross {
-    background: whitesmoke;
-  }
-  
-  .bm-menu-wrap {
-    position: fixed;
-    height: 100%;
-  
-  }
-  
-  .bm-menu {
-    background: lightblue;
-    padding: 2.5em 1.5em 0;
-    font-size: 1.15em;
-    width: 100%;
-  }
-  
-  .bm-item-list {
-    padding: 1.0em;
-  }
-  
-  .bm-item {
-    display: block;
-    margin-bottom: 1.2em;
-    color: whitesmoke;
-    text-decoration: none;
-   
-  }
+  position: fixed;
+  width: 36px;
+  height: 30px;
+  right: 36px;
+  top: 15px
+}
+
+.bm-burger-bars {
+  background: #000;
+}
+
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+}
+
+.bm-cross {
+  background: whitesmoke;
+}
+
+.bm-menu-wrap {
+  position: fixed;
+  height: 100%;
+
+}
+
+.bm-menu {
+  background: var(--nav-bg-color);
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
+  width: 100%;
+}
+
+.bm-item-list {
+  padding: 1.0em;
+}
+
+.bm-item {
+  display: block;
+  margin-bottom: 1.2em;
+  color: whitesmoke;
+  text-decoration: none;
+}
+
+.burger-links li{
+  list-style: none;
+  width: 100%;
+  border-radius: 5px;
+}
+
+/*hover animation*/
+.burger-links li:hover {
+  box-shadow: inset 0 0 0 2em rgb(255, 255, 255);
+  transition: 0.75s;
+  --link-hover-color:whitesmoke ;
+} 
+.bm-item:hover {
+  color:var(--font-color-secondary);
+} 
 
 
-  .nav-links li{
-    list-style: none;
-    width: 100%;
-    border-radius: 5px;
-  }
-
-  /*hover animation*/
-  .nav-links li:hover, .nav-links li:focus {
-    box-shadow: inset 0 0 0 2em rgb(37, 128, 158);
-    transition: 0.75s;
-  }
-
-  /*Fixing bugs*/
-  .nav-links{
-    padding-left: 0;
-  }
+/*Fixing bugs*/
+.burger-links{
+  padding-left: 0;
+}
