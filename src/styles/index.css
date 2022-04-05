@@ -24,8 +24,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-
-
 body {
   background: var(--bg-primary-color) !important;
   height: 100vh;

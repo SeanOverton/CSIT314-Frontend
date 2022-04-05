@@ -32,7 +32,7 @@ const SignUp = () => {
 
         makePostRequest("/register/", "Success! Signed up!", body);
     }
-
+    
     return (
         <>
             <Nav/>

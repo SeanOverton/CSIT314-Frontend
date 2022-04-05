@@ -7,7 +7,6 @@ import Request from './pages/Request';
 import AllRequests from './pages/AllRequests';
 import MySubscriptions from './pages/ViewMySubscriptions';
 import AddSubscription from './pages/AddSubscription';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { ProtectedRoute } from './components/utils/ProtectedRoute';
 import RequestDetails from './pages/RequestDetails';
 import car_logo from "./images/moving_car.png";
