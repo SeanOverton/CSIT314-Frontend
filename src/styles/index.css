@@ -23,14 +23,8 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-/*Centering everything and anything forever*/ 
-.centered-box{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0;
-  padding: 0;
-}
+
+
 
 body {
   background: var(--bg-primary-color) !important;
@@ -48,4 +42,14 @@ a{
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+main{
+  /*Centering everything and anything forever and ever*/ 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  min-height: 90vh; 
 }

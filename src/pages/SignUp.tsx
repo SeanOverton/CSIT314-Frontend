@@ -36,10 +36,10 @@ const SignUp = () => {
     return (
         <>
             <Nav/>
+            <main>
             <div className="auth-inner">
                 <form onSubmit={handleSubmit}>
                     <h3>Sign Up</h3>
-
                     <div style={{padding: "1em"}}>
                         <div className="form-group">
                             <label>Username</label>
@@ -88,6 +88,8 @@ const SignUp = () => {
                     </p>
                 </form>
             </div>
+            </main>
+            
             <Footer/>
         </>
     );

@@ -62,34 +62,36 @@ const LogIn = (props: any) => {
         {!auth.isAuthenticated() ? (
             <>
             <Nav/>
-            <div className="auth-inner">
-                <form onSubmit={login}>
-                    <h3>Login</h3>
+            <main>
+                <div className="auth-inner">
+                    <form onSubmit={login}>
+                        <h3>Login</h3>
 
-                    <div className="form-group">
-                        <label>Username</label>
-                        <input type="username" className="form-control" placeholder="Enter username" onChange={e => setUsername(e.target.value)}/>
-                    </div>
-
-                    <div className="form-group">
-                        <label>Password</label>
-                        <input type="password" className="form-control" placeholder="Enter password" onChange={e => setPassword(e.target.value)}/>
-                    </div>
-
-                    <div className="form-group">
-                        <div className="custom-control custom-checkbox">
-                            <input type="checkbox" className="custom-control-input" id="customCheck1" />
-                            <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
+                        <div className="form-group">
+                            <label>Username</label>
+                            <input type="username" className="form-control" placeholder="Enter username" onChange={e => setUsername(e.target.value)}/>
                         </div>
-                    </div>
-                    
-                    <button type="submit" value="Submit" className="btn btn-primary btn-block">Login</button>
 
-                    <p className="forgot-password text-right">
-                        Forgot <a href="#">password?</a>
-                    </p>
-                </form>
-            </div>
+                        <div className="form-group">
+                            <label>Password</label>
+                            <input type="password" className="form-control" placeholder="Enter password" onChange={e => setPassword(e.target.value)}/>
+                        </div>
+
+                        <div className="form-group">
+                            <div className="custom-control custom-checkbox">
+                                <input type="checkbox" className="custom-control-input" id="customCheck1" />
+                                <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" value="Submit" className="btn btn-primary btn-block">Login</button>
+
+                        <p className="forgot-password text-right">
+                            Forgot <a href="#">password?</a>
+                        </p>
+                    </form>
+                </div>
+            </main>
             <Footer/>
             </>
         ) : (
