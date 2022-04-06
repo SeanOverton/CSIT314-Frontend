@@ -10,7 +10,6 @@ export const formatTime = (unformatted_date: string) => {
     if(!unformatted_date){
         return unformatted_date;
     }
-    
     return unformatted_date.split("T")[1].substring(0, 5);
 
 }

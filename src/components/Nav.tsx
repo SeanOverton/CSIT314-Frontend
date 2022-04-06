@@ -3,7 +3,6 @@ import {Link} from "react-router-dom";
 import '../styles/navbar.css';
 import auth from "./utils/Auth";
 import car_logo from "../images/car_logo.png";
-
 import BurgerMenu from './BurgerMenu';
 
 const Nav = () => {
@@ -16,9 +15,9 @@ const Nav = () => {
 
     return (
         <div className='header'>
-            <div className='navigation'>  
-                <Link className="" to="/"><img className="logo" src={car_logo} style={{height: "100px"}}/></Link>
-                <ul className="nav__links nav_bar   ">
+            <div className='nav-wrapper'>  
+                <Link to="/"><img className="logo" src={car_logo} style={{height: "50px"}}/></Link>
+                <ul className="nav-links">
                     <li>
                         <Link className="" to="/">Home</Link>
                     </li>
@@ -28,7 +27,7 @@ const Nav = () => {
                     <>
                     <li>
                         <Link className="" to="/request">Roadside assistance</Link>
-                        </li>
+                    </li>
                     <li>
                         <Link className="" to="/subscriptions">My subscriptions</Link>
                     </li>
@@ -55,7 +54,7 @@ const Nav = () => {
                         <></>
                     )
                     }
-                    <button className="btn btn-primary btn-block" onClick={()=> {
+                    <button className="btn nav-btn" onClick={()=> {
                             auth.logout(() => {
                                 window.location.reload();
                         })}
@@ -63,10 +62,15 @@ const Nav = () => {
                     </>
                     ) : ( <>
                         <li>
-                            <Link className="" to="/signup">Sign Up</Link>
+                            <div  className="nav-btn">
+                                <Link to="/signup">Sign Up</Link>
+                            </div>
+                          
                         </li>
                         <li>
-                            <Link className="" to="/login">Login</Link>
+                            <div className="nav-btn">
+                                <Link className="nav-btn" to="/login">Login</Link>
+                            </div>
                         </li>         
                     </>
                     )}

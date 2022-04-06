@@ -8,29 +8,26 @@ const BurgerMenu = () => {
     return(
     <div> 
         <Menu noOverlay>
-        <ul className="nav-links">
+        <ul className="burger-links">
             <li>
-                <Link className="navbar-link bm-item" to="/">Home</Link>
+                <Link className="navbar-link bm-item " to="/">Home</Link>
             </li>
             {auth.isAuthenticated() ? (
             <>  
-            {auth.isCustomer() ? (
-            <>
-            <li>
-                <Link className="navbar-link bm-item" to="/request">Roadside assistance</Link>
+                {auth.isCustomer() ? (
+                <>
+                <li>
+                    <Link className="navbar-link bm-item" to="/request">Roadside assistance</Link>
                 </li>
-            <li>
-                <Link className="navbar-link bm-item" to="/subscriptions">My subscriptions</Link>
-            </li>
-            <li>
-                <Link className="navbar-link bm-item" to="/history">Order history</Link>
-            </li>
+                <li>
+                    <Link className="navbar-link bm-item" to="/subscriptions">My subscriptions</Link>
+                </li>
             </>
             ) : (
             <></>
             )}
             {auth.isMechanic() ? (
-                <>
+            <>
                 <li>
                     <Link className="navbar-link bm-item" to="/requests">View all requests</Link>
                 </li>
@@ -40,9 +37,9 @@ const BurgerMenu = () => {
                 <li>
                     <Link className="navbar-link bm-item" to="/history">History</Link>
                 </li>
-                </>
+            </>
             ) : (
-                <></>
+            <></>
             )
             }
             <button className="btn btn-primary btn-block" onClick={()=> {
@@ -51,7 +48,8 @@ const BurgerMenu = () => {
                 })}
             }>Sign Out</button>
             </>
-            ) : ( <>
+            ) : ( 
+            <>
                 <li>
                     <Link className="navbar-link bm-item" to="/signup">Sign Up</Link>
                 </li>
@@ -65,5 +63,4 @@ const BurgerMenu = () => {
     </div>
     );
 }
-
 export default BurgerMenu;
