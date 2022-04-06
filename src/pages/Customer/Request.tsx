@@ -8,48 +8,97 @@ import BACKEND_URL, { FRONTEND_URL } from "../../components/utils/Constants";
 import { makeAuthenticatedPostRequest } from "../../components/utils/Helpers";
 import BootstrapModal from "./BootstrapModal";
 import Auth from "../../components/utils/Auth";
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import { GoogleMap, useJsApiLoader, Marker, DirectionsRenderer } from '@react-google-maps/api';
+
+import App from "./Map";
+
+/*
+NOTES on displaying map and confirming location:
+-should get location first of user or try to
+-then render the map with marker as the person's current location
+-customer can then move marker
+-customer can then press 'confirm' and it will store the coords
+*/
 
 const containerStyle = {
   width: '400px',
   height: '400px',
-  display: 'flex',
-  alignItems: 'center'
 };
 
-const center = {
-  lat: -34.3424,
-  lng: 150.9053
+const customer_location = {
+    lat: -34.3424,
+    lng: 150.9123
 };
 
-function MyComponent() {
+// const getDirections = () => {
+//     const DirectionsService = new google.maps.DirectionsService();
+
+//     DirectionsService.route({
+//     origin: new google.maps.LatLng(41.8507300, -87.6512600),
+//     destination: new google.maps.LatLng(41.8525800, -87.6514100),
+//     travelMode: google.maps.TravelMode.DRIVING,
+//     }, (result, status) => {
+//     if (status === google.maps.DirectionsStatus.OK) {
+//         this.setState({
+//         directions: result,
+//         });
+//     } else {
+//         console.error(`error fetching directions ${result}`);
+//     }
+//     });
+
+//     return
+// }
+
+function LocationConfirmation() {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: "REDACTED"
+    googleMapsApiKey: `${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`
   })
 
-  const [map, setMap] = useState(null)
+  const [marker, setMarker] = useState<any>()
 
-  const onLoad = useCallback(function callback(map) {
-    const bounds = new window.google.maps.LatLngBounds();
-    map.fitBounds(bounds);
-    setMap(map)
-  }, [])
+  const saveMarker = (t: any, map: any, coord: any) => {
+    const { latLng } = coord;
+    const lat = latLng.lat();
+    const lng = latLng.lng();
 
-  const onUnmount = useCallback(function callback(map) {
-    setMap(null)
-  }, [])
+    const customer_set_location = { lat, lng };
+
+    setMarker(customer_set_location);
+  }
+
+    useEffect(() => {
+        setMarker({
+            lat: -34.3424,
+            lng: 150.9123
+        });
+    }, []); 
+
+//   const onLoad = useCallback(function callback(map) {
+//     const bounds = new window.google.maps.LatLngBounds();
+//     map.fitBounds(bounds);
+//     setMap(map)
+//   }, [])
+
+//   const onUnmount = useCallback(function callback(map) {
+//     setMap(null)
+//   }, [])
 
   return isLoaded ? (
       <GoogleMap
         mapContainerStyle={containerStyle}
-        center={center}
-        zoom={12}
-        onLoad={onLoad}
-        onUnmount={onUnmount}
+        center={marker}
+        zoom={16}
+        onClick={() => saveMarker}
+        // onLoad={onLoad}
+        // onUnmount={onUnmount}
       >
         { /* Child components, such as markers, info windows, etc. */ }
-        <></>
+        <>
+            <Marker position={marker}/>
+            {/* <DirectionsRenderer directions={directions} /> */}
+        </>
       </GoogleMap>
   ) : <></>
 }
@@ -102,9 +151,9 @@ const CustomersCurrentRequest = (props: any) => {
             <h1>Status: {props.request.status}</h1>
             <h2>Location: {props.request.location}</h2>
             
-            {/* Add map here */}
+            {/* Add map here to track mechanic */}
             <div style={{display: "inline-block", verticalAlign: "center"}}>
-                <MyComponent/>
+                <LocationConfirmation/>
             </div>
 
             {props.request.mechanic == "" ? (
@@ -253,11 +302,17 @@ const Request = () => {
             ) : (
                 <div className="auth-inner">
                     <form onSubmit={makeRequest}>
-                        <h3>Request roadside assistance</h3>
+                        <h4>Request roadside assistance</h4>
 
-                        <div className="form-group">
+                        {/* <div className="form-group">
                             <label>Location</label>
                             <input type="text" className="form-control" placeholder="Location"  onChange={e => setLocation(e.target.value)}/>
+                        </div> */}
+                        <h3>Confirm your location</h3>
+                        {/* Add map here to confirm location of customer callout */}
+                        <div style={{display: "inline-block", verticalAlign: "center"}}>
+                            {/* <LocationConfirmation/> */}
+                            <App/>
                         </div>
 
                         <div className="form-group">
