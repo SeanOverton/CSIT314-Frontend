@@ -11,13 +11,24 @@ https://classic.yarnpkg.com/lang/en/docs/install/#windows-stable
 
 1) Clone the repo: ```git clone https://github.com/SeanOverton/CSIT314-Frontend.git```
 2) Run ```yarn install``` inside root directory.
-3) Run ```yarn start``` to start the local server.
+3) Copy the contents of .env-example file in the root directory into a new file in the root directory and save us .env. 
+Note: this file stores some important configuration values and keys for testing and production. 
+4) Run ```yarn start``` to start the local server.
 
 ## For adding new features to the repo (Workflow for version control):
 
 1) ```git checkout -b "feature/the_feature_you_are_working_on"```
+Will create a new branch and switch over to it. 
+
 2) Complete whatever you are working on with git add and commit. 
-3) ```git push --set-upstream origin"your_branch_name"``` and create pull request. Fix any merge conflicts or get help.
+```git add .``` Prepares your changes for a commit.
+```git commit -m "your commit message"``` actually makes the commit (only locally at this point).
+
+3) ```git push``` Will push your changes to the same branch you created on the remote repository.
+
+4) Once you are happy with your changes and want to introduce them to the master branch. Create a pull request (on github). Fix any merge conflicts or get help.
+
+5) Someone, will review and approve and then successfully merge into master. Make sure to delete branches that have been merged.
 
 ## Further info on version control:
 I have set up according to this methodology so it is most similar to a workplace team environment: https://dev.to/profydev/professional-git-workflow-github-setup-for-react-developers-pfj
