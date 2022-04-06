@@ -1,6 +1,7 @@
 import { toast } from "react-toastify";
 import axios from "axios";
 import BACKEND_URL from "./Constants";
+import Auth from "./Auth";
 
 export const formatDate = (unformatted_date: string) => {
     return unformatted_date.split("T")[0];
@@ -53,11 +54,9 @@ export const makePostRequest = (url: string, success_message: string, body: any,
 }
 
 export const makeAuthenticatedPostRequest = (url: string, success_message: string, body: any, on_success_redirect_url?: string) => {
-    let token = localStorage.getItem("token")?.replaceAll('"', '');
-
     // this should be extracted so it can be used by multiple requests
     let headers = {
-        "Authorization": `Token ${token}`
+        "Authorization": `Token ${Auth.getToken()}`
     }
 
     makePostRequest(url, success_message, body, headers, on_success_redirect_url);    

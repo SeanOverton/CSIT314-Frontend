@@ -33,12 +33,9 @@ const RequestCardContainer = () => {
     const[requests, setRequests] = useState<any[]>([]);
 
     useEffect(() => {
-        let username = localStorage.getItem("username")?.replaceAll('"', '');
-        let token = localStorage.getItem("token")?.replaceAll('"', '');
-
         // this should be extracted so it can be used by multiple requests
         let headers = {
-            "Authorization": `Token ${token}`
+            "Authorization": `Token ${Auth.getToken()}`
         }
 
         //TODO: actually fetch data in here
@@ -48,12 +45,12 @@ const RequestCardContainer = () => {
 
             if(Auth.isCustomer()){
                 var filtered_requests = response.data.filter(function(request: any) {
-                    return request.username == username;
+                    return request.username == Auth.getUsername();
                 });
             }
             else if(Auth.isMechanic()){
                 var filtered_requests = response.data.filter(function(request: any) {
-                    return request.mechanic == username;
+                    return request.mechanic == Auth.getUsername();
                 });
             }
 

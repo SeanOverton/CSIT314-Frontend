@@ -33,6 +33,14 @@ class Auth {
 
         return false;
     }
+
+    getUsername(){
+        return localStorage.getItem("username")?.replaceAll('"', '');
+    }
+
+    getToken(){
+        return localStorage.getItem("token")?.replaceAll('"', '');
+    }
 }
 
 export default new Auth();

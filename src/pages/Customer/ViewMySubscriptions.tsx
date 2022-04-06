@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import BACKEND_URL, { FRONTEND_URL } from "../../components/utils/Constants";
 import { makeAuthenticatedPostRequest } from "../../components/utils/Helpers";
+import Auth from "../../components/utils/Auth";
 
 //passing state through Link in react-router-dom is documented here:
 //https://dev.to/medaminefh/passing-data-with-react-router-using-link-1h39
@@ -36,16 +37,13 @@ const SubscriptionCardContainer = () => {
     const[subscriptions, setSubscriptions] = useState<any[]>([]);
 
     useEffect(() => {
-        let username = localStorage.getItem("username")?.replaceAll('"', '');
-        let token = localStorage.getItem("token")?.replaceAll('"', '');
-
         // this should be extracted so it can be used by multiple requests
         let headers = {
-            "Authorization": `Token ${token}`
+            "Authorization": `Token ${Auth.getToken()}`
         }
 
         //TODO: actually fetch data in here
-        axios.get(`${BACKEND_URL}/my_subscriptions/?username=${username}`, {headers: headers})
+        axios.get(`${BACKEND_URL}/my_subscriptions/?username=${Auth.getUsername()}`, {headers: headers})
         .then(response => {
             console.log(response.data);
 

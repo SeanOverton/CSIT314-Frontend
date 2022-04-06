@@ -5,6 +5,7 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import BACKEND_URL from "../../components/utils/Constants";
 import CalloutDetails, { CalloutDetailsInterface } from "../../components/CalloutDetails";
+import Auth from "../../components/utils/Auth";
 
 const RequestDetails = () => {
     const default_details = {id: 0, 
@@ -22,11 +23,9 @@ const RequestDetails = () => {
     let { id } = useParams();
 
     useEffect(() => {
-        let token = localStorage.getItem("token")?.replaceAll('"', '');
-
         // this should be extracted so it can be used by multiple requests
         let headers = {
-            "Authorization": `Token ${token}`
+            "Authorization": `Token ${Auth.getToken()}`
         }
 
         //TODO: actually fetch data in here

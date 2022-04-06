@@ -6,6 +6,7 @@ import axios from "axios";
 import BACKEND_URL, {FRONTEND_URL} from "../../components/utils/Constants";
 import CalloutDetails from "../../components/CalloutDetails";
 import { makeAuthenticatedPostRequest } from "../../components/utils/Helpers";
+import Auth from "../../components/utils/Auth";
 
 interface CalloutDetails {
     id: number,
@@ -54,11 +55,9 @@ const RequestDetails = () => {
     let { id } = useParams();
 
     useEffect(() => {
-        let token = localStorage.getItem("token")?.replaceAll('"', '');
-
         // this should be extracted so it can be used by multiple requests
         let headers = {
-            "Authorization": `Token ${token}`
+            "Authorization": `Token ${Auth.getToken()}`
         }
 
         //TODO: actually fetch data in here
