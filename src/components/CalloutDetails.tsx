@@ -22,8 +22,9 @@ const CalloutDetails = (props: CalloutDetailsProps) => {
     
     return (
         <>
-        <h1>Request details for user: {details.username}</h1>
+        <h1>Customer {details.username}</h1>
         <h3>Location {details.location}</h3>
+        <h3>Mechanic {details.mechanic}</h3>
         <h3>TODO: map here</h3>
         <h3>Date: {formatDate(details.date)}</h3>
         <h3>Time of request: {formatTime(details.date)}</h3>

@@ -1,12 +1,11 @@
-import Nav from "../components/Nav";
-import Footer from '../components/Footer';
-import "../styles/forms.css";
+import Nav from "../../components/Nav";
+import Footer from '../../components/Footer';
+import "../../styles/forms.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import BACKEND_URL, { FRONTEND_URL } from "../components/utils/Constants";
-import { toast } from "react-toastify";
-import CalloutDetails from "../components/CalloutDetails";
-import { makeAuthenticatedPostRequest } from "../components/utils/Helpers";
+import BACKEND_URL, { FRONTEND_URL } from "../../components/utils/Constants";
+import CalloutDetails from "../../components/CalloutDetails";
+import { makeAuthenticatedPostRequest } from "../../components/utils/Helpers";
 
 const CurrentJob = (props: any) => {
     const markAsComplete = (evt: any) => {
@@ -14,14 +13,12 @@ const CurrentJob = (props: any) => {
         
         let details = props.request;
 
-        let mechanic = localStorage.getItem("username")?.replaceAll('"', '');
-
         let body = {
             username: details.username,
             location: details.location,
             description: details.description,
             status: "COMPLETED",
-            mechanic: mechanic,
+            mechanic: details.mechanic,
         }
         
         makeAuthenticatedPostRequest("/update_callout/", 
@@ -51,7 +48,7 @@ const MechanicDashboard = () => {
         let headers = {
             "Authorization": `Token ${token}`
         }
-
+        
         axios.get(`${BACKEND_URL}/all_callouts`, {headers: headers})
         .then(response => {
             // console.log(response.data);

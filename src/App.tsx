@@ -1,21 +1,23 @@
 import { Routes, Route } from "react-router-dom";
 import "./styles/App.css";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import SignUp from "./pages/SignUp";
-import Request from './pages/Request';
-import AllRequests from './pages/AllRequests';
-import MySubscriptions from './pages/ViewMySubscriptions';
-import AddSubscription from './pages/AddSubscription';
+import Home from "./pages/General/Home";
+import Login from "./pages/General/Login";
+import SignUp from "./pages/General/SignUp";
+import Request from './pages/Customer/Request';
+import AllRequests from './pages/Professional/AllRequests';
+import MySubscriptions from './pages/Customer/ViewMySubscriptions';
+import AddSubscription from './pages/Customer/AddSubscription';
 import { ProtectedRoute } from './components/utils/ProtectedRoute';
-import RequestDetails from './pages/RequestDetails';
-import car_logo from "./images/moving_car.png";
-import MechanicDashboard from "./pages/MechanicDashboard";
-import Checkout from "./pages/Checkout";
-import JobHistory from "./pages/JobHistory";
-import JobHistoryDetails from "./pages/JobHistoryDetails";
+import RequestDetails from './pages/Professional/RequestDetails';
+import MechanicDashboard from "./pages/Professional/MechanicCurrentJob";
+import Checkout from "./pages/Customer/Checkout";
+import CalloutHistory from "./pages/General/CalloutHistory";
+import CalloutHistoryDetails from "./pages/General/CalloutHistoryDetails";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import car_logo from "./images/moving_car.png";
 
 function App() {
   return (
@@ -77,7 +79,7 @@ function App() {
               path="/history"
               element={
                 <ProtectedRoute>
-                  <JobHistory/>
+                  <CalloutHistory/>
                 </ProtectedRoute>
               }
             />
@@ -85,7 +87,7 @@ function App() {
               path="/historical_details/:id"
               element={
                 <ProtectedRoute>
-                  <JobHistoryDetails/>
+                  <CalloutHistoryDetails/>
                 </ProtectedRoute>
               }
             />

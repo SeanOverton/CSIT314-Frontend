@@ -1,12 +1,11 @@
-import Nav from "../components/Nav";
-import Footer from "../components/Footer";
+import Nav from "../../components/Nav";
+import Footer from "../../components/Footer";
 import { useParams } from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
-import BACKEND_URL, {FRONTEND_URL} from "../components/utils/Constants";
-import { toast } from "react-toastify";
-import CalloutDetails from "../components/CalloutDetails";
-import { makeAuthenticatedPostRequest } from "../components/utils/Helpers";
+import BACKEND_URL, {FRONTEND_URL} from "../../components/utils/Constants";
+import CalloutDetails from "../../components/CalloutDetails";
+import { makeAuthenticatedPostRequest } from "../../components/utils/Helpers";
 
 interface CalloutDetails {
     id: number,

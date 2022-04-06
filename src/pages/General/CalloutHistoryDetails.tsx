@@ -1,11 +1,10 @@
-import Nav from "../components/Nav";
-import Footer from "../components/Footer";
+import Nav from "../../components/Nav";
+import Footer from "../../components/Footer";
 import { useParams } from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
-import BACKEND_URL, {FRONTEND_URL} from "../components/utils/Constants";
-import { toast } from "react-toastify";
-import CalloutDetails, { CalloutDetailsInterface } from "../components/CalloutDetails";
+import BACKEND_URL from "../../components/utils/Constants";
+import CalloutDetails, { CalloutDetailsInterface } from "../../components/CalloutDetails";
 
 const RequestDetails = () => {
     const default_details = {id: 0, 
@@ -35,7 +34,6 @@ const RequestDetails = () => {
         .then(response => {
             
             var callout = response.data.filter(function(callout: any) {
-                // console.log(callout);
                 return callout.id == id;
             })[0];
 

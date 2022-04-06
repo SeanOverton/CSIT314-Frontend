@@ -1,24 +1,32 @@
-import Nav from "../components/Nav";
-import Footer from "../components/Footer";
-import { Card, Container } from "react-bootstrap";
+import Nav from "../../components/Nav";
+import Footer from "../../components/Footer";
+import { Card } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import BACKEND_URL from "../components/utils/Constants";
+import BACKEND_URL, { FRONTEND_URL } from "../../components/utils/Constants";
+import { makeAuthenticatedPostRequest } from "../../components/utils/Helpers";
 
 //passing state through Link in react-router-dom is documented here:
 //https://dev.to/medaminefh/passing-data-with-react-router-using-link-1h39
 
 const SingleSubscriptionCard = (props: any) => {
+    const removeSubscription = () => {
+        let body = {
+            username: props.subscription.username,
+            vehicle_registration: props.subscription.vehicle_registration,
+            active: false
+        }
+
+        makeAuthenticatedPostRequest("/update_subscription/", "Success! Vehicle subscription has been removed from your account.", body, `${FRONTEND_URL}/subscriptions`);
+    }
+    
     return(
         <Card style={{ width: '18rem' }}>
             <Card.Body>
                 <Card.Title>Vehicle Registration:</Card.Title>
                 <Card.Title>{props.subscription.vehicle_registration}</Card.Title>
-                {/* <Card.Subtitle className="mb-2 text-muted">Time of request</Card.Subtitle>
-                <Card.Text>
-                Details regarding the callout
-                </Card.Text> */}
+                <button type="button" onClick={removeSubscription} className="btn btn-danger">Unsubscribe</button>
             </Card.Body>
         </Card>
     );
@@ -40,7 +48,12 @@ const SubscriptionCardContainer = () => {
         axios.get(`${BACKEND_URL}/my_subscriptions/?username=${username}`, {headers: headers})
         .then(response => {
             console.log(response.data);
-            setSubscriptions(response.data);
+
+            let active_subscriptions = response.data.filter((subscription: any) => {
+                return subscription.active;
+            })
+
+            setSubscriptions(active_subscriptions);
         })
         .catch((error) => {
             // TODO: actually handle this error

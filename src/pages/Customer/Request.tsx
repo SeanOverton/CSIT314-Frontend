@@ -1,11 +1,12 @@
-import Nav from "../components/Nav";
-import Footer from '../components/Footer';
-import "../styles/forms.css";
+import Nav from "../../components/Nav";
+import Footer from '../../components/Footer';
+import "../../styles/forms.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Checkout from "./Checkout";
-import BACKEND_URL, { FRONTEND_URL } from "../components/utils/Constants";
-import { makeAuthenticatedPostRequest } from "../components/utils/Helpers";
+import BACKEND_URL, { FRONTEND_URL } from "../../components/utils/Constants";
+import { makeAuthenticatedPostRequest } from "../../components/utils/Helpers";
+import BootstrapModal from "./BootstrapModal";
 
 const CustomersCurrentRequest = (props: any) => {
     const [rating, setRating] = useState<any>();
@@ -16,16 +17,32 @@ const CustomersCurrentRequest = (props: any) => {
         
         let details = props.request;
 
-        let mechanic = localStorage.getItem("username")?.replaceAll('"', '');
-
         let body = {
             username: details.username,
             location: details.location,
             description: details.description,
             status: "REVIEWED",
-            mechanic: mechanic,
+            mechanic: details.mechanic,
             review: review,
             rating: rating,
+        }
+
+        makeAuthenticatedPostRequest("/update_callout/", 
+        "Success! Thank you for using our service!", 
+        body, 
+        FRONTEND_URL);
+    }
+
+    const cancelCallout = () => {
+        // evt.preventDefault();
+        
+        let details = props.request;
+
+        let body = {
+            username: details.username,
+            location: details.location,
+            description: details.description,
+            status: "CANCELLED",
         }
 
         makeAuthenticatedPostRequest("/update_callout/", 
@@ -38,7 +55,14 @@ const CustomersCurrentRequest = (props: any) => {
         <>
             <h1>Status: {props.request.status}</h1>
             <h2>Location: {props.request.location}</h2>
-            <h2>Mechanic: {props.request.mechanic}</h2>
+            {props.request.mechanic == "" ? (
+                <></>
+            ) : (
+                <h2>Mechanic: {props.request.mechanic}</h2>
+            )}
+            
+            <BootstrapModal title="Cancel Callout" prompt_question="Are you sure you want to cancel?" function={cancelCallout}/>
+            
             {(props.request.status == "COMPLETED") ? (
                 <div className="auth-inner">
                     <form onSubmit={reviewCallout}>
@@ -88,7 +112,7 @@ const Request = () => {
             // console.log(response.data);
 
             var new_request = response.data.filter(function(request: any) {
-                return request.username == username && request.status != "REVIEWED";
+                return request.username == username && request.status != "REVIEWED" && request.status != "CANCELLED";
             });
 
             console.log(new_request);

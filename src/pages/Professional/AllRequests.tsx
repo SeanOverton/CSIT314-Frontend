@@ -1,25 +1,27 @@
-import Nav from "../components/Nav";
-import Footer from "../components/Footer";
-import { Card, Container } from "react-bootstrap";
+import Nav from "../../components/Nav";
+import Footer from "../../components/Footer";
+import { Card } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import BACKEND_URL from "../components/utils/Constants";
+import BACKEND_URL from "../../components/utils/Constants";
+import { formatDate, formatTime } from "../../components/utils/Helpers";
 
 //passing state through Link in react-router-dom is documented here:
 //https://dev.to/medaminefh/passing-data-with-react-router-using-link-1h39
 
-const SingleRequestCard = (props: any) => {
+const SingleRequestCard = (props: any) => {    
     return(
         <Card style={{ width: '18rem' }}>
             <Card.Body>
-                <Card.Title>Location: {props.request.location} (Distance?)</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">{props.request.date}</Card.Subtitle>
+                <Card.Title>Location: {props.request.location}</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">{formatDate(props.request.date)}</Card.Subtitle>
+                <Card.Subtitle className="mb-2 text-muted">{formatTime(props.request.date)}</Card.Subtitle>
                 <Card.Text>
                 {props.request.description}
                 </Card.Text>
                 <Link to={{
-                    pathname: `/historical_details/${props.request.id}`,
+                    pathname: `/details/${props.request.id}`,
                 }}>View Details</Link>
             </Card.Body>
         </Card>
@@ -38,7 +40,7 @@ const RequestCardContainer = () => {
         }
 
         //TODO: actually fetch data in here
-        axios.get(`${BACKEND_URL}/all_callouts/?status=REVIEWED`, {headers: headers})
+        axios.get(`${BACKEND_URL}/all_callouts/?status=PENDING`, {headers: headers})
         .then(response => {
             console.log(response.data);
             setRequests(response.data);

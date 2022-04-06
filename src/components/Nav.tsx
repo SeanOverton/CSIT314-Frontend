@@ -31,6 +31,9 @@ const Nav = () => {
                     <li>
                         <Link className="" to="/subscriptions">My subscriptions</Link>
                     </li>
+                    <li>
+                        <Link className="" to="/history">Order history</Link>
+                    </li>
                     </>
                     ) : (
                     <></>
@@ -44,7 +47,7 @@ const Nav = () => {
                             <Link className="" to="/currentjob">Current Job</Link>
                         </li>
                         <li>
-                            <Link className="" to="/history">History</Link>
+                            <Link className="" to="/history">Job History</Link>
                         </li>
                         </>
                     ) : (

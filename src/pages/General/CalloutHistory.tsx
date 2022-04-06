@@ -1,18 +1,17 @@
-import Nav from "../components/Nav";
-import Footer from "../components/Footer";
+import Nav from "../../components/Nav";
+import Footer from "../../components/Footer";
 import { Card, Container } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import BACKEND_URL from "../components/utils/Constants";
-import { formatDate, formatTime } from "../components/utils/Helpers";
+import BACKEND_URL from "../../components/utils/Constants";
+import Auth from "../../components/utils/Auth";
+import { formatTime, formatDate } from "../../components/utils/Helpers";
 
 //passing state through Link in react-router-dom is documented here:
 //https://dev.to/medaminefh/passing-data-with-react-router-using-link-1h39
 
 const SingleRequestCard = (props: any) => {
-    
-    
     return(
         <Card style={{ width: '18rem' }}>
             <Card.Body>
@@ -23,7 +22,7 @@ const SingleRequestCard = (props: any) => {
                 {props.request.description}
                 </Card.Text>
                 <Link to={{
-                    pathname: `/details/${props.request.id}`,
+                    pathname: `/historical_details/${props.request.id}`,
                 }}>View Details</Link>
             </Card.Body>
         </Card>
@@ -34,6 +33,7 @@ const RequestCardContainer = () => {
     const[requests, setRequests] = useState<any[]>([]);
 
     useEffect(() => {
+        let username = localStorage.getItem("username")?.replaceAll('"', '');
         let token = localStorage.getItem("token")?.replaceAll('"', '');
 
         // this should be extracted so it can be used by multiple requests
@@ -42,10 +42,22 @@ const RequestCardContainer = () => {
         }
 
         //TODO: actually fetch data in here
-        axios.get(`${BACKEND_URL}/all_callouts/?status=PENDING`, {headers: headers})
+        axios.get(`${BACKEND_URL}/all_callouts/?status=REVIEWED`, {headers: headers})
         .then(response => {
             console.log(response.data);
-            setRequests(response.data);
+
+            if(Auth.isCustomer()){
+                var filtered_requests = response.data.filter(function(request: any) {
+                    return request.username == username;
+                });
+            }
+            else if(Auth.isMechanic()){
+                var filtered_requests = response.data.filter(function(request: any) {
+                    return request.mechanic == username;
+                });
+            }
+
+            setRequests(filtered_requests);
         })
         .catch((error) => {
             // TODO: actually handle this error
@@ -69,7 +81,7 @@ const AllRequests = () => {
     return (
         <>
         <Nav/>
-        <h1>All logged requests page</h1>
+        <h1>Job History</h1>
         <RequestCardContainer/>
         <Footer/>
         </>
