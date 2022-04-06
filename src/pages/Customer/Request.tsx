@@ -1,13 +1,58 @@
 import Nav from "../../components/Nav";
 import Footer from '../../components/Footer';
 import "../../styles/forms.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import Checkout from "./Checkout";
 import BACKEND_URL, { FRONTEND_URL } from "../../components/utils/Constants";
 import { makeAuthenticatedPostRequest } from "../../components/utils/Helpers";
 import BootstrapModal from "./BootstrapModal";
 import Auth from "../../components/utils/Auth";
+import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+
+const containerStyle = {
+  width: '400px',
+  height: '400px',
+  display: 'flex',
+  alignItems: 'center'
+};
+
+const center = {
+  lat: -34.3424,
+  lng: 150.9053
+};
+
+function MyComponent() {
+  const { isLoaded } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: "REDACTED"
+  })
+
+  const [map, setMap] = useState(null)
+
+  const onLoad = useCallback(function callback(map) {
+    const bounds = new window.google.maps.LatLngBounds();
+    map.fitBounds(bounds);
+    setMap(map)
+  }, [])
+
+  const onUnmount = useCallback(function callback(map) {
+    setMap(null)
+  }, [])
+
+  return isLoaded ? (
+      <GoogleMap
+        mapContainerStyle={containerStyle}
+        center={center}
+        zoom={12}
+        onLoad={onLoad}
+        onUnmount={onUnmount}
+      >
+        { /* Child components, such as markers, info windows, etc. */ }
+        <></>
+      </GoogleMap>
+  ) : <></>
+}
 
 const CustomersCurrentRequest = (props: any) => {
     const [rating, setRating] = useState<any>();
@@ -56,6 +101,12 @@ const CustomersCurrentRequest = (props: any) => {
         <>
             <h1>Status: {props.request.status}</h1>
             <h2>Location: {props.request.location}</h2>
+            
+            {/* Add map here */}
+            <div style={{display: "inline-block", verticalAlign: "center"}}>
+                <MyComponent/>
+            </div>
+
             {props.request.mechanic == "" ? (
                 <></>
             ) : (
