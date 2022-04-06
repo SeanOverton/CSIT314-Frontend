@@ -12,7 +12,7 @@ const SignUp = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [password2, setPassword2] = useState("");
-    const [usertype, setUsertype] = useState("");
+    const [usertype, setUsertype] = useState("customer");
 
     const handleSubmit = (evt: any) => {
         evt.preventDefault();
