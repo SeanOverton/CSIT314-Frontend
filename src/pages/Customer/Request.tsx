@@ -91,7 +91,47 @@ const CustomersCurrentRequest = (props: any) => {
     );
 }
 
+const ChooseVehicle = ({setRego, setStep}: any) => {
+    return (
+        <>
+        <div className="form-group">
+        <label>Car registration:</label>
+        <input type="text" className="form-control" placeholder="XWZ-123" onChange={e => setRego(e.target.value)}/>
+        </div>
+        <div>
+        <button className="btn btn-primary" onClick={() => {setStep("Location")}}>Next</button>
+        </div>
+        </>
+    )
+}
+
+const ConfirmLocation = ({setLocation, setStep}: any) => {
+    return (
+        <>
+        <div className="form-group">
+            <label>Location</label>
+            <input type="text" className="form-control" placeholder="Location"  onChange={e => setLocation(e.target.value)}/>
+        </div>
+        <div>
+            <button className="btn btn-primary" onClick={() => {setStep("Problem")}}>Next</button>
+        </div>
+        </>
+    )
+}
+
+const ProblemDetails = ({setDescription}: any) => {
+    return (
+        <div className="form-group">
+        <label>Provide any detail on your issue:</label>
+        <input type="text" className="form-control" placeholder="eg. My car is on fire" onChange={e => setDescription(e.target.value)}/>
+        </div>
+    )
+}
+
 const Request = () => {
+    const steps = ["Vehicle", "Location", "Problem", "Pending", "Accepted", "Completed"];
+    const [step, setStep] = useState("Vehicle");
+
     const [request, setRequest] = useState([]);
     const [location, setLocation] = useState("");
     const [description, setDescription] = useState("");
@@ -192,9 +232,30 @@ const Request = () => {
         checkIfCarHasSubscription();
     }
 
+    const renderProgressBar = (current_step: any) => {
+        return <h1>Status: {current_step}</h1>
+    }
+
+    const renderCurrentStep = (param: any) => {
+        switch(param) {
+            case "Vehicle":
+                return <ChooseVehicle setRego={setRego} setStep={setStep}/>;
+            case "Location":
+                return <ConfirmLocation setLocation={setLocation} setStep={setStep}/>
+            case "Problem":
+                return <ProblemDetails setDescription={setDescription}/>
+            default:
+                return 'foo';
+        }
+      }
+
     return (
         <>
         <Nav/>
+
+        {renderProgressBar(step)}
+        {renderCurrentStep(step)}
+
         {request.length == 0 ? (
             <>
             {!hasSubscription && hasChecked ? (
@@ -203,21 +264,6 @@ const Request = () => {
                 <div className="auth-inner">
                     <form onSubmit={makeRequest}>
                         <h3>Request roadside assistance</h3>
-
-                        <div className="form-group">
-                            <label>Location</label>
-                            <input type="text" className="form-control" placeholder="Location"  onChange={e => setLocation(e.target.value)}/>
-                        </div>
-
-                        <div className="form-group">
-                            <label>Provide any detail on your issue:</label>
-                            <input type="text" className="form-control" placeholder="eg. My car is on fire" onChange={e => setDescription(e.target.value)}/>
-                        </div>
-
-                        <div className="form-group">
-                            <label>Car registration:</label>
-                            <input type="text" className="form-control" placeholder="XWZ-123" onChange={e => setRego(e.target.value)}/>
-                        </div>
                         
                         <div style={{padding: "1em"}}>
                         <button type="submit" className="btn btn-primary btn-block">Submit request</button>
