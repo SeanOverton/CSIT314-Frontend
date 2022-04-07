@@ -1,34 +1,14 @@
 import Nav from "../../components/Nav";
 import Footer from '../../components/Footer';
 import "../../styles/forms.css";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Checkout from "./Checkout";
 import BACKEND_URL, { FRONTEND_URL } from "../../components/utils/Constants";
 import { makeAuthenticatedPostRequest } from "../../components/utils/Helpers";
 import BootstrapModal from "./BootstrapModal";
 import Auth from "../../components/utils/Auth";
-import { GoogleMap, useJsApiLoader, Marker, DirectionsRenderer } from '@react-google-maps/api';
-
-import App from "./Map";
-
-/*
-NOTES on displaying map and confirming location:
--should get location first of user or try to
--then render the map with marker as the person's current location
--customer can then move marker
--customer can then press 'confirm' and it will store the coords
-*/
-
-const containerStyle = {
-  width: '400px',
-  height: '400px',
-};
-
-const customer_location = {
-    lat: -34.3424,
-    lng: 150.9123
-};
+import CustomerConfirmLocation from "./CustomerConfirmLocation";
 
 // const getDirections = () => {
 //     const DirectionsService = new google.maps.DirectionsService();
@@ -49,59 +29,6 @@ const customer_location = {
 
 //     return
 // }
-
-function LocationConfirmation() {
-  const { isLoaded } = useJsApiLoader({
-    id: 'google-map-script',
-    googleMapsApiKey: `${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`
-  })
-
-  const [marker, setMarker] = useState<any>()
-
-  const saveMarker = (t: any, map: any, coord: any) => {
-    const { latLng } = coord;
-    const lat = latLng.lat();
-    const lng = latLng.lng();
-
-    const customer_set_location = { lat, lng };
-
-    setMarker(customer_set_location);
-  }
-
-    useEffect(() => {
-        setMarker({
-            lat: -34.3424,
-            lng: 150.9123
-        });
-    }, []); 
-
-//   const onLoad = useCallback(function callback(map) {
-//     const bounds = new window.google.maps.LatLngBounds();
-//     map.fitBounds(bounds);
-//     setMap(map)
-//   }, [])
-
-//   const onUnmount = useCallback(function callback(map) {
-//     setMap(null)
-//   }, [])
-
-  return isLoaded ? (
-      <GoogleMap
-        mapContainerStyle={containerStyle}
-        center={marker}
-        zoom={16}
-        onClick={() => saveMarker}
-        // onLoad={onLoad}
-        // onUnmount={onUnmount}
-      >
-        { /* Child components, such as markers, info windows, etc. */ }
-        <>
-            <Marker position={marker}/>
-            {/* <DirectionsRenderer directions={directions} /> */}
-        </>
-      </GoogleMap>
-  ) : <></>
-}
 
 const CustomersCurrentRequest = (props: any) => {
     const [rating, setRating] = useState<any>();
@@ -128,9 +55,7 @@ const CustomersCurrentRequest = (props: any) => {
         FRONTEND_URL);
     }
 
-    const cancelCallout = () => {
-        // evt.preventDefault();
-        
+    const cancelCallout = () => {      
         let details = props.request;
 
         let body = {
@@ -152,9 +77,9 @@ const CustomersCurrentRequest = (props: any) => {
             <h2>Location: {props.request.location}</h2>
             
             {/* Add map here to track mechanic */}
-            <div style={{display: "inline-block", verticalAlign: "center"}}>
-                <LocationConfirmation/>
-            </div>
+            {/* <div style={{display: "inline-block", verticalAlign: "center"}}>
+                <TrackMechanic/>
+            </div> */}
 
             {props.request.mechanic == "" ? (
                 <></>
@@ -308,11 +233,13 @@ const Request = () => {
                             <label>Location</label>
                             <input type="text" className="form-control" placeholder="Location"  onChange={e => setLocation(e.target.value)}/>
                         </div> */}
-                        <h3>Confirm your location</h3>
+                        <h3>Confirm your location: {location}</h3>
                         {/* Add map here to confirm location of customer callout */}
                         <div style={{display: "inline-block", verticalAlign: "center"}}>
                             {/* <LocationConfirmation/> */}
-                            <App/>
+                            <CustomerConfirmLocation
+                            setLocation={setLocation}
+                            />
                         </div>
 
                         <div className="form-group">

@@ -3,12 +3,14 @@ import * as ReactDom from "react-dom";
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import { createCustomEqual } from "fast-equals";
 import { isLatLngLiteral } from "@googlemaps/typescript-guards";
+import axios from "axios";
+import BootstrapModal from "./BootstrapModal";
 
 const render = (status: Status) => {
   return <h1>{status}</h1>;
 };
 
-const App: React.VFC = () => {
+const CustomerConfirmLocation = ({ setLocation }: any) => {
   const [click, setClick] = React.useState<google.maps.LatLng[]>([]);
   const [zoom, setZoom] = React.useState(3); // initial zoom
   const [center, setCenter] = React.useState<google.maps.LatLngLiteral>({
@@ -48,55 +50,18 @@ const App: React.VFC = () => {
     setCenter(m.getCenter()!.toJSON());
   };
 
-  // not being used
-  const form = (
-    <div
-      style={{
-        padding: "1rem",
-        flexBasis: "250px",
-        height: "100%",
-        overflow: "auto",
-      }}
-    >
-      {/* <label htmlFor="zoom">Zoom</label>
-      <input
-        type="number"
-        id="zoom"
-        name="zoom"
-        value={zoom}
-        onChange={(event) => setZoom(Number(event.target.value))}
-      />
-      <br />
-      <label htmlFor="lat">Latitude</label>
-      <input
-        type="number"
-        id="lat"
-        name="lat"
-        value={center.lat}
-        onChange={(event) =>
-          setCenter({ ...center, lat: Number(event.target.value) })
-        }
-      />
-      <br />
-      <label htmlFor="lng">Longitude</label>
-      <input
-        type="number"
-        id="lng"
-        name="lng"
-        value={center.lng}
-        onChange={(event) =>
-          setCenter({ ...center, lng: Number(event.target.value) })
-        }
-      /> */}
-      <h3>{click.length === 0 ? "Click on map to add markers" : "Clicks"}</h3>
-      {click.map((latLng, i) => (
-        <pre key={i}>{JSON.stringify(latLng.toJSON(), null, 2)}</pre>
-      ))}
-      <button onClick={() => setClick([])}>Clear</button>
-    </div>
-  );
+  const getAddress = () => {
+    axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${click[0].lat().toString()},${click[0].lng().toString()}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`)
+        .then(
+          response => {
+            console.log(response.data.results[0].formatted_address);
+            setLocation(response.data.results[0].formatted_address);
+          }
+        );
+  }
 
   return (
+    <>
     <div style={{ display: "flex", height: "100%" }}>
       <Wrapper apiKey={`${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`} render={render}>
         <Map
@@ -111,9 +76,9 @@ const App: React.VFC = () => {
           ))}
         </Map>
       </Wrapper>
-      {/* Basic form for controlling center and zoom of map. */}
-      {/* {form} */}
     </div>
+    <BootstrapModal title="Confirm Location" prompt_question="Please confirm this is your current location." function={getAddress}/>
+    </>
   );
 };
 
@@ -236,4 +201,4 @@ function useDeepCompareEffectForMaps(
   React.useEffect(callback, dependencies.map(useDeepCompareMemoize));
 }
 
-export default App;
+export default CustomerConfirmLocation;
