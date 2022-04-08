@@ -82,7 +82,10 @@ const Request = () => {
             case "Vehicle":
                 return <ChooseVehicle setRego={setRego} setStep={setStep}/>;
             case "Location":
-                return <ConfirmLocation setLocation={setLocation} setStep={setStep}/>
+                return <ConfirmLocation 
+                location={location}
+                setLocation={setLocation} 
+                setStep={setStep}/>
             case "Problem":
                 return <ProblemDetails
                 rego={rego}
