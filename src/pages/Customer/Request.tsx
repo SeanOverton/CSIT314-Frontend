@@ -3,12 +3,14 @@ import Footer from '../../components/Footer';
 import "../../styles/forms.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Checkout from "./Checkout";
-import BACKEND_URL, { FRONTEND_URL } from "../../components/utils/Constants";
-import { makeAuthenticatedPostRequest } from "../../components/utils/Helpers";
-import BootstrapModal from "./BootstrapModal";
+import BACKEND_URL from "../../components/utils/Constants";
 import Auth from "../../components/utils/Auth";
-import CustomerConfirmLocation from "./CustomerConfirmLocation";
+import ChooseVehicle from "../../components/RequestProcess/ChooseVehicle";
+import ConfirmLocation from "../../components/RequestProcess/ConfirmLocation";
+import ProblemDetails from "../../components/RequestProcess/ProblemDetails";
+import PendingMechanic from "../../components/RequestProcess/PendingMechanic";
+import TrackMechanic from "../../components/RequestProcess/TrackMechanic";
+import ReviewMechanic from "../../components/RequestProcess/ReviewMechanic";
 
 // const getDirections = () => {
 //     const DirectionsService = new google.maps.DirectionsService();
@@ -30,99 +32,14 @@ import CustomerConfirmLocation from "./CustomerConfirmLocation";
 //     return
 // }
 
-const CustomersCurrentRequest = (props: any) => {
-    const [rating, setRating] = useState<any>();
-    const [review, setReview] = useState<any>();
-    
-    const reviewCallout = (evt: any) => {
-        evt.preventDefault();
-        
-        let details = props.request;
-
-        let body = {
-            username: details.username,
-            location: details.location,
-            description: details.description,
-            status: "REVIEWED",
-            mechanic: details.mechanic,
-            review: review,
-            rating: rating,
-        }
-
-        makeAuthenticatedPostRequest("/update_callout/", 
-        "Success! Thank you for using our service!", 
-        body, 
-        FRONTEND_URL);
-    }
-
-    const cancelCallout = () => {      
-        let details = props.request;
-
-        let body = {
-            username: details.username,
-            location: details.location,
-            description: details.description,
-            status: "CANCELLED",
-        }
-
-        makeAuthenticatedPostRequest("/update_callout/", 
-        "Success! Thank you for using our service!", 
-        body, 
-        FRONTEND_URL);
-    }
-
-    return (
-        <>
-            <h1>Status: {props.request.status}</h1>
-            <h2>Location: {props.request.location}</h2>
-            
-            {/* Add map here to track mechanic */}
-            {/* <div style={{display: "inline-block", verticalAlign: "center"}}>
-                <TrackMechanic/>
-            </div> */}
-
-            {props.request.mechanic == "" ? (
-                <></>
-            ) : (
-                <h2>Mechanic: {props.request.mechanic}</h2>
-            )}
-            
-            <BootstrapModal title="Cancel Callout" prompt_question="Are you sure you want to cancel?" function={cancelCallout}/>
-            
-            {(props.request.status == "COMPLETED") ? (
-                <div className="auth-inner">
-                    <form onSubmit={reviewCallout}>
-                        <h3>Review the service!</h3>
-
-                        <div className="form-group">
-                            <label>Rating</label>
-                            <input type="text" className="form-control" placeholder="1-10"  onChange={e => setRating(e.target.value)}/>
-                        </div>
-
-                        <div className="form-group">
-                            <label>Please provide a descriptive review:</label>
-                            <input type="text" className="form-control" placeholder="The mechanic was a legend!" onChange={e => setReview(e.target.value)}/>
-                        </div>
-                        
-                        <div style={{padding: "1em"}}>
-                        <button type="submit" className="btn btn-primary btn-block">Submit review</button>
-                        </div>
-                    </form>
-                </div>
-            ) : (
-                <></>
-            )}
-        </>
-    );
-}
-
 const Request = () => {
+    const steps = ["Vehicle", "Location", "Problem", "PENDING", "ACCEPTED", "COMPLETED"];
+    const [step, setStep] = useState("Vehicle");
+
     const [request, setRequest] = useState([]);
     const [location, setLocation] = useState("");
     const [description, setDescription] = useState("");
     const [rego, setRego] = useState("");
-    const [hasSubscription, setHasSubscription] = useState(false);
-    const [hasChecked, setHasChecked] = useState(false);
 
     useEffect(() => {
         // this should be extracted so it can be used by multiple requests
@@ -142,6 +59,7 @@ const Request = () => {
 
             if(new_request.length > 0){
                 setRequest(new_request[0]);
+                setStep(new_request[0].status);
             }
         })
         .catch((error) => {
@@ -152,116 +70,42 @@ const Request = () => {
         });
     }, []); 
 
-    const checkIfCarHasSubscription = async () => {
-        // this should be extracted so it can be used by multiple requests
-        let headers = {
-            "Authorization": `Token ${Auth.getToken()}`
+    const renderProgressBar = (current_step: any) => {
+        // TODO: room here to animate some sort of progression bar
+        // wireframe design has an example but any creative ideas here
+        // would be more than welcome
+        return <h1>Status: {current_step}</h1>
+    }
+
+    const renderCurrentStep = (param: any) => {
+        switch(param) {
+            case "Vehicle":
+                return <ChooseVehicle setRego={setRego} setStep={setStep}/>;
+            case "Location":
+                return <ConfirmLocation setLocation={setLocation} setStep={setStep}/>
+            case "Problem":
+                return <ProblemDetails
+                rego={rego}
+                description={description}
+                location={location} 
+                setDescription={setDescription} 
+                />
+            case "PENDING":
+                return <PendingMechanic request={request}/>
+            case "ACCEPTED":
+                return <TrackMechanic request={request}/>
+            case "COMPLETED":
+                return <ReviewMechanic request={request}/>
         }
-
-        axios.get(`${BACKEND_URL}/my_subscriptions/?username=${Auth.getUsername()}`, {headers: headers})
-        .then(response => {
-            var new_request = response.data.filter(function(sub: any) {
-                return sub.vehicle_registration == rego;
-            });
-
-            setHasChecked(true);
-
-            if(new_request.length > 0){
-                setHasSubscription(true);
-                submitRequest();
-            }else{
-                setHasSubscription(false);
-            }            
-        })
-        .catch((error) => {
-            // TODO: actually handle this error
-            console.log(error.response.data);
-            console.log(error.request);
-            console.log(error.message);
-        });
-    }
-
-    const submitRequest = () => {
-        let currentdate = new Date();
-        
-        let month = `${currentdate.getMonth()}`;
-        let day = `${currentdate.getDate()}`;
-        let year = `${currentdate.getFullYear()}`;
-
-        if (month.length < 2) 
-            month = '0' + month;
-        if (day.length < 2) 
-            day = '0' + day;
-
-        let currentdate_string = `${year}-${month}-${day}`
-
-        let body = {
-            username: Auth.getUsername(),
-            location,
-            description,
-            status: "PENDING",
-            date: currentdate_string
-        }
-
-        makeAuthenticatedPostRequest("/create_callout/", 
-        "Success! A mechanic will respond shortly!", 
-        body, 
-        `${FRONTEND_URL}/request`);
-    }
-
-    const makeRequest = (evt: any) => {
-        evt.preventDefault();
-        
-        setHasChecked(false);
-
-        checkIfCarHasSubscription();
-    }
+      }
 
     return (
         <>
         <Nav/>
-        {request.length == 0 ? (
-            <>
-            {!hasSubscription && hasChecked ? (
-                <Checkout submitRequest = {submitRequest}/>
-            ) : (
-                <div className="auth-inner">
-                    <form onSubmit={makeRequest}>
-                        <h4>Request roadside assistance</h4>
 
-                        {/* <div className="form-group">
-                            <label>Location</label>
-                            <input type="text" className="form-control" placeholder="Location"  onChange={e => setLocation(e.target.value)}/>
-                        </div> */}
-                        <h3>Confirm your location: {location}</h3>
-                        {/* Add map here to confirm location of customer callout */}
-                        <div style={{display: "inline-block", verticalAlign: "center"}}>
-                            {/* <LocationConfirmation/> */}
-                            <CustomerConfirmLocation
-                            setLocation={setLocation}
-                            />
-                        </div>
+        {renderProgressBar(step)}
+        {renderCurrentStep(step)}
 
-                        <div className="form-group">
-                            <label>Provide any detail on your issue:</label>
-                            <input type="text" className="form-control" placeholder="eg. My car is on fire" onChange={e => setDescription(e.target.value)}/>
-                        </div>
-
-                        <div className="form-group">
-                            <label>Car registration:</label>
-                            <input type="text" className="form-control" placeholder="XWZ-123" onChange={e => setRego(e.target.value)}/>
-                        </div>
-                        
-                        <div style={{padding: "1em"}}>
-                        <button type="submit" className="btn btn-primary btn-block">Submit request</button>
-                        </div>
-                    </form>
-                </div>
-            )}
-            </>
-        ) : (
-            <CustomersCurrentRequest request={request}/>
-        )}
         <Footer/>
         </>
     );
