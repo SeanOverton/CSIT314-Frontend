@@ -23,37 +23,3 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
-.moving_car1{
-  top: 30%;
-  animation: car1_bg 15s linear 0s infinite;
-  opacity: 0.2;
-  position: absolute;
-  z-index: -1;
-}
-
-.moving_car2{
-  top: 60%;
-  animation: car2_bg 25s linear 1s infinite;
-  opacity: 0.2;
-  position: absolute;
-  z-index: -1;
-}
-
-@keyframes car1_bg {
-  from {
-    left: -30%;
-  }
-  to {
-    left: 90%;
-  }
-}
-
-@keyframes car2_bg {
-  from {
-    left: 90%;
-  }
-  to {
-    left: -30%;
-  }
-}
