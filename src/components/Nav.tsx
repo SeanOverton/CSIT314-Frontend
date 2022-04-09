@@ -25,15 +25,15 @@ const Nav = () => {
                     <>  
                     {auth.isCustomer() ? (
                     <>
-                    <li>
-                        <Link className="" to="/request">Roadside assistance</Link>
-                    </li>
-                    <li>
-                        <Link className="" to="/subscriptions">My subscriptions</Link>
-                    </li>
-                    <li>
-                        <Link className="" to="/history">Order history</Link>
-                    </li>
+                        <li>
+                            <Link className="" to="/request">Roadside assistance</Link>
+                        </li>
+                        <li>
+                            <Link className="" to="/subscriptions">My subscriptions</Link>
+                        </li>
+                        <li>
+                            <Link className="" to="/history">Order history</Link>
+                        </li>
                     </>
                     ) : (
                     <></>
