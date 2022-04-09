@@ -1,4 +1,3 @@
-import "../../styles/ChooseVehicle.css";
 import { Card } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import axios from "axios";
