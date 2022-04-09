@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@googlemaps/react-wrapper": "^1.1.29",
+    "@googlemaps/react-wrapper": "^1.1.30",
     "@googlemaps/typescript-guards": "^1.0.12",
     "@react-google-maps/api": "^2.8.1",
     "@testing-library/jest-dom": "^5.16.2",
