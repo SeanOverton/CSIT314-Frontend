@@ -1,3 +1,4 @@
+import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { BsAwardFill, BsChatFill, BsFacebook, BsInstagram, BsLinkedin } from "react-icons/bs";
 import { Link } from 'react-router-dom';
@@ -19,8 +20,6 @@ const Footer = () => {
                   <p><b><Link to="/about">About Us</Link></b></p>
                   <p><b><Link to="/contactus">Contact Us</Link></b></p>
               </div>
-              {/* <img src={car_logo} style={{height: "50px"}}/>
-              <p>Est. 8-3-2022</p> */}
             </Col>
             <Col>
               <h3>
