@@ -11,8 +11,15 @@ https://classic.yarnpkg.com/lang/en/docs/install/#windows-stable
 
 1) Clone the repo: ```git clone https://github.com/SeanOverton/CSIT314-Frontend.git```
 2) Run ```yarn install``` inside root directory.
-3) Copy the contents of .env-example file in the root directory into a new file in the root directory and save us .env. 
-Note: this file stores some important configuration values and keys for testing and production. 
+3) Copy the contents of .env-example file in the root directory into a new file in the root directory and save as .env filetype. Make sure it does not save as a text file.
+Note: this file stores some important configuration values and keys for testing and production.
+
+3.1) [Optional] Create an account on Google cloud platform:
+    1) Create an API key within 'credentials'.
+    2) Enable "Maps Javascript API"
+    3) Enable "Geocoding API"
+Warning: this could result in some billing. I think you receive $200 AUD upon your first sign up? But use at your own risk. Otherwise for now, we will make sure the app is fully functional for testing purposes without enabling any google API's. 
+
 4) Run ```yarn start``` to start the local server.
 
 ## For adding new features to the repo (Workflow for version control):

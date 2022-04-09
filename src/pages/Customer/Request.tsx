@@ -12,6 +12,26 @@ import PendingMechanic from "../../components/RequestProcess/PendingMechanic";
 import TrackMechanic from "../../components/RequestProcess/TrackMechanic";
 import ReviewMechanic from "../../components/RequestProcess/ReviewMechanic";
 
+// const getDirections = () => {
+//     const DirectionsService = new google.maps.DirectionsService();
+
+//     DirectionsService.route({
+//     origin: new google.maps.LatLng(41.8507300, -87.6512600),
+//     destination: new google.maps.LatLng(41.8525800, -87.6514100),
+//     travelMode: google.maps.TravelMode.DRIVING,
+//     }, (result, status) => {
+//     if (status === google.maps.DirectionsStatus.OK) {
+//         this.setState({
+//         directions: result,
+//         });
+//     } else {
+//         console.error(`error fetching directions ${result}`);
+//     }
+//     });
+
+//     return
+// }
+
 const Request = () => {
     const steps = ["Vehicle", "Location", "Problem", "PENDING", "ACCEPTED", "COMPLETED"];
     const [step, setStep] = useState("Vehicle");
@@ -65,7 +85,10 @@ const Request = () => {
                 setRego={setRego} 
                 setStep={setStep}/>;
             case "Location":
-                return <ConfirmLocation setLocation={setLocation} setStep={setStep}/>
+                return <ConfirmLocation 
+                location={location}
+                setLocation={setLocation} 
+                setStep={setStep}/>
             case "Problem":
                 return <ProblemDetails
                 rego={rego}
@@ -85,8 +108,10 @@ const Request = () => {
     return (
         <>
         <Nav/>
+
         {renderProgressBar(step)}
         {renderCurrentStep(step)}
+
         <Footer/>
         </>
     );
