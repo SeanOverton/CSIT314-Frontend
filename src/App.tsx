@@ -17,7 +17,7 @@ import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import car_logo from "./images/moving_car.png";
+import About from "./pages/General/About";
 
 function App() {
   return (
@@ -27,6 +27,7 @@ function App() {
             <Route path="/" element={<Home/>} />
             <Route path="/login" element={<Login/>}/>
             <Route path="/signup" element={<SignUp/>} />
+            <Route path="/about" element={<About/>} />
             <Route
               path="/request"
               element={

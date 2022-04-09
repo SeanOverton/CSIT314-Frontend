@@ -22,6 +22,9 @@ const BurgerMenu = () => {
                 <li>
                     <Link className="navbar-link bm-item" to="/subscriptions">My subscriptions</Link>
                 </li>
+                <li>
+                    <Link className="navbar-link bm-item" to="/history">Order history</Link>
+                </li>
             </>
             ) : (
             <></>
@@ -50,6 +53,18 @@ const BurgerMenu = () => {
             </>
             ) : ( 
             <>
+                <li>
+                    <Link className="navbar-link bm-item" to="/services">Services</Link>
+                </li>
+                <li>
+                    <Link className="navbar-link bm-item" to="/membership">Membership</Link>
+                </li>
+                <li>
+                    <Link className="navbar-link bm-item" to="/about">About Us</Link>
+                </li>
+                <li>
+                    <Link className="navbar-link bm-item" to="/contactus">Contact Us</Link>
+                </li>
                 <li>
                     <Link className="navbar-link bm-item" to="/signup">Sign Up</Link>
                 </li>

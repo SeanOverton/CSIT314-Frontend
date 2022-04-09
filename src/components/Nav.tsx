@@ -25,15 +25,15 @@ const Nav = () => {
                     <>  
                     {auth.isCustomer() ? (
                     <>
-                    <li>
-                        <Link className="" to="/request">Roadside assistance</Link>
-                    </li>
-                    <li>
-                        <Link className="" to="/subscriptions">My subscriptions</Link>
-                    </li>
-                    <li>
-                        <Link className="" to="/history">Order history</Link>
-                    </li>
+                        <li>
+                            <Link className="" to="/request">Roadside assistance</Link>
+                        </li>
+                        <li>
+                            <Link className="" to="/subscriptions">My subscriptions</Link>
+                        </li>
+                        <li>
+                            <Link className="" to="/history">Order history</Link>
+                        </li>
                     </>
                     ) : (
                     <></>
@@ -61,6 +61,18 @@ const Nav = () => {
                     }>Sign Out</button>
                     </>
                     ) : ( <>
+                        <li>
+                            <Link className="" to="/services">Services</Link>
+                        </li>
+                        <li>
+                            <Link className="" to="/membership">Membership</Link>
+                        </li>
+                        <li>
+                            <Link className="" to="/about">About Us</Link>
+                        </li>
+                        <li>
+                            <Link className="" to="/contactus">Contact Us</Link>
+                        </li>
                         <li>
                             <div  className="nav-btn">
                                 <Link to="/signup">Sign Up</Link>
