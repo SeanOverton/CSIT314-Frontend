@@ -60,7 +60,10 @@ const Request = () => {
     const renderCurrentStep = (param: any) => {
         switch(param) {
             case "Vehicle":
-                return <ChooseVehicle setRego={setRego} setStep={setStep}/>;
+                return <ChooseVehicle 
+                rego={rego}
+                setRego={setRego} 
+                setStep={setStep}/>;
             case "Location":
                 return <ConfirmLocation setLocation={setLocation} setStep={setStep}/>
             case "Problem":

@@ -1,5 +1,5 @@
 import React from 'react';
-import car_logo from "../images/car_logo.png"
+import car_logo from "../images/car_logo.png";
 
 const Footer = () => {
     return (

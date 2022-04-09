@@ -35,7 +35,7 @@ class BootstrapModal extends React.Component{
     render(){
         return(
             <div>
-                <Button variant="btn btn-danger" onClick={() => this.handleModalShowHide()}>
+                <Button variant="btn btn-primary" onClick={() => this.handleModalShowHide()}>
                     {this.props.title}
                 </Button>
 
