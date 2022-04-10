@@ -19,6 +19,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import About from "./pages/General/About";
 import Services from "./pages/General/Services";
+import ContactUs from "./pages/General/ContactUs";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             <Route path="/signup" element={<SignUp/>} />
             <Route path="/about" element={<About/>} />
             <Route path="/services" element={<Services/>} />
+            <Route path="/contactus" element={<ContactUs/>} />
             <Route
               path="/request"
               element={
