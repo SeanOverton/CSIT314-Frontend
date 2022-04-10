@@ -8,7 +8,7 @@ const Home = () => (
     <>
         <Nav />
         <main>
-            <div>
+            <div style={{paddingTop: "1em", paddingBottom: "4em"}}>
                 <h1>About Us</h1>
                 <Container>
                     <Row>
