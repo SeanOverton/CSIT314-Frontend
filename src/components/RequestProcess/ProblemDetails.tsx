@@ -1,9 +1,109 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Card } from "react-bootstrap";
 import Checkout from "../../pages/Customer/Checkout";
 import Auth from "../utils/Auth";
 import BACKEND_URL, { FRONTEND_URL } from "../utils/Constants";
 import { makeAuthenticatedPostRequest } from "../utils/Helpers";
+import { BsExclamationCircleFill } from "react-icons/bs";
+
+const SingleProblemCard = ({ selected, setSelected, symbol, name}: any) => {    
+    return( 
+        <div>
+        { (selected == name) ? 
+        (
+            <Card border="primary" style={{ width: '18rem' }}>
+                <Card.Body>
+                    {symbol}
+                    <Card.Title>{name}</Card.Title>
+                </Card.Body>
+            </Card>
+        ) : (
+            <Card onClick={() => {setSelected(name)}} style={{ width: '18rem' }}>
+                <Card.Body>
+                    {symbol}
+                    <Card.Title>{name}</Card.Title>
+                </Card.Body>
+            </Card>
+        )}
+        </div>
+    );
+}
+
+export const ProblemCardContainer = ({description, setDescription}: any) => {
+    let problems = [
+        {
+            "symbol": <BsExclamationCircleFill/>,
+            "name": "Emergency"
+        },
+        {
+            "symbol": <BsExclamationCircleFill/>,
+            "name": "Vehicle will not start"
+        },
+        {
+            "symbol": <BsExclamationCircleFill/>,
+            "name": "Flat Tyre"
+        },
+        {
+            "symbol": <BsExclamationCircleFill/>,
+            "name": "Flat Battery"
+        },
+        {
+            "symbol": <BsExclamationCircleFill/>,
+            "name": "New Battery"
+        },
+        {
+            "symbol": <BsExclamationCircleFill/>,
+            "name": "Keys locked in car"
+        },
+        {
+            "symbol": <BsExclamationCircleFill/>,
+            "name": "Engine stopped"
+        },
+        {
+            "symbol": <BsExclamationCircleFill/>,
+            "name": "Cooling system/fluid leak"
+        },
+        {
+            "symbol": <BsExclamationCircleFill/>,
+            "name": "Transmission/gear box"
+        },
+        {
+            "symbol": <BsExclamationCircleFill/>,
+            "name": "Out of petrol"
+        },
+        {
+            "symbol": <BsExclamationCircleFill/>,
+            "name": "Out of diesel"
+        },
+        {
+            "symbol": <BsExclamationCircleFill/>,
+            "name": "Electrical headlights"
+        },
+        {
+            "symbol": <BsExclamationCircleFill/>,
+            "name": "Steering"
+        },
+    ]
+    return (
+        <>
+            <h1 style={{textAlign: "left", paddingLeft: "3em"}}>What is the problem?</h1>
+            <div style={{display: "flex", flexWrap: "wrap", justifyContent: "center"}}>
+                {problems.map((problem, i) => {
+                    return <div style={{padding: "0.3em"}}>
+                        <SingleProblemCard
+                        key={i} 
+                        setSelected={setDescription}
+                        selected={description}
+                        symbol={problem.symbol}
+                        name={problem.name}
+                        />
+                    </div>;
+                }) }
+            </div>
+        </>
+    );
+}
 
 const ProblemDetails = ({location, rego, description, setDescription}: any) => {
     const [hasSubscription, setHasSubscription] = useState(false);
@@ -75,23 +175,27 @@ const ProblemDetails = ({location, rego, description, setDescription}: any) => {
     }
     
     return (
-        <div className="form-group">
-        <label>Provide any detail on your issue:</label>
-        <input type="text" className="form-control" placeholder="eg. My car is on fire" onChange={e => setDescription(e.target.value)}/>
-        
+        <main>
+            <div className="auth-inner">
         {!hasSubscription && hasChecked ? (
                 <Checkout submitRequest = {submitRequest}/>
             ) : (
-                <div className="auth-inner">
-                    <form onSubmit={makeRequest}>                        
-                        <div style={{padding: "1em"}}>
-                            <button type="submit" className="btn btn-primary btn-block">Submit request</button>
-                        </div>
-                    </form>
-                </div>
+                    <div className="form-group">
+                        <ProblemCardContainer
+                        description={description}
+                        setDescription={setDescription}/>
+                        <label>Other:</label>
+                        <input type="text" className="form-control" placeholder="eg. My car is on fire" onChange={e => setDescription(e.target.value)}/>        
+                        <form onSubmit={makeRequest}>                        
+                            <div style={{padding: "1em"}}>
+                                <button type="submit" className="btn btn-primary btn-block">Submit request</button>
+                            </div>
+                        </form>
+                    </div>
+                
         )}
-        
-        </div>
+            </div>
+        </main>
     )
 }
 

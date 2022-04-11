@@ -2,22 +2,24 @@ import CustomerConfirmLocation from "../../pages/Customer/CustomerConfirmLocatio
 
 const ConfirmLocation = ({location, setLocation, setStep}: any) => {
     return (
-        <>
-        <div className="form-group">
-            <label>Location</label>
-            <input type="text" className="form-control" placeholder={location}  onChange={e => setLocation(e.target.value)}/>
-        </div>
+        <main>
+            <div className="auth-inner">
+                <div className="form-group">
+                    <label>Location</label>
+                    <input type="text" className="form-control" placeholder={location}  onChange={e => setLocation(e.target.value)}/>
+                </div>
 
-        <div style={{padding: "1em", display: "inline-block", verticalAlign: "center"}}>
-            <CustomerConfirmLocation
-            setLocation={setLocation}
-            />
-        </div>
+                <div style={{padding: "1em", display: "inline-block", verticalAlign: "center"}}>
+                    <CustomerConfirmLocation
+                    setLocation={setLocation}
+                    />
+                </div>
 
-        <div>
-            <button className="btn btn-primary" onClick={() => {setStep("Problem")}}>Next</button>
-        </div>
-        </>
+                <div>
+                    <button className="btn btn-primary" onClick={() => {setStep("Problem")}}>Next</button>
+                </div>
+            </div>
+        </main>
     )
 }
 
