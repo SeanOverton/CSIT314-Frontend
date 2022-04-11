@@ -4,6 +4,10 @@ import '../styles/navbar.css';
 import auth from "./utils/Auth";
 import car_logo from "../images/car_logo.png";
 import BurgerMenu from './BurgerMenu';
+import axios from 'axios';
+import BACKEND_URL, { FRONTEND_URL } from '../components/utils/Constants';
+import { getSuggestedQuery } from '@testing-library/react';
+import { formatWithOptions } from 'util';
 
 const Nav = () => {
     React.useEffect(() => {
@@ -13,18 +17,20 @@ const Nav = () => {
         }
       }, []);
 
+     
     return (
         <div className='header'>
             <div className='nav-wrapper'>  
                 <Link to="/"><img className="logo" src={car_logo} style={{height: "50px"}}/></Link>
-                <ul className="nav-links">
+                <h4>COMPANYNAME</h4>
+                <ul className="nav-links left-wrapper">
                     <li>
                         <Link className="" to="/">Home</Link>
                     </li>
                     {auth.isAuthenticated() ? (
                     <>  
-                    {auth.isCustomer() ? (
-                    <>
+                        {auth.isCustomer() ? (
+                        <>
                         <li>
                             <Link className="" to="/request">Roadside assistance</Link>
                         </li>
@@ -54,11 +60,6 @@ const Nav = () => {
                         <></>
                     )
                     }
-                    <button className="btn nav-btn" onClick={()=> {
-                            auth.logout(() => {
-                                window.location.reload();
-                        })}
-                    }>Sign Out</button>
                     </>
                     ) : ( <>
                         <li>
@@ -72,21 +73,37 @@ const Nav = () => {
                         </li>
                         <li>
                             <Link className="" to="/contactus">Contact Us</Link>
-                        </li>
-                        <li>
-                            <div  className="nav-btn">
-                                <Link to="/signup">Sign Up</Link>
-                            </div>
-                          
-                        </li>
-                        <li>
-                            <div className="nav-btn">
-                                <Link className="nav-btn" to="/login">Login</Link>
-                            </div>
-                        </li>         
+                        </li> 
                     </>
                     )}
                 </ul>     
+                <ul className="nav-links right-wrapper">
+                {auth.isAuthenticated() ? (
+                <>
+                    <li>
+                        <button className="btn nav-btn" onClick={()=> {
+                                auth.logout(() => {
+                                    window.location.reload();
+                            })}
+                        }>Sign Out</button>  
+                    </li> 
+                    <li>
+                        <Link to="/profile">Hello, {auth.getUsername()}</Link>
+                    </li>
+                </>
+                ) :( <>  
+                    <li>
+                        <div  className="nav-btn">
+                            <Link to="/signup">Sign Up</Link>
+                        </div>
+                  </li>
+                    <li>
+                        <div className="nav-btn">
+                            <Link className="nav-btn" to="/login">Login</Link>
+                        </div>
+                    </li>     
+                 </>)}
+                </ul>
             </div>
             <div className="mobile_header">
                 <BurgerMenu/>
