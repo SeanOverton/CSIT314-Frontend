@@ -107,12 +107,8 @@ const Request = () => {
 
     return (
         <>
-        <Nav/>
-
         {renderProgressBar(step)}
         {renderCurrentStep(step)}
-
-        <Footer/>
         </>
     );
 };

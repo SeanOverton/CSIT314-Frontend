@@ -48,9 +48,7 @@ const RequestDetails = () => {
 
     return (
         <>
-        <Nav/>
         <CalloutDetails details={details}/>
-        <Footer/>
         </>
     );
 };

@@ -24,7 +24,6 @@ const Request = () => {
 
     return (
         <>
-        <Nav/>
         <div className="auth-inner">
                 <form onSubmit={makeRequest}>
                     <h3>Add new vehicle subscription</h3>
@@ -39,7 +38,6 @@ const Request = () => {
                     </div>
                 </form>
             </div>
-        <Footer/>
         </>
     );
 };

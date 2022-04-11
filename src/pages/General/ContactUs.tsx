@@ -129,14 +129,12 @@ const ContactUsForm = () => {
 
 const ContactUs = () => (
     <>
-        <Nav />
         <main>
             <div style={{paddingTop: "1em", paddingBottom: "4em"}}>
                 <ContactDetails/>
                 <ContactUsForm/>
             </div>
         </main>
-        <Footer />
     </>
 );
 

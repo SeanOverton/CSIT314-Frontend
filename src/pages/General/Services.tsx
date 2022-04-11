@@ -8,7 +8,6 @@ import { FaOilCan, FaCarBattery } from "react-icons/fa";
 
 const Home = () => (
     <>
-        <Nav />
         <main>
             <div style={{paddingTop: "1em", paddingBottom: "4em"}}>
                 <h1>Our Services</h1>
@@ -67,7 +66,6 @@ const Home = () => (
             </div>
 
         </main>
-        <Footer />
     </>
 );
 

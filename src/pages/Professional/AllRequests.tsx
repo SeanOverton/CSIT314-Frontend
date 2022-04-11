@@ -65,10 +65,8 @@ const RequestCardContainer = () => {
 const AllRequests = () => {
     return (
         <>
-        <Nav/>
         <h1>All logged requests page</h1>
         <RequestCardContainer/>
-        <Footer/>
         </>
     );
 };

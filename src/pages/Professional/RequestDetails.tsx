@@ -81,12 +81,10 @@ const RequestDetails = () => {
 
     return (
         <>
-        <Nav/>
         <CalloutDetails details={details}/>
         <form onSubmit={acceptJob}>
         <button type="submit" className="btn-primary btn">Accept this callout</button>
         </form>
-        <Footer/>
         </>
     );
 };

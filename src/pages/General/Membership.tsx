@@ -1,13 +1,9 @@
-import React from 'react';
-import Nav from "../../components/Nav";
-import Footer from '../../components/Footer';
 import { Container, Col, Row, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { ImCross } from "react-icons/im";
 
 const Home = () => (
     <>
-        <Nav />
         <main>
             <div style={{paddingTop: "1em", paddingBottom: "4em"}}>
                 <h1>Membership Benefits</h1>
@@ -70,7 +66,6 @@ const Home = () => (
             </div>
 
         </main>
-        <Footer />
     </>
 );
 
