@@ -1,5 +1,3 @@
-import Nav from "../../components/Nav";
-import Footer from '../../components/Footer';
 import "../../styles/forms.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -11,6 +9,10 @@ import ProblemDetails from "../../components/RequestProcess/ProblemDetails";
 import PendingMechanic from "../../components/RequestProcess/PendingMechanic";
 import TrackMechanic from "../../components/RequestProcess/TrackMechanic";
 import ReviewMechanic from "../../components/RequestProcess/ReviewMechanic";
+import { AiFillCar, AiFillClockCircle, AiFillSmile } from "react-icons/ai";
+import { IoLocationSharp } from "react-icons/io5";
+import { BsFillGearFill } from "react-icons/bs";
+import { Col, Container, Row } from 'react-bootstrap';
 
 // const getDirections = () => {
 //     const DirectionsService = new google.maps.DirectionsService();
@@ -74,7 +76,121 @@ const Request = () => {
         // TODO: room here to animate some sort of progression bar
         // wireframe design has an example but any creative ideas here
         // would be more than welcome
-        return <h1>Status: {current_step}</h1>
+        const index = steps.indexOf(current_step);
+
+        return (
+            <div style={{width: "100%", left: "50%", padding: "2em", display: "block"}}>
+                <Container>
+                    <Row>
+                        {index >= 0 ?
+                            (
+                                <Col>
+                                    <h1><AiFillCar/></h1>
+                                    <p>Confirm vehicle</p>
+                                </Col>
+                            ) : (
+                                <></>
+                            )    
+                        }
+                        {index >= 1 ?
+                            (
+                                <Col>
+                                    <h1>
+                                        <IoLocationSharp/>
+                                    </h1>
+                                    <p>Confirm location</p>
+                                </Col>
+                            ) : (
+                                <Col>
+                                    <span style={{color: "#D3D3D3"}}>
+                                    <h1>
+                                        <IoLocationSharp/>
+                                    </h1>
+                                    <p>Confirm location</p>
+                                    </span>
+                                </Col>
+                            )    
+                        }
+                        {index >= 2 ?
+                            (
+                                <Col>
+                                    <h1>
+                                        <BsFillGearFill/>
+                                    </h1>
+                                    <p>Confirm issue</p>
+                                </Col>
+                            ) : (
+                                <Col>
+                                    <span style={{color: "#D3D3D3"}}>
+                                    <h1>
+                                        <BsFillGearFill/>
+                                    </h1>
+                                    <p>Confirm issue</p>
+                                    </span>
+                                </Col>
+                            )    
+                        }
+                        {index >= 3 ?
+                            (
+                                <Col>
+                                    <h1>
+                                        <AiFillClockCircle/>
+                                    </h1>
+                                    <p>Pending a mechanic</p>
+                                </Col>
+                            ) : (
+                                <Col>
+                                    <span style={{color: "#D3D3D3"}}>
+                                    <h1>
+                                        <AiFillClockCircle/>
+                                    </h1>
+                                    <p>Pending a mechanic</p>
+                                    </span>
+                                </Col>
+                            )    
+                        }
+                        {index >= 4 ?
+                            (
+                                <Col>
+                                    <h1>
+                                    ✓
+                                    </h1>
+                                    <p>On their way!</p>
+                                </Col>
+                            ) : (
+                                <Col>
+                                    <span style={{color: "#D3D3D3"}}>
+                                    <h1>
+                                    ✓
+                                    </h1>
+                                    <p>On their way!</p>
+                                    </span>
+                                </Col>
+                            )    
+                        }
+                        {index >= 5 ?
+                            (
+                                <Col>
+                                    <h1>
+                                        <AiFillSmile/>
+                                    </h1>
+                                    <p>Complete</p>
+                                </Col>
+                            ) : (
+                                <Col>
+                                    <span style={{color: "#D3D3D3"}}>
+                                    <h1>
+                                    <AiFillSmile/>
+                                    </h1>
+                                    <p>Complete</p>
+                                    </span>
+                                </Col>
+                            )    
+                        }
+                    </Row>
+                </Container>
+            </div>
+        );
     }
 
     const renderCurrentStep = (param: any) => {
