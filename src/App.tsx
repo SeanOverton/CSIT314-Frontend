@@ -20,6 +20,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import About from "./pages/General/About";
 import Services from "./pages/General/Services";
 import ContactUs from "./pages/General/ContactUs";
+import Profile from "./pages/General/Profile";
 
 function App() {
   return (
@@ -32,6 +33,14 @@ function App() {
             <Route path="/about" element={<About/>} />
             <Route path="/services" element={<Services/>} />
             <Route path="/contactus" element={<ContactUs/>} />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute>
+                  <Profile/>
+                </ProtectedRoute>
+              }
+            />
             <Route
               path="/request"
               element={
