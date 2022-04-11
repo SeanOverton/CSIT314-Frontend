@@ -71,13 +71,11 @@ const MechanicDashboard = () => {
 
     return (
         <>
-        <Nav/>
         {request.length == 0 ? (
             <h2>No current jobs accepted</h2>
         ) : (
             <CurrentJob request={request}/>
         )}
-        <Footer/>
         </>
     );
 };

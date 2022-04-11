@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 
 const Home = () => (
     <>
-        <Nav />
         <main>
             <div style={{paddingTop: "1em", paddingBottom: "4em"}}>
                 <h1>About Us</h1>
@@ -64,9 +63,7 @@ const Home = () => (
                     </Row>
                 </Container>
             </div>
-
         </main>
-        <Footer />
     </>
 );
 

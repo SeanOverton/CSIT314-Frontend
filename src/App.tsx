@@ -21,10 +21,14 @@ import About from "./pages/General/About";
 import Services from "./pages/General/Services";
 import ContactUs from "./pages/General/ContactUs";
 import Profile from "./pages/General/Profile";
+import Membership from "./pages/General/Membership";
+import Nav from "./components/Nav";
+import Footer from "./components/Footer";
 
 function App() {
   return (
     <div className="App">
+      <Nav/>
       <ToastContainer/>
           <Routes>
             <Route path="/" element={<Home/>} />
@@ -33,6 +37,7 @@ function App() {
             <Route path="/about" element={<About/>} />
             <Route path="/services" element={<Services/>} />
             <Route path="/contactus" element={<ContactUs/>} />
+            <Route path="/membership" element={<Membership/>} />
             <Route
               path="/profile"
               element={
@@ -115,6 +120,7 @@ function App() {
             />
             <Route path="*" element={<p>There's nothing here: 404!</p>} />
           </Routes>
+          <Footer/>
     </div>
   );
 }

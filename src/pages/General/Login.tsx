@@ -61,7 +61,6 @@ const LogIn = (props: any) => {
         <>
         {!auth.isAuthenticated() ? (
             <>
-            <Nav/>
             <main>
                 <div className="auth-inner">
                     <form onSubmit={login}>
@@ -92,7 +91,6 @@ const LogIn = (props: any) => {
                     </form>
                 </div>
             </main>
-            <Footer/>
             </>
         ) : (
             <Navigate to="/" replace />

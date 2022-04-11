@@ -86,17 +86,12 @@ const SubscriptionCardContainer = () => {
 const MySubscriptions = () => {
     return (
         <>
-        <Nav/>
-        
         <SubscriptionCardContainer/>
-        
         <Link to="/add_car">
             <button className="btn btn-primary btn-block">
                 Add new vehicle
             </button>
         </Link>
-        
-        <Footer/>
         </>
     );
 };
