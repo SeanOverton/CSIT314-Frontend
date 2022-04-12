@@ -51,3 +51,9 @@ main{
   padding: 0;
   min-height: 90vh; 
 }
+
+/* animation for spinning things */
+@keyframes spin {
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
+}
