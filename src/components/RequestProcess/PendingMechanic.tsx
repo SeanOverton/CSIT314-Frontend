@@ -8,8 +8,17 @@ const PendingMechanic = ({request}: any) => {
             <h2>Refresh this page to see when a mechanic accepts your order.</h2>
             <div style={{padding: "2em"}}>
                 <BsFillGearFill 
-                style={{fontSize: "10em",
+                style={{fontSize: "3em",
                 animation: `spin 3s linear infinite`}}/>
+                <BsFillGearFill 
+                style={{fontSize: "10em",
+                animation: `spin 10s linear infinite`,
+                animationDirection: "reverse"}}/>
+                <div>
+                <BsFillGearFill 
+                style={{fontSize: "5em",
+                animation: `spin 7s linear infinite`}}/>
+                </div>
             </div>
             <div style={{padding: "2em"}}>
                 <CancelCallout details={request}/>
