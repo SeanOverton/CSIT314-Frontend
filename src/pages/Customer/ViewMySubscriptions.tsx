@@ -7,6 +7,7 @@ import axios from "axios";
 import BACKEND_URL, { FRONTEND_URL } from "../../components/utils/Constants";
 import { makeAuthenticatedPostRequest } from "../../components/utils/Helpers";
 import Auth from "../../components/utils/Auth";
+import car_logo from "../../images/car_logo.png";
 
 //passing state through Link in react-router-dom is documented here:
 //https://dev.to/medaminefh/passing-data-with-react-router-using-link-1h39
@@ -25,8 +26,9 @@ const SingleSubscriptionCard = (props: any) => {
     return(
         <Card style={{ width: '18rem' }}>
             <Card.Body>
-                <Card.Title>Vehicle Registration:</Card.Title>
-                <Card.Title>{props.subscription.vehicle_registration}</Card.Title>
+                <img src={car_logo} style={{height: "100px"}}/>
+                <Card.Title>{"brand"} {"model"}</Card.Title>
+                <Card.Text>{props.subscription.vehicle_registration}</Card.Text>
                 <button type="button" onClick={removeSubscription} className="btn btn-danger">Unsubscribe</button>
             </Card.Body>
         </Card>
@@ -70,12 +72,19 @@ const SubscriptionCardContainer = () => {
                 </>
             ) : (
                 <>
-                    <h1>Your current vehicle subscriptions to Roadside assistance</h1>
-                    <div style={{display: "flex", flexWrap: "wrap", justifyContent: "center"}}>
+                    <h1>My Vehicles</h1>
+                    <div style={{display: "flex", flexWrap: "wrap", justifyContent: "center", padding: "2em"}}>
                         {/* should also filter by time? so people at the top are next */}
                         {subscriptions.map((subscription) => {
                             return <div style={{padding: "0.3em"}}><SingleSubscriptionCard subscription={subscription}/></div>;
                         }) }
+                        <div style={{padding: "6.3em"}}>
+                            <Link to="/add_car">
+                                <button className="btn btn-primary btn-block">
+                                    Add new vehicle
+                                </button>
+                            </Link>
+                        </div>
                     </div>
                 </>
             )}
@@ -87,11 +96,6 @@ const MySubscriptions = () => {
     return (
         <>
         <SubscriptionCardContainer/>
-        <Link to="/add_car">
-            <button className="btn btn-primary btn-block">
-                Add new vehicle
-            </button>
-        </Link>
         </>
     );
 };
