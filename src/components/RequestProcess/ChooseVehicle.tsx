@@ -6,22 +6,24 @@ import Auth from "../../components/utils/Auth";
 import BootstrapModal from "../../pages/Customer/BootstrapModal";
 import car_logo from "../../images/car_logo.png";
 
-const SingleSubscriptionCard = ({ selected, setSelected, vehicle_registration}: any) => {    
+const SingleSubscriptionCard = ({ selected, setSelected, subscription}: any) => {    
     return( 
         <div>
-        { (selected == vehicle_registration) ? 
+        { (selected == subscription.vehicle_registration) ? 
         (
             <Card border="primary" style={{ width: '18rem' }}>
                 <Card.Body>
                     <img src={car_logo} style={{height: "100px"}}/>
-                    <Card.Title>{vehicle_registration}</Card.Title>
+                    <Card.Title>{subscription.vehicle_brand} {subscription.vehicle_model} {subscription.vehicle_year}</Card.Title>
+                    <Card.Text>{subscription.vehicle_registration}</Card.Text>
                 </Card.Body>
             </Card>
         ) : (
-            <Card onClick={() => {setSelected(vehicle_registration)}} style={{ width: '18rem' }}>
+            <Card onClick={() => {setSelected(subscription.vehicle_registration)}} style={{ width: '18rem' }}>
                 <Card.Body>
                 <img src={car_logo} style={{height: "100px"}}/>
-                    <Card.Title>{vehicle_registration}</Card.Title>
+                <Card.Title>{subscription.vehicle_brand} {subscription.vehicle_model} {subscription.vehicle_year}</Card.Title>
+                <Card.Text>{subscription.vehicle_registration}</Card.Text>
                 </Card.Body>
             </Card>
         )}
@@ -73,7 +75,7 @@ export const SubscriptionCardContainer = ({rego, setRego}: any) => {
                             return <div style={{padding: "0.3em"}}>
                                 <SingleSubscriptionCard
                                 key={i} 
-                                vehicle_registration={subscription.vehicle_registration}
+                                subscription={subscription}
                                 setSelected={setRego}
                                 selected={rego}
                                 />

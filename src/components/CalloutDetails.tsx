@@ -1,4 +1,3 @@
-import React from 'react';
 import { Col, Row } from 'react-bootstrap';
 import {formatDate, formatTime} from "./utils/Helpers";
 
@@ -20,7 +19,7 @@ export interface CalloutDetailsInterface {
 
 const CalloutDetails = (props: CalloutDetailsProps) => {
     let details = props.details;
-    
+
     return (
         <>
         <h3>Booking ID: {details.id}</h3>
@@ -57,14 +56,14 @@ const CalloutDetails = (props: CalloutDetailsProps) => {
                 </Col>
             </Row>
             <hr/>
-            <Row style={{fontSize: "3vw"}}>
+            {/* <Row style={{fontSize: "3vw"}}>
                 <Col>
                     <p style={{color: "grey"}}>Vechile Information</p>
                 </Col>
                 <Col>
                     <p>TODO</p>
                 </Col>
-            </Row>
+            </Row> */}
             {details.mechanic == "" ? (
                 <></>
             ) : (

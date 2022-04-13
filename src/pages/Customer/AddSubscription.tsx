@@ -93,6 +93,11 @@ const Request = () => {
         let body = {
             username: Auth.getUsername(),
             vehicle_registration: rego,
+            vehicle_type: vehicleType,
+            vehicle_model: modelType,
+            vehicle_brand: brand,
+            vehicle_year: year,
+            vehicle_weight: weight,
             active: true
         }
 

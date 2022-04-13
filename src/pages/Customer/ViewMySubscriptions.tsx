@@ -27,7 +27,7 @@ const SingleSubscriptionCard = (props: any) => {
         <Card style={{ width: '18rem' }}>
             <Card.Body>
                 <img src={car_logo} style={{height: "100px"}}/>
-                <Card.Title>{"brand"} {"model"}</Card.Title>
+                <Card.Title>{props.subscription.vehicle_brand} {props.subscription.vehicle_model} {props.subscription.vehicle_year}</Card.Title>
                 <Card.Text>{props.subscription.vehicle_registration}</Card.Text>
                 <button type="button" onClick={removeSubscription} className="btn btn-danger">Unsubscribe</button>
             </Card.Body>
@@ -78,13 +78,6 @@ const SubscriptionCardContainer = () => {
                         {subscriptions.map((subscription) => {
                             return <div style={{padding: "0.3em"}}><SingleSubscriptionCard subscription={subscription}/></div>;
                         }) }
-                        <div style={{padding: "6.3em"}}>
-                            <Link to="/add_car">
-                                <button className="btn btn-primary btn-block">
-                                    Add new vehicle
-                                </button>
-                            </Link>
-                        </div>
                     </div>
                 </>
             )}
@@ -95,7 +88,14 @@ const SubscriptionCardContainer = () => {
 const MySubscriptions = () => {
     return (
         <>
-        <SubscriptionCardContainer/>
+            <SubscriptionCardContainer/>
+            <div style={{padding: "2em"}}>
+                <Link to="/add_car">
+                    <button className="btn btn-primary btn-block">
+                        Add new vehicle
+                    </button>
+                </Link>
+            </div>
         </>
     );
 };
