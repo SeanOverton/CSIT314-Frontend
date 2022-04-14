@@ -1,5 +1,3 @@
-import Nav from "../../components/Nav";
-import Footer from '../../components/Footer';
 import "../../styles/forms.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -72,7 +70,7 @@ const MechanicDashboard = () => {
     return (
         <>
         {request.length == 0 ? (
-            <h2>No current jobs accepted</h2>
+            <h1>No current jobs accepted</h1>
         ) : (
             <CurrentJob request={request}/>
         )}
