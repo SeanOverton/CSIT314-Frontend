@@ -1,8 +1,5 @@
-import React from 'react';
-import Nav from "../../components/Nav";
-import Footer from '../../components/Footer';
 import { Container, Col, Row, Card } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import ContactUsButton from '../../components/ContactUsButton';
 
 const Home = () => (
     <>
@@ -52,14 +49,7 @@ const Home = () => (
                         <Col></Col>
                     </Row>
                     <Row style={{display:"inline-block", paddingTop: "2em"}}>
-                        <Card style={{ width: '35rem', backgroundColor: "#18A0FB" }}>
-                            <Card.Body>
-                                <Card.Title>Need expert help?</Card.Title>
-                                <div style={{display: "inline-block"}} className="nav-btn">
-                                    <Link className="nav-btn" to="/contactus">Contact Us</Link>
-                                </div>
-                            </Card.Body>
-                        </Card>
+                        <ContactUsButton/>
                     </Row>
                 </Container>
             </div>
