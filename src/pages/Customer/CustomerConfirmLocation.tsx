@@ -54,6 +54,7 @@ const CustomerConfirmLocation = ({ setLocation }: any) => {
     axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${click[0].lat().toString()},${click[0].lng().toString()}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`)
         .then(
           response => {
+            console.log(response.data);
             console.log(response.data.results[0].formatted_address);
             setLocation(response.data.results[0].formatted_address);
           }
