@@ -69,7 +69,7 @@ const CustomerConfirmLocation = ({ setLocation }: any) => {
           onClick={onClick}
           onIdle={onIdle}
           zoom={zoom}
-          style={{ width: "400px", height: "400px" }}
+          style={{ width: "70vw", height: "50vh" }}
         >
           {click.map((latLng, i) => (
             <Marker key={i} position={latLng} />

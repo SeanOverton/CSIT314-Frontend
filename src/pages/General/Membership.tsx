@@ -12,7 +12,7 @@ const Home = () => (
                 </div>
                 <Container>
                     <Row style={{display:"inline-block", padding: "2em"}}>
-                        <Card style={{ width: '35rem', backgroundColor: "#18A0FB" }}>
+                        <Card style={{ minWidth: '35vw', backgroundColor: "#18A0FB" }}>
                             <Card.Body>
                                 {/* <Card.Title>Need expert help?</Card.Title> */}
                                 <div style={{display: "inline-block"}} className="nav-btn">

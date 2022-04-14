@@ -9,7 +9,7 @@ const ConfirmLocation = ({location, setLocation, setStep}: any) => {
                     <input type="text" className="form-control" placeholder={location}  onChange={e => setLocation(e.target.value)}/>
                 </div>
 
-                <div style={{padding: "1em", display: "inline-block", verticalAlign: "center"}}>
+                <div style={{padding: "1vw", display: "inline-block"}}>
                     <CustomerConfirmLocation
                     setLocation={setLocation}
                     />
