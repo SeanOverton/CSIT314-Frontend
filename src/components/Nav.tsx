@@ -1,13 +1,9 @@
-import React, { useState, useReducer } from 'react';
+import React from 'react';
 import {Link} from "react-router-dom";
 import '../styles/navbar.css';
 import auth from "./utils/Auth";
 import car_logo from "../images/car_logo.png";
 import BurgerMenu from './BurgerMenu';
-import axios from 'axios';
-import BACKEND_URL, { FRONTEND_URL } from '../components/utils/Constants';
-import { getSuggestedQuery } from '@testing-library/react';
-import { formatWithOptions } from 'util';
 
 const Nav = () => {
     React.useEffect(() => {
