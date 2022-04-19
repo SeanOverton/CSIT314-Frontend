@@ -1,5 +1,4 @@
 import * as React from "react";
-import * as ReactDom from "react-dom";
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import { createCustomEqual } from "fast-equals";
 import { isLatLngLiteral } from "@googlemaps/typescript-guards";
@@ -89,7 +88,7 @@ interface MapProps extends google.maps.MapOptions {
   onIdle?: (map: google.maps.Map) => void;
 }
 
-const Map: React.FC<MapProps> = ({
+export const Map: React.FC<MapProps> = ({
   onClick,
   onIdle,
   children,
