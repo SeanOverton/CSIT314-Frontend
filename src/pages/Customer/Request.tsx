@@ -14,26 +14,6 @@ import { IoLocationSharp } from "react-icons/io5";
 import { BsFillGearFill } from "react-icons/bs";
 import { Col, Container, Row } from 'react-bootstrap';
 
-// const getDirections = () => {
-//     const DirectionsService = new google.maps.DirectionsService();
-
-//     DirectionsService.route({
-//     origin: new google.maps.LatLng(41.8507300, -87.6512600),
-//     destination: new google.maps.LatLng(41.8525800, -87.6514100),
-//     travelMode: google.maps.TravelMode.DRIVING,
-//     }, (result, status) => {
-//     if (status === google.maps.DirectionsStatus.OK) {
-//         this.setState({
-//         directions: result,
-//         });
-//     } else {
-//         console.error(`error fetching directions ${result}`);
-//     }
-//     });
-
-//     return
-// }
-
 const Request = () => {
     const steps = ["Vehicle", "Location", "Problem", "PENDING", "ACCEPTED", "COMPLETED"];
     const [step, setStep] = useState("Vehicle");
