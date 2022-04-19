@@ -1,4 +1,5 @@
 import { Col, Row } from 'react-bootstrap';
+import MechanicViewRoute from './MechanicViewRoute';
 import {formatDate, formatTime} from "./utils/Helpers";
 
 interface CalloutDetailsProps {
@@ -25,7 +26,9 @@ const CalloutDetails = (props: CalloutDetailsProps) => {
         <h3>Booking ID: {details.id}</h3>
         <p style={{color: "grey"}}>{details.description}</p>
         <h4>$200.00</h4>
-        <h3>TODO: map here that shows location</h3>
+        {/* <h3>TODO: map here that shows location</h3> */}
+        <MechanicViewRoute/>
+        <div id="map"></div>
         <div style={{paddingLeft: "10%", paddingRight: "10%", paddingBottom: "2em"}}>
             <h3 style={{textAlign: "left"}}>JOB DETAILS</h3>
             <hr/>
