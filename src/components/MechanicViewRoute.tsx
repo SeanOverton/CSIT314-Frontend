@@ -1,53 +1,51 @@
 import { useEffect, useState } from "react";
-import { DirectionsRenderer } from "@react-google-maps/api";
-import { Wrapper } from "@googlemaps/react-wrapper";
-import { Map } from "../../src/pages/Customer/CustomerConfirmLocation";
-import { compose, lifecycle, withProps } from "recompose";
-import { GoogleMap, withGoogleMap, withScriptjs } from "react-google-maps";
-import React from "react";
+import { 
+    GoogleMap, 
+    withGoogleMap, 
+    withScriptjs, 
+    DirectionsRenderer, 
+    Marker} 
+from "react-google-maps";
 
 interface MapRoutesProps {
-  center: any;
-  goal: any;
+  origin: google.maps.LatLng;
+  destination: any;
 }
 
-const MapRoutes = ({ center, goal }: MapRoutesProps) => {
+const MapRoutes = ({ origin, destination }: MapRoutesProps) => {
   const [directions, setDirections] = useState<any>();
 
-  const origin = center;
-  const destination = goal;
-
   const directionsService = new google.maps.DirectionsService();
-  directionsService.route(
-    {
-      origin: origin,
-      destination: destination,
-      travelMode: google.maps.TravelMode.DRIVING,
-    },
-    (result, status) => {
-      console.log(result);
-      if (status === google.maps.DirectionsStatus.OK) {
-        setDirections(result);
-      } else {
+
+  useEffect(() => {
+    directionsService.route(
+      {
+        origin: origin,
+        destination: destination,
+        travelMode: google.maps.TravelMode.DRIVING,
+      },
+      (result, status) => {
         console.log(result);
+        if (status === google.maps.DirectionsStatus.OK) {
+          setDirections(result);
+        } else {
+          setDirections(result);
+          console.log(result);
+        }
       }
-    }
-  );
+    );
+  }, []);
 
   return (
     <DirectionsRenderer
-      options={{ suppressMarkers: true }}
+      options={{suppressMarkers: true}}
       directions={directions}
     />
   );
 };
 
-const render = (status: any) => {
-  return <h1>{status}</h1>;
-};
-
-const SomeMap = ({destination}: any) => {
-  const [origin, setOrigin] = useState<any>();
+const SomeMap = withScriptjs(withGoogleMap(({destination}: any) => {
+  const [origin, setOrigin] = useState<google.maps.LatLng>(new google.maps.LatLng(0, 0));
 
   useEffect(() => {
     if ("geolocation" in navigator) {
@@ -65,77 +63,28 @@ const SomeMap = ({destination}: any) => {
         // TODO: add a notification reccomending user to enable 
         // location services in the browser
     }
-  });
-  
+  }, []);
+
     return (
       <div style={{ display: "flex", height: "100%" }}>
-      <Wrapper apiKey={`${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`} render={render}>
-        <Map
+        <GoogleMap
           center={origin}
           zoom={18}
-          style={{ width: "70vw", height: "50vh" }}
         >
-          <MapRoutes 
-          center={origin}
-          goal={destination}
-          />
-        </Map>
-      </Wrapper>
+          {(origin && destination != "") ? (
+            <>
+            <MapRoutes 
+            origin={origin}
+            destination={destination}
+            />
+            <Marker position={origin}/>
+            </>
+          ) : (
+              <></>
+          )}
+        </GoogleMap>
     </div>
   );
-};
+}));
 
-const MapWithADirectionsRenderer = compose(
-  withProps({
-    googleMapURL:
-      `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&v=3.exp&libraries=geometry,drawing,places`,
-    loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ height: `500px` }} />,
-    mapElement: <div style={{ height: `100%` }} />
-  }),
-  withScriptjs,
-  withGoogleMap,
-  lifecycle({
-    componentDidMount() {
-      const DirectionsService = new google.maps.DirectionsService();
-
-      DirectionsService.route(
-        {
-          origin: new google.maps.LatLng(-37.8136, 144.9631),
-          destination: new google.maps.LatLng(-37.8116, 145.23),
-          travelMode: google.maps.TravelMode.DRIVING
-        },
-        (result, status) => {
-          if (status === google.maps.DirectionsStatus.OK) {
-            this.setState({
-              directions: result
-            });
-          } else {
-            console.error(`error fetching directions ${result}`);
-          }
-        }
-      );
-    }
-  })
-)((props: any) => (
-  <GoogleMap
-    defaultZoom={10}
-    defaultCenter={new google.maps.LatLng(-37.8136, 144.9631)}
-  >
-    {props.directions && <DirectionsRenderer directions={props.directions} />}
-  </GoogleMap>
-));
-
-class NewMap extends React.Component {
-  render() {
-    return (
-      <React.Fragment>
-        <MapWithADirectionsRenderer />
-      </React.Fragment>
-    );
-  }
-}
-
-export default NewMap;
-
-// export default SomeMap;
+export default SomeMap;
