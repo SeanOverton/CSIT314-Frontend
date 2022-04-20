@@ -1,4 +1,6 @@
 import { Col, Row } from 'react-bootstrap';
+import MechanicViewRoute from './MechanicViewRoute';
+import Auth from './utils/Auth';
 import {formatDate, formatTime} from "./utils/Helpers";
 
 interface CalloutDetailsProps {
@@ -25,7 +27,23 @@ const CalloutDetails = (props: CalloutDetailsProps) => {
         <h3>Booking ID: {details.id}</h3>
         <p style={{color: "grey"}}>{details.description}</p>
         <h4>$200.00</h4>
-        <h3>TODO: map here that shows location</h3>
+        {/* only should display route when mechanic is viewing and/or 
+        actually working on the job. */}
+        {/* {(Auth.isMechanic() && (details.status == "PENDING" || details.status == "ACCEPTED")) ? (
+            <MechanicViewRoute destination={details.location}
+            googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&v=3.exp&libraries=geometry,drawing,places`}
+            loadingElement={<div style={{ height: `100%` }} />}
+            containerElement={<div style={{ height: `400px` }} />}
+            mapElement={<div style={{ height: `100%` }} />}/>
+        ) : (
+            <>TODO [optional]: display a marker of location</>
+        )} */}
+        <MechanicViewRoute destination={details.location}
+            googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&v=3.exp&libraries=geometry,drawing,places`}
+            loadingElement={<div style={{ height: `100%` }} />}
+            containerElement={<div style={{ height: `400px` }} />}
+            mapElement={<div style={{ height: `100%` }} />}/>
+        <div id="map"></div>
         <div style={{paddingLeft: "10%", paddingRight: "10%", paddingBottom: "2em"}}>
             <h3 style={{textAlign: "left"}}>JOB DETAILS</h3>
             <hr/>
