@@ -35,7 +35,7 @@ const CustomerConfirmLocation = ({ setLocation }: any) => {
         // TODO: add a notification reccomending user to enable 
         // location services in the browser
     }
-  });
+  }, []);
 
   const onClick = (e: google.maps.MapMouseEvent) => {
     // avoid directly mutating state
