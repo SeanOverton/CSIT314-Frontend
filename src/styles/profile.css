@@ -1,0 +1,16 @@
+.profile-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width:100%;
+    margin-bottom: 50px;
+}
+
+.profile-details-wrapper{
+    width:50%
+}
+.profile-details-wrapper div{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}

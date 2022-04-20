@@ -1,0 +1,30 @@
+.slider-wrapper{
+    margin: auto;
+    width: 80vw;
+    height: 50vh;
+    white-space: nowrap;
+    overflow-x: scroll;
+}
+
+.slider-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+
+/*Card*/
+.slider-card{
+    padding-top: auto;
+    display: inline-block;
+    border: 1px solid #00000080;
+    border-radius: 15px;
+    margin-right: 10px;
+}
+
+.lable{
+    color: #000000C2;
+    font-size: 15px;
+    font-weight: 300;
+    letter-spacing: -0.015em;
+    text-align: center;
+
+}
