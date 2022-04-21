@@ -28,10 +28,12 @@ const CurrentJob = (props: any) => {
 
     return (
         <>
-            <CalloutDetails details={props.request}/>
-            <form onSubmit={markAsComplete}>
-                <button type="submit" className="btn btn-primary btn-block">Mark as Complete</button>
-            </form>
+            <CalloutDetails displayRoute={true} details={props.request}/>
+            <div style={{padding:"2em"}}>
+                <form onSubmit={markAsComplete}>
+                    <button type="submit" className="btn btn-primary btn-block">Mark as Complete</button>
+                </form>
+            </div>
         </>
     );
 }

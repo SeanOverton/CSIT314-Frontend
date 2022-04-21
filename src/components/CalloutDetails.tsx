@@ -4,7 +4,8 @@ import Auth from './utils/Auth';
 import {formatDate, formatTime} from "./utils/Helpers";
 
 interface CalloutDetailsProps {
-    details: CalloutDetailsInterface;
+    details: CalloutDetailsInterface,
+    displayRoute: boolean,
 }
 
 export interface CalloutDetailsInterface {
@@ -16,7 +17,7 @@ export interface CalloutDetailsInterface {
     mechanic: string, 
     date: string, 
     rating: string, 
-    review: string
+    review: string,
 }
 
 const CalloutDetails = (props: CalloutDetailsProps) => {
@@ -29,7 +30,7 @@ const CalloutDetails = (props: CalloutDetailsProps) => {
         <h4>$200.00</h4>
         {/* only should display route when mechanic is viewing and/or 
         actually working on the job. */}
-        {/* {(Auth.isMechanic() && (details.status == "PENDING" || details.status == "ACCEPTED")) ? (
+        {props.displayRoute ? (
             <MechanicViewRoute destination={details.location}
             googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&v=3.exp&libraries=geometry,drawing,places`}
             loadingElement={<div style={{ height: `100%` }} />}
@@ -37,12 +38,12 @@ const CalloutDetails = (props: CalloutDetailsProps) => {
             mapElement={<div style={{ height: `100%` }} />}/>
         ) : (
             <>TODO [optional]: display a marker of location</>
-        )} */}
-        <MechanicViewRoute destination={details.location}
+        )}
+        {/* <MechanicViewRoute destination={details.location}
             googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&v=3.exp&libraries=geometry,drawing,places`}
             loadingElement={<div style={{ height: `100%` }} />}
             containerElement={<div style={{ height: `400px` }} />}
-            mapElement={<div style={{ height: `100%` }} />}/>
+            mapElement={<div style={{ height: `100%` }} />}/> */}
         <div id="map"></div>
         <div style={{paddingLeft: "10%", paddingRight: "10%", paddingBottom: "2em"}}>
             <h3 style={{textAlign: "left"}}>JOB DETAILS</h3>
