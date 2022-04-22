@@ -1,12 +1,19 @@
+import { Wrapper } from '@googlemaps/react-wrapper';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
+import { Marker, Map } from '../pages/Customer/CustomerConfirmLocation';
 import MechanicViewRoute from './MechanicViewRoute';
-import Auth from './utils/Auth';
 import {formatDate, formatTime} from "./utils/Helpers";
 
 interface CalloutDetailsProps {
     details: CalloutDetailsInterface,
     displayRoute: boolean,
 }
+
+const render = (status: any) => {
+    return <h1>{status}</h1>;
+  };
 
 export interface CalloutDetailsInterface {
     id: number,
@@ -21,7 +28,26 @@ export interface CalloutDetailsInterface {
 }
 
 const CalloutDetails = (props: CalloutDetailsProps) => {
+    const [location, setLocation] = useState<any>(null);
+    
     let details = props.details;
+
+    const getLatLng = () => {
+        if(details.location != ""){
+            axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${details.location}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`).then(
+                (response: any) => {
+                    console.log("Google Geocode API response: ");
+                    console.log(response.data)
+                    console.log(response.data.results[0].geometry.location);
+                    setLocation(response.data.results[0].geometry.location);
+                }
+                );
+        }
+    }
+
+    useEffect(() => {
+        getLatLng();
+    }, [details])
 
     return (
         <>
@@ -34,16 +60,25 @@ const CalloutDetails = (props: CalloutDetailsProps) => {
             <MechanicViewRoute destination={details.location}
             googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&v=3.exp&libraries=geometry,drawing,places`}
             loadingElement={<div style={{ height: `100%` }} />}
-            containerElement={<div style={{ height: `400px` }} />}
+            containerElement={<div style={{ paddingLeft: `5%`, paddingRight: `5%`, height: `400px` }} />}
             mapElement={<div style={{ height: `100%` }} />}/>
         ) : (
-            <>TODO [optional]: display a marker of location</>
+            <div style={{ paddingLeft: "5%", paddingRight: "5%", height: "100%" }}>
+                <Wrapper apiKey={`${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`} render={render}>
+                    {location ? (
+                        <Map
+                        center={location}
+                        zoom={18}
+                        style={{height: "400px" }}
+                        >
+                            <Marker position={location} />
+                        </Map>
+                    ) : (
+                        <></>
+                    )}
+                </Wrapper>
+            </div>
         )}
-        {/* <MechanicViewRoute destination={details.location}
-            googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&v=3.exp&libraries=geometry,drawing,places`}
-            loadingElement={<div style={{ height: `100%` }} />}
-            containerElement={<div style={{ height: `400px` }} />}
-            mapElement={<div style={{ height: `100%` }} />}/> */}
         <div id="map"></div>
         <div style={{paddingLeft: "10%", paddingRight: "10%", paddingBottom: "2em"}}>
             <h3 style={{textAlign: "left"}}>JOB DETAILS</h3>
