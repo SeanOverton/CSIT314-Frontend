@@ -48,7 +48,7 @@ const RequestDetails = () => {
 
     return (
         <>
-        <CalloutDetails details={details}/>
+        <CalloutDetails displayRoute={false} details={details}/>
         </>
     );
 };

@@ -53,6 +53,7 @@ const CustomerConfirmLocation = ({ setLocation }: any) => {
     axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${click[0].lat().toString()},${click[0].lng().toString()}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`)
         .then(
           response => {
+            console.log("Google geocode API response:");
             console.log(response.data);
             console.log(response.data.results[0].formatted_address);
             setLocation(response.data.results[0].formatted_address);
@@ -141,7 +142,7 @@ export const Map: React.FC<MapProps> = ({
   );
 };
 
-const Marker: React.FC<google.maps.MarkerOptions> = (options) => {
+export const Marker: React.FC<google.maps.MarkerOptions> = (options) => {
   const [marker, setMarker] = React.useState<google.maps.Marker>();
 
   React.useEffect(() => {
