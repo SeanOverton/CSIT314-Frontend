@@ -6,6 +6,9 @@ import {
     DirectionsRenderer, 
     Marker} 
 from "react-google-maps";
+import Auth from "./utils/Auth";
+import BACKEND_URL, { FRONTEND_URL } from "./utils/Constants";
+import { makeAuthenticatedPostRequest } from "./utils/Helpers";
 
 interface MapRoutesProps {
   origin: google.maps.LatLng;
@@ -39,9 +42,19 @@ const SomeMap = withScriptjs(withGoogleMap(({destination}: any) => {
             
             latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
-            setOrigin(latlng);
+            let body = {
+              "username": Auth.getUsername(),
+              "location": latlng.toJSON()
+            }
 
-            if(destination != ""){
+            makeAuthenticatedPostRequest(
+              "/update_location/", 
+              "Success! Current location!", 
+              body);
+
+            if(destination != "" && !directions){
+              setOrigin(latlng);
+
               directionsService.route(
                 {
                   origin: latlng,
