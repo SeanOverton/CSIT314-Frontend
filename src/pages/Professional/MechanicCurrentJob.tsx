@@ -1,5 +1,3 @@
-import Nav from "../../components/Nav";
-import Footer from '../../components/Footer';
 import "../../styles/forms.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -30,10 +28,12 @@ const CurrentJob = (props: any) => {
 
     return (
         <>
-            <CalloutDetails details={props.request}/>
-            <form onSubmit={markAsComplete}>
-                <button type="submit" className="btn btn-primary btn-block">Mark as Complete</button>
-            </form>
+            <CalloutDetails displayRoute={true} details={props.request}/>
+            <div style={{padding:"2em"}}>
+                <form onSubmit={markAsComplete}>
+                    <button type="submit" className="btn btn-primary btn-block">Mark as Complete</button>
+                </form>
+            </div>
         </>
     );
 }
@@ -72,7 +72,7 @@ const MechanicDashboard = () => {
     return (
         <>
         {request.length == 0 ? (
-            <h2>No current jobs accepted</h2>
+            <h1>No current jobs accepted</h1>
         ) : (
             <CurrentJob request={request}/>
         )}

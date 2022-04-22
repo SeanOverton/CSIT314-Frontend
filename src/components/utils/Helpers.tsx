@@ -15,6 +15,10 @@ export const formatTime = (unformatted_date: string) => {
 
 }
 
+export const range = (start: number, end: number) => {
+    return Array(end - start + 1).fill(1).map((_, idx) => start + idx)
+  }
+
 export const makePostRequest = (url: string, success_message: string, body: any, headers: any = {}, on_success_redirect_url?: string) => {
     // axios request
     axios.post(`${BACKEND_URL}${url}`, body, {headers: headers})

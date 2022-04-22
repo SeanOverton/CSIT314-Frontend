@@ -1,5 +1,4 @@
 import * as React from "react";
-import * as ReactDom from "react-dom";
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import { createCustomEqual } from "fast-equals";
 import { isLatLngLiteral } from "@googlemaps/typescript-guards";
@@ -36,7 +35,7 @@ const CustomerConfirmLocation = ({ setLocation }: any) => {
         // TODO: add a notification reccomending user to enable 
         // location services in the browser
     }
-  });
+  }, []);
 
   const onClick = (e: google.maps.MapMouseEvent) => {
     // avoid directly mutating state
@@ -54,6 +53,8 @@ const CustomerConfirmLocation = ({ setLocation }: any) => {
     axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${click[0].lat().toString()},${click[0].lng().toString()}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`)
         .then(
           response => {
+            console.log("Google geocode API response:");
+            console.log(response.data);
             console.log(response.data.results[0].formatted_address);
             setLocation(response.data.results[0].formatted_address);
           }
@@ -69,7 +70,7 @@ const CustomerConfirmLocation = ({ setLocation }: any) => {
           onClick={onClick}
           onIdle={onIdle}
           zoom={zoom}
-          style={{ width: "400px", height: "400px" }}
+          style={{ width: "70vw", height: "50vh" }}
         >
           {click.map((latLng, i) => (
             <Marker key={i} position={latLng} />
@@ -88,7 +89,7 @@ interface MapProps extends google.maps.MapOptions {
   onIdle?: (map: google.maps.Map) => void;
 }
 
-const Map: React.FC<MapProps> = ({
+export const Map: React.FC<MapProps> = ({
   onClick,
   onIdle,
   children,
@@ -141,7 +142,7 @@ const Map: React.FC<MapProps> = ({
   );
 };
 
-const Marker: React.FC<google.maps.MarkerOptions> = (options) => {
+export const Marker: React.FC<google.maps.MarkerOptions> = (options) => {
   const [marker, setMarker] = React.useState<google.maps.Marker>();
 
   React.useEffect(() => {
