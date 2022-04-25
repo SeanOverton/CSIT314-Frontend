@@ -13,23 +13,34 @@ const SignUp = () => {
     const [password, setPassword] = useState("");
     const [password2, setPassword2] = useState("");
     const [usertype, setUsertype] = useState("customer");
+    const [profileImage, setProfileImage] = useState<any>();
 
     const handleSubmit = (evt: any) => {
         evt.preventDefault();
 
-        let body = {
-            username: username, 
-            first_name: firstname, 
-            last_name: lastname, 
-            email: email, 
-            password: password, 
-            password2: password2, 
-            user_type: usertype
+        const formData = new FormData();
+        formData.append('username', username);
+        formData.append('first_name', firstname);
+        formData.append('last_name', lastname);
+        formData.append('email', email);
+        formData.append('password', password);
+        formData.append('password2', password2);
+        formData.append('user_type', usertype);
+        formData.append('image', profileImage);
+
+        let headers = {
+            "content-type": "multipart/form-data"
         }
 
-        makePostRequest("/register/", "Success! Signed up!", body);
+        makePostRequest("/register/", "Success! Signed up!", formData, headers);
     }
     
+    const handleImage = (e: any) => {
+        if(e.target.files[0] != null){ 
+            setProfileImage(e.target.files[0])
+        }
+    }
+
     return (
         <>
             <main>
@@ -76,6 +87,12 @@ const SignUp = () => {
                                 </select>
                             </div>
                         </div>
+
+                        <div className="form-group">
+                            <label>Profile pic (optional)</label>
+                            <input type="file" className="form-control" onChange={handleImage}/>
+                        </div>
+
                     </div>
 
                     <button type="submit" value="Submit" className="btn btn-primary btn-block">Sign Up</button>
