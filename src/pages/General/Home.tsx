@@ -38,10 +38,10 @@ const Home = () => {
                     </Row>
                     <Row>
                         <Col>
-                        <p style={{textAlign:"center"}} >9/10 Problems fixed by roadside. Our xxx Specialist</p>
+                        <p style={{textAlign:"center"}} >We provide exclusive roadside service in Australia.</p>
                         </Col>
                         <Col>
-                        <p style={{textAlign:"center"}}>9/10 Problems fixed by roadside. Our xxx Specialist</p>
+                        <p style={{textAlign:"center"}}>We offer the best price for the service.</p>
                         </Col>
                     </Row>
                     <Row>
@@ -66,10 +66,10 @@ const Home = () => {
                     </Row>
                     <Row>
                         <Col>
-                        <p style={{textAlign:"center" }} >9/10 Problems fixed by roadside. Our xxx Specialist</p>
+                        <p style={{textAlign:"center" }} >It just take few clicks book our roadside service.</p>
                         </Col>
                         <Col>
-                        <p style={{textAlign:"center" }}>9/10 Problems fixed by roadside. Our xxx Specialist</p>
+                        <p style={{textAlign:"center" }}>You can rely on our service as it is fast.</p>
                         </Col>
                     </Row>
                </Container> 
@@ -87,6 +87,110 @@ const Home = () => {
                             </Card.Body>
                         </Card>
                     </Row> 
+                </div>
+                <hr></hr>
+                <div style={{paddingTop: "2em", paddingBottom: "2em"}}>
+                    <h1>How it works ? </h1>
+                    <p>Step 1</p>
+                    <p>Step 2</p>
+                    <p>Step 3</p>
+                    <p>Step 4</p>
+                    <p>Step 5</p>
+                </div>
+                <div>
+                    <hr></hr>
+                    <h3 style={{paddingBottom: "2em"}}>Latest reviews from customers.</h3>
+
+                    <Container>
+                    <Row>
+                        <Col>
+                            <h3 style={{ padding: "1em" }}>
+                                IMAGE PLACEHOLDER
+                            </h3>
+                        </Col>
+                        <Col>
+                            <h3 style={{ padding: "1em" }}>
+                                IMAGE PLACEHOLDER
+                            </h3>
+                        </Col>
+                        <Col>
+                            <h3 style={{ padding: "1em" }}>
+                                IMAGE PLACEHOLDER
+                            </h3>
+                        </Col>
+                        <Col>
+                            <h3 style={{ padding: "1em" }}>
+                                IMAGE PLACEHOLDER
+                            </h3>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                        <p style={{textAlign:"center"}}>Customer review 1</p>
+                        </Col>
+                        <Col>
+                        <p style={{textAlign:"center"}}>Customer review 2</p>
+                        </Col>
+                        <Col>
+                        <p style={{textAlign:"center"}}>Customer review 3</p>
+                        </Col>
+                        <Col>
+                        <p style={{textAlign:"center"}}>Customer review 4</p>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <h3 style={{padding: "1em"}}>
+                                IMAGE PLACEHOLDER
+                            </h3>
+                        </Col>
+                        <Col>
+                            <h3 style={{padding: "1em"}}>
+                                IMAGE PLACEHOLDER
+                            </h3>
+                        </Col>
+                        <Col>
+                            <h3 style={{padding: "1em"}}>
+                                IMAGE PLACEHOLDER
+                            </h3>
+                        </Col>
+                        <Col>
+                            <h3 style={{padding: "1em"}}>
+                                IMAGE PLACEHOLDER
+                            </h3>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                        <p style={{textAlign:"center" }}>Customer review 5</p>
+                        </Col>
+                        <Col>
+                        <p style={{textAlign:"center" }}>Customer review 6</p>
+                        </Col>
+                        <Col>
+                        <p style={{textAlign:"center" }}>Customer review 7</p>
+                        </Col>
+                        <Col>
+                        <p style={{textAlign:"center" }}>Customer review 8</p>
+                        </Col>
+                    </Row>
+                    </Container> 
+                </div>
+                <hr></hr>
+                <div>
+                    <h3 style={{padding: "1em"}}>Our new mobile application is comming soon</h3>
+                    <Container>
+                        <Row>
+                            <Col>
+                            <p>Our new mobile application will enable you to manage your membership subscription,request assistance, be allocated a service provider aal via your mobile phone, as well as track the service providers location/distance and ETA to your location. We will be able to allocate the correct resources in the first instance, we call it "The Uber of Roadside Assistance"</p> 
+                            </Col>
+                            <Col>
+                            <h3 style={{ padding: "1em" }}>
+                                IMAGE PLACEHOLDER
+                            </h3>
+                            </Col>
+                        </Row>
+                    </Container>            
                 </div>
             </div>
 
