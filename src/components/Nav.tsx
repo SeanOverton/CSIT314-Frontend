@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import '../styles/navbar.css';
 import auth from "./utils/Auth";
-import car_logo from "../images/car_logo.png";
+import car_logo from "../images/Group_3.svg";
 import BurgerMenu from './BurgerMenu';
 
 const Nav = () => {
@@ -18,7 +18,7 @@ const Nav = () => {
         <div className='header'>
             <div className='nav-wrapper'>  
                 <Link to="/"><img className="logo" src={car_logo} style={{height: "50px"}}/></Link>
-                <h4>COMPANYNAME</h4>
+               
                 <ul className="nav-links left-wrapper">
                     <li>
                         <Link className="" to="/">Home</Link>

@@ -39,17 +39,7 @@ export const makePostRequest = (url: string, success_message: string, body: any,
     .catch((error) => {
         for (const property in error.response.data) {
             console.log(`${property}: ${error.response.data[property][0]}`);
-            toast.error(
-                `${property}: ${error.response.data[property][0]}`,
-            {
-                position: "top-center",
-                autoClose: 10000,
-                closeOnClick: true,
-                pauseOnHover: false,
-                draggable: true,
-                progress: undefined,
-            }
-            );
+           
         }
         console.log(error.response.data);
         console.log(error.request);
