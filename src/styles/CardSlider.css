@@ -1,15 +1,23 @@
+
 .slider-wrapper{
-    margin: auto;
-    width: 80vw;
+    position: relative;
+    max-width:910px;
     height: 50vh;
+    margin: auto;
+    display: flex;
+    align-items: center;
+}
+
+#slider{
     white-space: nowrap;
     overflow-x: scroll;
+    width: 100%;    
+    scroll-behavior: smooth;
 }
 
-.slider-wrapper::-webkit-scrollbar {
+#slider::-webkit-scrollbar {
     display: none;
 }
-
 
 /*Card*/
 .slider-card{
@@ -17,7 +25,9 @@
     display: inline-block;
     border: 1px solid #00000080;
     border-radius: 15px;
-    margin-right: 10px;
+    margin-right: 5px;
+    width:300px;
+
 }
 
 .lable{
@@ -26,5 +36,10 @@
     font-weight: 300;
     letter-spacing: -0.015em;
     text-align: center;
+}
 
+@media only screen and (max-width: 768px){
+    .slider-wrapper{
+        max-width:310px;
+    }
 }
