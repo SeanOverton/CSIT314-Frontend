@@ -79,7 +79,7 @@ const Profile = (user : any) => {
                 <form onSubmit={submitChanges}>         
                     <div className ="profile-wrapper">  
                     <img 
-                        src={details[0].image}
+                        src={`${BACKEND_URL}/media/${details[0].image}`}
                         onError={({ currentTarget }) => {
                             currentTarget.onerror = null; // prevents looping
                             currentTarget.src=def_Img;
