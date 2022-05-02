@@ -23,7 +23,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+ul{
+  list-style: none;
+}
 body {
   background: var(--bg-primary-color) !important;
   height: 100vh;
@@ -44,9 +46,7 @@ code {
 
 main{
   /*Centering everything and anything forever and ever*/ 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+ 
   margin: 0;
   padding: 0;
   min-height: 90vh; 

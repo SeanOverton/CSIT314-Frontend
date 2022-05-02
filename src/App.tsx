@@ -20,6 +20,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import About from "./pages/General/About";
 import Services from "./pages/General/Services";
 import ContactUs from "./pages/General/ContactUs";
+import Profile from "./pages/General/Profile";
 import Membership from "./pages/General/Membership";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
@@ -37,6 +38,14 @@ function App() {
             <Route path="/services" element={<Services/>} />
             <Route path="/contactus" element={<ContactUs/>} />
             <Route path="/membership" element={<Membership/>} />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute>
+                  <Profile/>
+                </ProtectedRoute>
+              }
+            />
             <Route
               path="/request"
               element={
