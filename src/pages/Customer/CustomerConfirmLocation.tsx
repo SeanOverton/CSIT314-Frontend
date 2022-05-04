@@ -107,7 +107,13 @@ export const Map: React.FC<MapProps> = ({
 
   // because React does not do deep comparisons, a custom hook is used
   // see discussion in https://github.com/googlemaps/js-samples/issues/946
-  useDeepCompareEffectForMaps(() => {
+  // useDeepCompareEffectForMaps(() => {
+  //   if (map) {
+  //     map.setOptions(options);
+  //   }
+  // }, [map, options]);
+
+  React.useEffect(() => {
     if (map) {
       map.setOptions(options);
     }
@@ -167,39 +173,39 @@ export const Marker: React.FC<google.maps.MarkerOptions> = (options) => {
   return null;
 };
 
-const deepCompareEqualsForMaps = createCustomEqual(
-  (deepEqual) => (a: any, b: any) => {
-    if (
-      isLatLngLiteral(a) ||
-      a instanceof google.maps.LatLng ||
-      isLatLngLiteral(b) ||
-      b instanceof google.maps.LatLng
-    ) {
-      return new google.maps.LatLng(a).equals(new google.maps.LatLng(b));
-    }
+// const deepCompareEqualsForMaps = createCustomEqual(
+//   (deepEqual) => (a: any, b: any) => {
+//     if (
+//       isLatLngLiteral(a) ||
+//       a instanceof google.maps.LatLng ||
+//       isLatLngLiteral(b) ||
+//       b instanceof google.maps.LatLng
+//     ) {
+//       return new google.maps.LatLng(a).equals(new google.maps.LatLng(b));
+//     }
 
-    // TODO extend to other types
+//     // TODO extend to other types
 
-    // use fast-equals for other objects
-    return deepEqual(a, b);
-  }
-);
+//     // use fast-equals for other objects
+//     return deepEqual(a, b);
+//   }
+// );
 
-function useDeepCompareMemoize(value: any) {
-  const ref = React.useRef();
+// function useDeepCompareMemoize(value: any) {
+//   const ref = React.useRef();
 
-  if (!deepCompareEqualsForMaps(value, ref.current)) {
-    ref.current = value;
-  }
+//   if (!deepCompareEqualsForMaps(value, ref.current)) {
+//     ref.current = value;
+//   }
 
-  return ref.current;
-}
+//   return ref.current;
+// }
 
-function useDeepCompareEffectForMaps(
-  callback: React.EffectCallback,
-  dependencies: any[]
-) {
-  React.useEffect(callback, dependencies.map(useDeepCompareMemoize));
-}
+// function useDeepCompareEffectForMaps(
+//   callback: React.EffectCallback,
+//   dependencies: any[]
+// ) {
+//   React.useEffect(callback, dependencies.map(useDeepCompareMemoize));
+// }
 
 export default CustomerConfirmLocation;

@@ -72,7 +72,7 @@ const SomeMap = withScriptjs(withGoogleMap(({destination}: any) => {
         // TODO: add a notification reccomending user to enable 
         // location services in the browser
     }
-  }, [destination]);
+  }, [destination, directions, directionsService]);
 
     return (
       <div style={{ display: "flex", height: "100%" }}>
