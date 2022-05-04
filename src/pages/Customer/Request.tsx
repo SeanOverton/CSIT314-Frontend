@@ -34,7 +34,7 @@ const Request = () => {
             // console.log(response.data);
 
             var new_request = response.data.filter(function(request: any) {
-                return request.username == Auth.getUsername() && request.status != "REVIEWED" && request.status != "CANCELLED";
+                return request.username === Auth.getUsername() && request.status !== "REVIEWED" && request.status !== "CANCELLED";
             });
 
             console.log(new_request);

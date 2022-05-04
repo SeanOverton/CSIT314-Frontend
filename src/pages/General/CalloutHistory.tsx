@@ -1,6 +1,4 @@
-import Nav from "../../components/Nav";
-import Footer from "../../components/Footer";
-import { Card, Container } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -42,15 +40,17 @@ const RequestCardContainer = () => {
         axios.get(`${BACKEND_URL}/all_callouts/?status=REVIEWED`, {headers: headers})
         .then(response => {
             console.log(response.data);
+            
+            var filtered_requests;
 
             if(Auth.isCustomer()){
-                var filtered_requests = response.data.filter(function(request: any) {
-                    return request.username == Auth.getUsername();
+                filtered_requests = response.data.filter(function(request: any) {
+                    return request.username === Auth.getUsername();
                 });
             }
             else if(Auth.isMechanic()){
-                var filtered_requests = response.data.filter(function(request: any) {
-                    return request.mechanic == Auth.getUsername();
+                filtered_requests = response.data.filter(function(request: any) {
+                    return request.mechanic === Auth.getUsername();
                 });
             }
 

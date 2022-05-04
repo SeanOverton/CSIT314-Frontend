@@ -1,4 +1,4 @@
-import { Container, Col, Row, Card } from 'react-bootstrap';
+import { Container, Col, Row } from 'react-bootstrap';
 import ContactUsButton from '../../components/ContactUsButton';
 
 const AboutUs = () => (

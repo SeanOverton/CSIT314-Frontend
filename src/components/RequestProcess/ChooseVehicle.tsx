@@ -13,7 +13,7 @@ const SingleSubscriptionCard = ({ selected, setSelected, subscription}: any) => 
         (
             <Card border="primary" style={{ width: '18rem' }}>
                 <Card.Body>
-                    <img src={car_logo} style={{height: "100px"}}/>
+                    <img alt="car_logo" src={car_logo} style={{height: "100px"}}/>
                     <Card.Title>{subscription.vehicle_brand} {subscription.vehicle_model} {subscription.vehicle_year}</Card.Title>
                     <Card.Text>{subscription.vehicle_registration}</Card.Text>
                 </Card.Body>
@@ -21,7 +21,7 @@ const SingleSubscriptionCard = ({ selected, setSelected, subscription}: any) => 
         ) : (
             <Card onClick={() => {setSelected(subscription.vehicle_registration)}} style={{ width: '18rem' }}>
                 <Card.Body>
-                <img src={car_logo} style={{height: "100px"}}/>
+                <img alt="car_logo" src={car_logo} style={{height: "100px"}}/>
                 <Card.Title>{subscription.vehicle_brand} {subscription.vehicle_model} {subscription.vehicle_year}</Card.Title>
                 <Card.Text>{subscription.vehicle_registration}</Card.Text>
                 </Card.Body>
@@ -61,7 +61,7 @@ export const SubscriptionCardContainer = ({rego, setRego}: any) => {
 
     return (
         <>
-            {(subscriptions.length == 0) ? (
+            {(subscriptions.length === 0) ? (
                 <>
                     <h1>You have no current vehicle subscriptions with us.</h1>
                     <h1>Add your first one now!</h1>
@@ -99,20 +99,20 @@ const ChooseVehicle = ({rego, setRego, setStep}: any) => {
         <>
         <main>
             <div className="auth-inner">
-                    <SubscriptionCardContainer rego={rego} setRego={setRego}/>
-                    <div className="form-group">
-                    <label>Other vehicle:</label>
-                    <input type="text" className="form-control" placeholder="XWZ-123" onChange={e => setRego(e.target.value)}/>
-                    </div>
-                    <div>
-                    {/* <button className="btn btn-primary" onClick={() => {}}>Next</button> */}
-                    </div>
-                    <div style={{padding: "0.5em"}}>
-                        <BootstrapModal 
-                        title="Confirm Vehicle" 
-                        prompt_question={prompt_string}
-                        function={confirmVehicle}/>
-                    </div>
+                <SubscriptionCardContainer rego={rego} setRego={setRego}/>
+                <div className="form-group">
+                <label>Other vehicle:</label>
+                <input type="text" className="form-control" placeholder="XWZ-123" onChange={e => setRego(e.target.value)}/>
+                </div>
+                <div>
+                {/* <button className="btn btn-primary" onClick={() => {}}>Next</button> */}
+                </div>
+                <div style={{padding: "0.5em"}}>
+                    <BootstrapModal 
+                    title="Confirm Vehicle" 
+                    prompt_question={prompt_string}
+                    function={confirmVehicle}/>
+                </div>
             </div>
         </main>    
         </>
