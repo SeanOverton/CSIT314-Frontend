@@ -18,6 +18,7 @@ const DataField = (props:any) => {
 }
 const Profile = (user : any) => {
     const[details, setDetails] =  useState<any[]>([]);
+    
     useEffect(()=>{
         let headers = {
             "Authorization": `Token ${Auth.getToken()}`
@@ -33,7 +34,7 @@ const Profile = (user : any) => {
             console.log(error.request);
             console.log(error.message);
         });
-    },[]);
+    }, [details.length]);
 
     const editData = () =>{
         // Swap button
