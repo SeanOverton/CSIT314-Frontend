@@ -8,7 +8,7 @@ const Card=(props:any) =>{
     var details : any =  props.details;
     return(
         <div className="slider-card" style={{width:'300px', height:'300px'}}>
-           <img src = {car_logo} style={{width:'50%', height:'50%'}}></img>
+           <img src = {car_logo} style={{width:'50%', height:'50%'}} alt="card_logo"></img>
            <h2>{details.vehicle_brand} {details.vehicle_model}</h2>
            <div className='lable'>{details.vehicle_registration}</div>
            <div className='lable'>

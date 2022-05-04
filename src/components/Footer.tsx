@@ -2,6 +2,7 @@ import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { BsAwardFill, BsChatFill, BsFacebook, BsInstagram, BsLinkedin } from "react-icons/bs";
 import { Link } from 'react-router-dom';
+import { FRONTEND_URL } from './utils/Constants';
 
 const Footer = () => {
     return (
@@ -23,11 +24,11 @@ const Footer = () => {
               </Col>
               <Col>
                 <h3>
-                  <a href="#" style={{padding: "0.3em"}}><BsFacebook/></a>
-                  <a href="#" style={{padding: "0.3em"}}><BsLinkedin/></a>
-                  <a href="#" style={{padding: "0.3em"}}><BsInstagram/></a>
-                  <a href="#" style={{padding: "0.3em"}}><BsAwardFill/></a>
-                  <a href="#" style={{padding: "0.3em"}}><BsChatFill/></a>
+                  <a href={FRONTEND_URL} style={{padding: "0.3em"}}><BsFacebook/></a>
+                  <a href={FRONTEND_URL} style={{padding: "0.3em"}}><BsLinkedin/></a>
+                  <a href={FRONTEND_URL} style={{padding: "0.3em"}}><BsInstagram/></a>
+                  <a href={FRONTEND_URL} style={{padding: "0.3em"}}><BsAwardFill/></a>
+                  <a href={FRONTEND_URL} style={{padding: "0.3em"}}><BsChatFill/></a>
                 </h3>
               </Col>
             </Row>

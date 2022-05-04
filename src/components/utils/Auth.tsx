@@ -22,14 +22,14 @@ class Auth {
 
     isCustomer(){
         const userStr: any = localStorage.getItem("user_type");
-        if (JSON.parse(userStr) == "customer") return true;
+        if (JSON.parse(userStr) === "customer") return true;
 
         return false;
     }
 
     isMechanic(){
         const userStr: any = localStorage.getItem("user_type");
-        if (JSON.parse(userStr) == "mechanic") return true;
+        if (JSON.parse(userStr) === "mechanic") return true;
 
         return false;
     }

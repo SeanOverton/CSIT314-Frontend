@@ -1,6 +1,4 @@
-import React, { useState } from 'react';
-import Nav from "../../components/Nav";
-import Footer from '../../components/Footer';
+import { useState } from 'react';
 import { Link } from "react-router-dom";
 import "../../styles/forms.css";
 import { makePostRequest } from "../../components/utils/Helpers";
@@ -60,7 +58,7 @@ const SignUp = () => {
 
                         <div className="form-group">
                             <label>Last name</label>
-                            <input type="text" className="form-control" placeholder="Last name" onChange={e => setFirstname(e.target.value)}/>
+                            <input type="text" className="form-control" placeholder="Last name" onChange={e => setLastname(e.target.value)}/>
                         </div>
 
                         <div className="form-group">

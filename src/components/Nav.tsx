@@ -17,7 +17,7 @@ const Nav = () => {
     return (
         <div className='header'>
             <div className='nav-wrapper'>  
-                <Link to="/"><img className="logo" src={car_logo} style={{height: "50px"}}/></Link>
+                <Link to="/"><img alt="car_logo" className="logo" src={car_logo} style={{height: "50px"}}/></Link>
                
                 <ul className="nav-links left-wrapper">
                     <li>

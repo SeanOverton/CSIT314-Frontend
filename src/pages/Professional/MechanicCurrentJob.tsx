@@ -52,7 +52,7 @@ const MechanicDashboard = () => {
             // console.log(response.data);
 
             var new_request = response.data.filter(function(request: any) {
-                return request.mechanic == Auth.getUsername() && request.status == "ACCEPTED";
+                return request.mechanic === Auth.getUsername() && request.status == "ACCEPTED";
             });
 
             console.log(new_request);
@@ -71,7 +71,7 @@ const MechanicDashboard = () => {
 
     return (
         <>
-        {request.length == 0 ? (
+        {request.length === 0 ? (
             <h1>No current jobs accepted</h1>
         ) : (
             <CurrentJob request={request}/>

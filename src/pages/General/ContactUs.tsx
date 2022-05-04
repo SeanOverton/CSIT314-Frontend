@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Container, Col, Row, Card } from 'react-bootstrap';
+import { Container, Col, Row } from 'react-bootstrap';
 import { FaRegBuilding, FaPhoneAlt } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
 import { toast } from 'react-toastify';
@@ -69,8 +69,8 @@ const ContactDetails = () => {
 const ContactUsForm = () => {
     const [name, setName ] = useState("");
     const [email, setEmail ] = useState("");
-    const [subject, setSubject ] = useState("");
-    const [message, setMessage] = useState("");
+    // const [subject, setSubject ] = useState("");
+    // const [message, setMessage] = useState("");
     
     const sendEmail = (evt: any) => {
         evt.preventDefault();
@@ -96,24 +96,24 @@ const ContactUsForm = () => {
                     <form onSubmit={sendEmail}>
                         <div className="form-group">
                             <label>Your name (required)</label>
-                            <input type="text" className="form-control" placeholder="John Smith" onChange={e => setName(e.target.value)}/>
+                            <input type="text" className="form-control" placeholder="John Smith"/>
                         </div>
 
                         <div className="form-group">
                             <label>Your email (required)</label>
-                            <input type="text" className="form-control" placeholder="john@email.com" onChange={e => setEmail(e.target.value)}/>
+                            <input type="text" className="form-control" placeholder="john@email.com"/>
                         </div>
                         
                         <div className="form-group">
                             <label>Subject</label>
-                            <input type="text" className="form-control" placeholder="" onChange={e => setEmail(e.target.value)}/>
+                            <input type="text" className="form-control" placeholder=""/>
                         </div>
 
                         <div className="form-group">
                             <label>Your message</label>
                             <textarea 
                             maxLength={300} 
-                            rows={6} cols={50} className="form-control" placeholder="" onChange={e => setEmail(e.target.value)}/>
+                            rows={6} cols={50} className="form-control" placeholder=""/>
                         </div>
                         
                         <div style={{padding: "1em"}}>

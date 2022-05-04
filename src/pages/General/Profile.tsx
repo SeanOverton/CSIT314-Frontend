@@ -73,12 +73,13 @@ const Profile = (user : any) => {
     
     return(
         <div>
-            {(details.length==1)?( <>
+            {(details.length===1)?( <>
                 <main>
                 <h3>Profile</h3> 
                 <form onSubmit={submitChanges}>         
                     <div className ="profile-wrapper">  
-                    <img 
+                    <img
+                        alt="profile_image"
                         src={`${BACKEND_URL}/media/${details[0].image}`}
                         onError={({ currentTarget }) => {
                             currentTarget.onerror = null; // prevents looping
@@ -98,7 +99,7 @@ const Profile = (user : any) => {
                         </div> 
                         <div>
                             <button id= "editProfileBtn" type="button" onClick={editData}> 
-                                <img style = {{width : "50px", height : "50px"}} src = {editIcon}></img>
+                                <img alt="pencil_icon" style={{width : "50px", height : "50px"}} src = {editIcon}></img>
                             </button>
                             <input type="submit" value="submit" id="submitChangesBtn"/>
                         </div>            

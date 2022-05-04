@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Card } from "react-bootstrap";
 import Checkout from "../../pages/Customer/Checkout";
 import Auth from "../utils/Auth";
@@ -10,7 +10,7 @@ import { BsExclamationCircleFill } from "react-icons/bs";
 const SingleProblemCard = ({ selected, setSelected, symbol, name}: any) => {    
     return( 
         <div>
-        { (selected == name) ? 
+        { (selected === name) ? 
         (
             <Card border="primary" style={{ width: '18rem' }}>
                 <Card.Body>
@@ -154,7 +154,7 @@ const ProblemDetails = ({location, rego, description, setDescription}: any) => {
         axios.get(`${BACKEND_URL}/my_subscriptions/?username=${Auth.getUsername()}`, {headers: headers})
         .then(response => {
             var new_request = response.data.filter(function(sub: any) {
-                return sub.vehicle_registration == rego && sub.active;
+                return sub.vehicle_registration === rego && sub.active;
             });
 
             setHasChecked(true);

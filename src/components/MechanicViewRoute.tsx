@@ -3,17 +3,11 @@ import {
     GoogleMap, 
     withGoogleMap, 
     withScriptjs, 
-    DirectionsRenderer, 
-    Marker} 
+    DirectionsRenderer
+  } 
 from "react-google-maps";
 import Auth from "./utils/Auth";
-import BACKEND_URL, { FRONTEND_URL } from "./utils/Constants";
 import { makeAuthenticatedPostRequest } from "./utils/Helpers";
-
-interface MapRoutesProps {
-  origin: google.maps.LatLng;
-  destination: any;
-}
 
 const MapRoutes = ({ directions }: any) => {
   return (
@@ -52,7 +46,7 @@ const SomeMap = withScriptjs(withGoogleMap(({destination}: any) => {
               "Success! Current location!", 
               body);
 
-            if(destination != "" && !directions){
+            if(destination !== "" && !directions){
               setOrigin(latlng);
 
               directionsService.route(

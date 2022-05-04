@@ -9,7 +9,7 @@ import car_logo from "../../images/car_logo.png";
 const SingleSubscriptionCard = ({ selected, setSelected, subscription}: any) => {    
     return( 
         <div>
-        { (selected == subscription.vehicle_registration) ? 
+        { (selected === subscription.vehicle_registration) ? 
         (
             <Card border="primary" style={{ width: '18rem' }}>
                 <Card.Body>
