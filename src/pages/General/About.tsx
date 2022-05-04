@@ -1,7 +1,7 @@
 import { Container, Col, Row, Card } from 'react-bootstrap';
 import ContactUsButton from '../../components/ContactUsButton';
 
-const Home = () => (
+const AboutUs = () => (
     <>
         <main>
             <div style={{paddingTop: "1em", paddingBottom: "4em"}}>
@@ -57,4 +57,4 @@ const Home = () => (
     </>
 );
 
-export default Home;
+export default AboutUs;
