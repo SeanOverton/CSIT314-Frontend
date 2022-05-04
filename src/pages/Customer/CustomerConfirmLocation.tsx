@@ -1,7 +1,5 @@
 import * as React from "react";
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
-import { createCustomEqual } from "fast-equals";
-import { isLatLngLiteral } from "@googlemaps/typescript-guards";
 import axios from "axios";
 import BootstrapModal from "./BootstrapModal";
 
