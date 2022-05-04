@@ -3,7 +3,7 @@ import { GiCarWheel, GiTowTruck } from "react-icons/gi";
 import { FaOilCan, FaCarBattery } from "react-icons/fa";
 import ContactUsButton from '../../components/ContactUsButton';
 
-const Home = () => (
+const Services = () => (
     <>
         <main>
             <div style={{paddingTop: "1em", paddingBottom: "4em"}}>
@@ -59,4 +59,4 @@ const Home = () => (
     </>
 );
 
-export default Home;
+export default Services;
