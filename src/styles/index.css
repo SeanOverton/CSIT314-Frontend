@@ -48,6 +48,7 @@ main{
   /*Centering everything and anything forever and ever*/ 
  
   margin: 0;
+  margin-top: 60px;
   padding: 0;
   min-height: 90vh; 
 }
