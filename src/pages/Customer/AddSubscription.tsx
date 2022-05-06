@@ -6,7 +6,7 @@ import { FRONTEND_URL } from "../../components/utils/Constants";
 import Auth from "../../components/utils/Auth";
 import { Col, Form, Row } from "react-bootstrap";
 
-const Request = () => {
+const AddSubscription = () => {
     const [rego, setRego] = useState("");
     const [vehicleType, setVehicleType] = useState("");
     const [modelType, setModelType] = useState("");
@@ -199,4 +199,4 @@ const Request = () => {
     );
 };
 
-export default Request;
+export default AddSubscription;
