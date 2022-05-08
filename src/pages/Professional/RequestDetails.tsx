@@ -34,7 +34,7 @@ const RequestDetails = () => {
     const acceptJob = (evt: any) => {
         evt.preventDefault();
 
-        let mechanic = localStorage.getItem("username")?.replaceAll('"', '');
+        let mechanic = Auth.getUsername()
 
         let body = {
             username: details.username,

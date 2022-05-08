@@ -38,6 +38,10 @@ class Auth {
         return localStorage.getItem("username")?.replaceAll('"', '');
     }
 
+    setUsername(username: string){
+        localStorage.setItem("username", JSON.stringify(username));
+    }
+
     getToken(){
         return localStorage.getItem("token")?.replaceAll('"', '');
     }

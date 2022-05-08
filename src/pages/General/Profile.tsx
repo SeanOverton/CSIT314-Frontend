@@ -69,7 +69,7 @@ const Profile = (user : any) => {
             body);
 
         // update local storage
-        localStorage.setItem("username", JSON.stringify(username.value));
+        Auth.setUsername(username.value);
     }
     
     return(
