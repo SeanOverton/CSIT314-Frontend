@@ -51,7 +51,7 @@ const CalloutDetails = (props: CalloutDetailsProps) => {
 
     return (
         <>
-        <h3>Booking ID: {details.id}</h3>
+        <h3>Booking ID: <span id="booking_id">{details.id}</span></h3>
         <p style={{color: "grey"}}>{details.description}</p>
         <h4>$200.00</h4>
         {/* only should display route when mechanic is viewing and/or 

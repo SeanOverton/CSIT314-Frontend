@@ -1,4 +1,5 @@
 import { render, unmountComponentAtNode } from 'react-dom';
+import { act } from 'react-dom/test-utils';
 import AddSubscription from '../pages/Customer/AddSubscription';
 import BootstrapModal from '../pages/Customer/BootstrapModal';
 import Checkout from '../pages/Customer/Checkout';
@@ -44,3 +45,22 @@ it('renders Request without crashing', () => {
 // it('renders ViewMySubscriptions without crashing', () => {
 //   render(<ViewMySubscriptions/>, container);
 // });
+
+it("renders bootstrap modal with data", () => {
+  act(() => {
+    render(<BootstrapModal title="test" prompt_question="test" function={()=> {}}/>, container);
+    let button = container.querySelector('#modal_button')
+    button.simulate("click")
+  });
+  expect(container.querySelector("#title")).toBe("test");
+
+  // act(() => {
+  //   render(<Hello name="Jenny" />, container);
+  // });
+  // expect(container.textContent).toBe("Hello, Jenny!");
+
+  // act(() => {
+  //   render(<Hello name="Margaret" />, container);
+  // });
+  // expect(container.textContent).toBe("Hello, Margaret!");
+});
