@@ -10,7 +10,6 @@ const Home = () => {
         <main> 
             <div style={{paddingTop: "1em", paddingBottom: "4em"}}>
                 <h1>IMAGE PLACEHOLDER</h1>
-                <hr></hr>
                 <div style={{paddingTop: "5em", paddingBottom: "1em"}}>
                     <Container>
                     <Row>
