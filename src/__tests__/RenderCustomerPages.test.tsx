@@ -6,6 +6,7 @@ import Checkout from '../pages/Customer/Checkout';
 import CustomerConfirmLocation from '../pages/Customer/CustomerConfirmLocation';
 import Request from '../pages/Customer/Request';
 import ViewMySubscriptions from '../pages/Customer/ViewMySubscriptions';
+import { MemoryRouter } from 'react-router-dom';
 
 let container: any = null;
 beforeEach(() => {
@@ -42,25 +43,21 @@ it('renders Request without crashing', () => {
   render(<Request/>, container);
 });
 
-// it('renders ViewMySubscriptions without crashing', () => {
-//   render(<ViewMySubscriptions/>, container);
-// });
+it('renders ViewMySubscriptions without crashing', () => {
+  render(
+    <MemoryRouter>
+      <ViewMySubscriptions/>
+    </MemoryRouter>, 
+    container
+    );
+});
 
+// testing data is passed through as props and renders correctly
 it("renders bootstrap modal with data", () => {
   act(() => {
-    render(<BootstrapModal title="test" prompt_question="test" function={()=> {}}/>, container);
-    let button = container.querySelector('#modal_button')
-    button.simulate("click")
+    render(<BootstrapModal title="new-title" prompt_question="test" function={()=> {}}/>, container);
   });
-  expect(container.querySelector("#title")).toBe("test");
+  expect(container.textContent).toBe("new-title");
 
-  // act(() => {
-  //   render(<Hello name="Jenny" />, container);
-  // });
-  // expect(container.textContent).toBe("Hello, Jenny!");
-
-  // act(() => {
-  //   render(<Hello name="Margaret" />, container);
-  // });
-  // expect(container.textContent).toBe("Hello, Margaret!");
+  // should test prompt_question AFTER button is clicked
 });
