@@ -1,10 +1,12 @@
 import { render, unmountComponentAtNode } from 'react-dom';
+import { act } from 'react-dom/test-utils';
 import AddSubscription from '../pages/Customer/AddSubscription';
 import BootstrapModal from '../pages/Customer/BootstrapModal';
 import Checkout from '../pages/Customer/Checkout';
 import CustomerConfirmLocation from '../pages/Customer/CustomerConfirmLocation';
 import Request from '../pages/Customer/Request';
 import ViewMySubscriptions from '../pages/Customer/ViewMySubscriptions';
+import { MemoryRouter } from 'react-router-dom';
 
 let container: any = null;
 beforeEach(() => {
@@ -41,6 +43,21 @@ it('renders Request without crashing', () => {
   render(<Request/>, container);
 });
 
-// it('renders ViewMySubscriptions without crashing', () => {
-//   render(<ViewMySubscriptions/>, container);
-// });
+it('renders ViewMySubscriptions without crashing', () => {
+  render(
+    <MemoryRouter>
+      <ViewMySubscriptions/>
+    </MemoryRouter>, 
+    container
+    );
+});
+
+// testing data is passed through as props and renders correctly
+it("renders bootstrap modal with data", () => {
+  act(() => {
+    render(<BootstrapModal title="new-title" prompt_question="test" function={()=> {}}/>, container);
+  });
+  expect(container.textContent).toBe("new-title");
+
+  // should test prompt_question AFTER button is clicked
+});

@@ -9,6 +9,7 @@ import Membership from "../pages/General/Membership";
 import Profile from '../pages/General/Profile';
 import Services from '../pages/General/Services';
 import SignUp from '../pages/General/SignUp';
+import { MemoryRouter } from 'react-router-dom';
 
 let container: any = null;
 beforeEach(() => {
@@ -25,9 +26,9 @@ afterEach(() => {
 });
 
 
-// it('renders About without crashing', () => {
-//   render(<AboutUs />, container);
-// });
+it('renders About without crashing', () => {
+  render(<MemoryRouter><AboutUs /></MemoryRouter>, container);
+});
 
 it('renders CalloutHistory without crashing', () => {
   render(<CalloutHistory/>, container);
@@ -41,26 +42,26 @@ it('renders ContactUs without crashing', () => {
   render(<ContactUs/>, container);
 });
 
-// it('renders Home without crashing', () => {
-//   render(<Home/>, container);
-// });
+it('renders Home without crashing', () => {
+  render(<MemoryRouter><Home/></MemoryRouter>, container);
+});
 
 it('renders Login without crashing', () => {
   render(<LogIn/>, container);
 });
 
-// it('renders Membership without crashing', () => {
-//   render(<Membership/>, container);
-// });
+it('renders Membership without crashing', () => {
+  render(<MemoryRouter><Membership/></MemoryRouter>, container);
+});
 
 it('renders Profile without crashing', () => {
   render(<Profile/>, container);
 });
 
-// it('renders Services without crashing', () => {
-//   render(<Services/>, container);
-// });
+it('renders Services without crashing', () => {
+  render(<MemoryRouter><Services/></MemoryRouter>, container);
+});
 
-// it('renders Signup without crashing', () => {
-//   render(<SignUp/>, container);
-// });
+it('renders Signup without crashing', () => {
+  render(<MemoryRouter><SignUp/></MemoryRouter>, container);
+});
