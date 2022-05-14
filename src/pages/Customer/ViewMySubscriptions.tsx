@@ -15,6 +15,11 @@ const SingleSubscriptionCard = (props: any) => {
         let body = {
             username: props.subscription.username,
             vehicle_registration: props.subscription.vehicle_registration,
+            vehicle_type: props.subscription.vehicle_type,
+            vehicle_model: props.subscription.vehicle_model,
+            vehicle_brand: props.subscription.vehicle_brand,
+            vehicle_year: props.subscription.vehicle_year,
+            vehicle_weight: props.subscription.vehicle_weight,
             active: false
         }
 
