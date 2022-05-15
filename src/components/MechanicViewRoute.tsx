@@ -3,17 +3,11 @@ import {
     GoogleMap, 
     withGoogleMap, 
     withScriptjs, 
-    DirectionsRenderer, 
-    Marker} 
+    DirectionsRenderer
+  } 
 from "react-google-maps";
 import Auth from "./utils/Auth";
-import BACKEND_URL, { FRONTEND_URL } from "./utils/Constants";
 import { makeAuthenticatedPostRequest } from "./utils/Helpers";
-
-interface MapRoutesProps {
-  origin: google.maps.LatLng;
-  destination: any;
-}
 
 const MapRoutes = ({ directions }: any) => {
   return (
@@ -28,9 +22,9 @@ const SomeMap = withScriptjs(withGoogleMap(({destination}: any) => {
   const [origin, setOrigin] = useState<google.maps.LatLng>(new google.maps.LatLng(0, 0));
   const [directions, setDirections] = useState<any>();
 
-  const directionsService = new google.maps.DirectionsService();
-
   useEffect(() => {
+    const directionsService = new google.maps.DirectionsService();
+
     if ("geolocation" in navigator) {
         console.log("Available");
 
@@ -52,7 +46,7 @@ const SomeMap = withScriptjs(withGoogleMap(({destination}: any) => {
               "Success! Current location!", 
               body);
 
-            if(destination != "" && !directions){
+            if(destination !== "" && !directions){
               setOrigin(latlng);
 
               directionsService.route(
@@ -66,7 +60,6 @@ const SomeMap = withScriptjs(withGoogleMap(({destination}: any) => {
                   if (status === google.maps.DirectionsStatus.OK) {
                     setDirections(result);
                   } else {
-                    // setDirections(result);
                     console.log(result);
                   }
                 });
@@ -78,7 +71,7 @@ const SomeMap = withScriptjs(withGoogleMap(({destination}: any) => {
         // TODO: add a notification reccomending user to enable 
         // location services in the browser
     }
-  }, [destination]);
+  }, [destination, directions]);
 
     return (
       <div style={{ display: "flex", height: "100%" }}>

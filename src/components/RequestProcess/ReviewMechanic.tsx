@@ -68,7 +68,8 @@ const ReviewMechanic = ({request}: any) => {
                             </Col>
                             <Col>
                             <div className="form-group">
-                                <textarea 
+                                <textarea
+                                style={{resize: "none", minWidth: "150px"}}
                                 maxLength={300} 
                                 rows={6} cols={50} className="form-control" placeholder="Type a review here..." onChange={e => setReview(e.target.value)}/>
                             </div>

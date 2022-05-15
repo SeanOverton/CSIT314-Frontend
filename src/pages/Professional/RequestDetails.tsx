@@ -1,14 +1,12 @@
-import Nav from "../../components/Nav";
-import Footer from "../../components/Footer";
 import { useParams } from "react-router-dom";
-import React, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import axios from "axios";
 import BACKEND_URL, {FRONTEND_URL} from "../../components/utils/Constants";
 import CalloutDetails from "../../components/CalloutDetails";
 import { makeAuthenticatedPostRequest } from "../../components/utils/Helpers";
 import Auth from "../../components/utils/Auth";
 
-interface CalloutDetails {
+interface CalloutDetailsProps {
     id: number,
     location: string,
     status: string,
@@ -31,7 +29,7 @@ const RequestDetails = () => {
         rating: "", 
         review: ""}
 
-    const [details, setDetails] = useState<CalloutDetails>(default_details);
+    const [details, setDetails] = useState<CalloutDetailsProps>(default_details);
 
     const acceptJob = (evt: any) => {
         evt.preventDefault();
@@ -66,7 +64,7 @@ const RequestDetails = () => {
             
             var callout = response.data.filter(function(callout: any) {
                 // console.log(callout);
-                return callout.id == id;
+                return callout.id === id;
             })[0];
 
             setDetails(callout);
@@ -77,7 +75,7 @@ const RequestDetails = () => {
             console.log(error.request);
             console.log(error.message);
         });
-    }, []); 
+    }, [id]); 
 
     return (
         <>

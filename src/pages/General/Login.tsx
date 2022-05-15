@@ -4,7 +4,7 @@ import auth from "../../components/utils/Auth";
 import { Navigate } from "react-router-dom";
 import "../../styles/forms.css";
 import axios from 'axios';
-import BACKEND_URL from "../../components/utils/Constants";
+import BACKEND_URL, { FRONTEND_URL } from "../../components/utils/Constants";
 import { toast } from "react-toastify";
 import { makeAuthenticatedPostRequest } from "../../components/utils/Helpers";
 
@@ -103,7 +103,7 @@ const LogIn = (props: any) => {
                         <button type="submit" value="Submit" className="btn btn-primary btn-block">Login</button>
 
                         <p className="forgot-password text-right">
-                            Forgot <a href="#">password?</a>
+                            Forgot <a href={FRONTEND_URL}>password?</a>
                         </p>
                     </form>
                 </div>

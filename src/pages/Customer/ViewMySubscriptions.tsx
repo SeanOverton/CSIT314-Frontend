@@ -1,5 +1,3 @@
-import Nav from "../../components/Nav";
-import Footer from "../../components/Footer";
 import { Card } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -17,6 +15,11 @@ const SingleSubscriptionCard = (props: any) => {
         let body = {
             username: props.subscription.username,
             vehicle_registration: props.subscription.vehicle_registration,
+            vehicle_type: props.subscription.vehicle_type,
+            vehicle_model: props.subscription.vehicle_model,
+            vehicle_brand: props.subscription.vehicle_brand,
+            vehicle_year: props.subscription.vehicle_year,
+            vehicle_weight: props.subscription.vehicle_weight,
             active: false
         }
 
@@ -26,7 +29,7 @@ const SingleSubscriptionCard = (props: any) => {
     return(
         <Card style={{ width: '18rem' }}>
             <Card.Body>
-                <img src={car_logo} style={{height: "100px"}}/>
+                <img alt="car_logo" src={car_logo} style={{height: "100px"}}/>
                 <Card.Title>{props.subscription.vehicle_brand} {props.subscription.vehicle_model} {props.subscription.vehicle_year}</Card.Title>
                 <Card.Text>{props.subscription.vehicle_registration}</Card.Text>
                 <button type="button" onClick={removeSubscription} className="btn btn-danger">Unsubscribe</button>
@@ -65,7 +68,7 @@ const SubscriptionCardContainer = () => {
 
     return (
         <>
-            {(subscriptions.length == 0) ? (
+            {(subscriptions.length === 0) ? (
                 <>
                     <h1>You have no current vehicle subscriptions with us.</h1>
                     <h1>Add your first one now!</h1>

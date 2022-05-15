@@ -35,13 +35,13 @@ class BootstrapModal extends React.Component{
     render(){
         return(
             <div>
-                <Button variant="btn btn-primary" onClick={() => this.handleModalShowHide()}>
+                <Button variant="btn btn-primary" id="modal_button" onClick={() => this.handleModalShowHide()}>
                     {this.props.title}
                 </Button>
 
                 <Modal show={this.state.showHide}>
                     <Modal.Header closeButton onClick={() => this.handleModalShowHide()}>
-                    <Modal.Title>{this.props.title}</Modal.Title>
+                    <Modal.Title><span id="title">{this.props.title}</span></Modal.Title>
                     </Modal.Header>
                     <Modal.Body>{this.props.prompt_question}</Modal.Body>
                     <Modal.Footer>
