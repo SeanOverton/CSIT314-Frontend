@@ -1,5 +1,6 @@
 import { Wrapper } from "@googlemaps/react-wrapper";
 import CancelCallout from "./CancelCallout";
+import MechanicMiniProfile from "./MechanicMiniProfile";
 import { Marker, Map } from '../../pages/Customer/CustomerConfirmLocation';
 import { useEffect, useState } from "react";
 import Auth from "../utils/Auth";
@@ -34,11 +35,14 @@ const TrackMechanic = ({request}: any) => {
             console.log(error.request);
             console.log(error.message);
         });
-    })
+    },[])
 
     return (
         <>
-        <h1>Your mechanic {request.mechanic} is on his way.</h1>
+      <div className="d-flex justify-content-center">
+            <MechanicMiniProfile name={request.mechanic}/>
+      </div>
+      
         <div style={{ paddingLeft: "5%", paddingRight: "5%", height: "100%" }}>
             <Wrapper apiKey={`${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`} render={render}>
                 {mechanicLocation ? (
