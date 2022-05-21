@@ -1,5 +1,7 @@
+import Nav from "../../components/Nav";
+import Footer from "../../components/Footer";
 import { useParams } from "react-router-dom";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
 import BACKEND_URL from "../../components/utils/Constants";
 import CalloutDetails, { CalloutDetailsInterface } from "../../components/CalloutDetails";
@@ -31,7 +33,7 @@ const RequestDetails = () => {
         .then(response => {
             
             var callout = response.data.filter(function(callout: any) {
-                return callout.id === id;
+                return callout.id == id;
             })[0];
 
             setDetails(callout);
@@ -42,7 +44,7 @@ const RequestDetails = () => {
             console.log(error.request);
             console.log(error.message);
         });
-    }, [id]); 
+    }, []); 
 
     return (
         <>
