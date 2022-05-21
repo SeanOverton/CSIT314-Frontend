@@ -32,26 +32,26 @@ const CalloutDetails = (props: CalloutDetailsProps) => {
     
     let details = props.details;
 
-    useEffect(() => {
-        const getLatLng = () => {
-            if(details.location !== ""){
-                axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${details.location}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`).then(
-                    (response: any) => {
-                        console.log("Google Geocode API response: ");
-                        console.log(response.data)
-                        console.log(response.data.results[0].geometry.location);
-                        setLocation(response.data.results[0].geometry.location);
-                    }
-                    );
-            }
+    const getLatLng = () => {
+        if(details.location != ""){
+            axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${details.location}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`).then(
+                (response: any) => {
+                    console.log("Google Geocode API response: ");
+                    console.log(response.data)
+                    console.log(response.data.results[0].geometry.location);
+                    setLocation(response.data.results[0].geometry.location);
+                }
+                );
         }
+    }
 
+    useEffect(() => {
         getLatLng();
     }, [details])
 
     return (
         <>
-        <h3>Booking ID: <span id="booking_id">{details.id}</span></h3>
+        <h3>Booking ID: {details.id}</h3>
         <p style={{color: "grey"}}>{details.description}</p>
         <h4>$200.00</h4>
         {/* only should display route when mechanic is viewing and/or 
@@ -118,7 +118,7 @@ const CalloutDetails = (props: CalloutDetailsProps) => {
                     <p>TODO</p>
                 </Col>
             </Row> */}
-            {details.mechanic === "" ? (
+            {details.mechanic == "" ? (
                 <></>
             ) : (
                 <>
@@ -133,7 +133,7 @@ const CalloutDetails = (props: CalloutDetailsProps) => {
                     </Row>
                 </>
             )}
-            {details.review === "" ? (
+            {details.review == "" ? (
                 <></>
             ) : (
                 <>
@@ -148,7 +148,7 @@ const CalloutDetails = (props: CalloutDetailsProps) => {
                     </Row>
                 </>
             )}
-            {details.rating === "0" ? (
+            {details.rating == "0" ? (
                 <></>
             ) : (
                 <>
