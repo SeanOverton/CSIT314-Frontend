@@ -203,8 +203,11 @@ const Request = () => {
 
     return (
         <>
-        {renderProgressBar(step)}
-        {renderCurrentStep(step)}
+        <main>
+            {renderProgressBar(step)}
+            {renderCurrentStep(step)}
+        </main>
+    
         </>
     );
 };

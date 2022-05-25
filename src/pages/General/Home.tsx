@@ -1,4 +1,9 @@
 import React from 'react';
+<<<<<<< HEAD
+import About from './About';
+import Services from './Services';
+=======
+>>>>>>> 7222ab4cd708d28e80328658d536960a80f650f3
 import { Container, Col, Row, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import img1 from "../../images/img1.jpg";
@@ -42,10 +47,17 @@ const Home = () => {
                     </Row>
                     <Row>
                         <Col>
+<<<<<<< HEAD
+                        <p style={{textAlign:"center"}} >9/10 Problems fixed by roadside. Our xxx Specialist</p>
+                        </Col>
+                        <Col>
+                        <p style={{textAlign:"center"}}>9/10 Problems fixed by roadside. Our xxx Specialist</p>
+=======
                         <p style={{textAlign:"center"}} >We provide exclusive roadside service in Australia.</p>
                         </Col>
                         <Col>
                         <p style={{textAlign:"center"}}>We offer the best price for the service.</p>
+>>>>>>> 7222ab4cd708d28e80328658d536960a80f650f3
                         </Col>
                     </Row>
                     <Row>
@@ -70,10 +82,17 @@ const Home = () => {
                     </Row>
                     <Row>
                         <Col>
+<<<<<<< HEAD
+                        <p style={{textAlign:"center" }} >9/10 Problems fixed by roadside. Our xxx Specialist</p>
+                        </Col>
+                        <Col>
+                        <p style={{textAlign:"center" }}>9/10 Problems fixed by roadside. Our xxx Specialist</p>
+=======
                         <p style={{textAlign:"center" }} >It just take few clicks book our roadside service.</p>
                         </Col>
                         <Col>
                         <p style={{textAlign:"center" }}>You can rely on our service as it is fast.</p>
+>>>>>>> 7222ab4cd708d28e80328658d536960a80f650f3
                         </Col>
                     </Row>
                </Container> 
@@ -92,6 +111,18 @@ const Home = () => {
                         </Card>
                     </Row> 
                 </div>
+<<<<<<< HEAD
+            </div>
+
+           {/* <div>
+                <h1>Home page</h1>
+                <h3>(Whatever information we want to put on the home page.)</h3>
+                <h3>Average rating: [FROM DB]/5</h3>
+                <h3>Call outs in this month: [FROM DB]</h3>
+           </div>*/}
+            {/* <About/>*/}
+        {/* <Services/>*/}
+=======
                 <hr></hr>
                 <div style={{paddingTop: "2em", paddingBottom: "2em"}}>
                     <h1>How it works ? </h1>
@@ -197,6 +228,7 @@ const Home = () => {
                     </Container>            
                 </div>
             </div>
+>>>>>>> 7222ab4cd708d28e80328658d536960a80f650f3
          </main> 
         </>
     );
