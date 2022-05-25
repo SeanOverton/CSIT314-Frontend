@@ -1,5 +1,8 @@
 import { Container, Col, Row } from 'react-bootstrap';
 import ContactUsButton from '../../components/ContactUsButton';
+import img1 from "../../images/img1.jpg";
+import img2 from "../../images/img2.jpg";
+import img3 from "../../images/img3.jpg";
 
 const AboutUs = () => (
     <>
@@ -24,17 +27,17 @@ const AboutUs = () => (
                     <Row>
                         <Col>
                             <h3 style={{ paddingTop: "2em", paddingBottom: "2em" }}>
-                                IMAGE PLACEHOLDER
+                                <img src={img1} style={{width: "100%"}}/>
                             </h3>
                         </Col>
                         <Col>
                             <h3 style={{ paddingTop: "2em", paddingBottom: "2em" }}>
-                                IMAGE PLACEHOLDER
+                                <img src={img2} style={{width: "100%"}}/>
                             </h3>
                         </Col>
                         <Col>
                             <h3 style={{ paddingTop: "2em", paddingBottom: "2em" }}>
-                                IMAGE PLACEHOLDER
+                                <img src={img3} style={{width: "100%"}}/>
                             </h3>
                         </Col>
                     </Row>

@@ -1,13 +1,19 @@
 import React from 'react';
 import { Container, Col, Row, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import img1 from "../../images/img1.jpg";
+import img2 from "../../images/img2.jpg";
+import img3 from "../../images/img3.jpg";
+import img4 from "../../images/img4.jpg";
+import img5 from "../../images/img5.jpg";
+import img6 from "../../images/img6.jpg";
 
 const Home = () => {
     return (
         <>
         <main> 
             <div style={{paddingTop: "1em", paddingBottom: "4em"}}>
-                <h1>IMAGE PLACEHOLDER</h1>
+                <img src={img1} style={{width:"50%"}}/>
                 <div style={{paddingTop: "5em", paddingBottom: "1em"}}>
                     <Container>
                     <Row>
@@ -17,12 +23,12 @@ const Home = () => {
                     <Row>
                         <Col>
                             <h3 style={{ paddingTop: "2em", paddingBottom: "2em", paddingLeft: "1em", paddingRight: "2em" }}>
-                                IMAGE PLACEHOLDER
+                            <img src={img2} style={{width:"50%"}}/>
                             </h3>
                         </Col>
                         <Col>
                             <h3 style={{ paddingTop: "2em", paddingBottom: "2em", paddingLeft: "2em", paddingRight: "1em"  }}>
-                                IMAGE PLACEHOLDER
+                            <img src={img3} style={{width:"50%"}}/>
                             </h3>
                         </Col>
                     </Row>
@@ -45,12 +51,12 @@ const Home = () => {
                     <Row>
                         <Col>
                             <h3 style={{ paddingTop: "2em", paddingBottom: "2em", paddingLeft: "1em", paddingRight: "2em" }}>
-                                IMAGE PLACEHOLDER
+                            <img src={img4} style={{width:"50%"}}/>
                             </h3>
                         </Col>
                         <Col>
                             <h3 style={{ paddingTop: "2em", paddingBottom: "2em", paddingLeft: "2em", paddingRight: "1em"  }}>
-                                IMAGE PLACEHOLDER
+                            <img src={img5} style={{width:"50%"}}/>
                             </h3>
                         </Col>
                     </Row>
@@ -103,22 +109,22 @@ const Home = () => {
                     <Row>
                         <Col>
                             <h3 style={{ padding: "1em" }}>
-                                IMAGE PLACEHOLDER
+                            ★★★★★
                             </h3>
                         </Col>
                         <Col>
                             <h3 style={{ padding: "1em" }}>
-                                IMAGE PLACEHOLDER
+                            ★★★★★
                             </h3>
                         </Col>
                         <Col>
                             <h3 style={{ padding: "1em" }}>
-                                IMAGE PLACEHOLDER
+                            ★★★★★
                             </h3>
                         </Col>
                         <Col>
                             <h3 style={{ padding: "1em" }}>
-                                IMAGE PLACEHOLDER
+                            ★★★★★
                             </h3>
                         </Col>
                     </Row>
@@ -139,22 +145,22 @@ const Home = () => {
                     <Row>
                         <Col>
                             <h3 style={{padding: "1em"}}>
-                                IMAGE PLACEHOLDER
+                            ★★★★★
                             </h3>
                         </Col>
                         <Col>
                             <h3 style={{padding: "1em"}}>
-                                IMAGE PLACEHOLDER
+                            ★★★★★
                             </h3>
                         </Col>
                         <Col>
                             <h3 style={{padding: "1em"}}>
-                                IMAGE PLACEHOLDER
+                            ★★★★★
                             </h3>
                         </Col>
                         <Col>
                             <h3 style={{padding: "1em"}}>
-                                IMAGE PLACEHOLDER
+                            ★★★★★
                             </h3>
                         </Col>
                     </Row>
@@ -184,7 +190,7 @@ const Home = () => {
                             </Col>
                             <Col>
                             <h3 style={{ padding: "1em" }}>
-                                IMAGE PLACEHOLDER
+                                <img src={img6} style={{width: "50%"}}/>
                             </h3>
                             </Col>
                         </Row>
